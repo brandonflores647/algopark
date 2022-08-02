@@ -49,10 +49,17 @@ const Map = () => {
                 const domEle = document.getElementById(
                     `node-${cell.row}-${cell.col}`
                 );
+
+                // remove visited cell effect
                 if (domEle.className.includes(nodeClasses.visited)) {
-                    document.getElementById(`node-${cell.row}-${cell.col}`)
-                    .className = document.getElementById(`node-${cell.row}-${cell.col}`)
-                    .className.split(nodeClasses.visited).join(' ');
+                    domEle.className = domEle.className
+                    .split(nodeClasses.visited).join(' ');
+                }
+
+                // remove path cell effect
+                if (domEle.className.includes(nodeClasses.pathCell)) {
+                    domEle.className = domEle.className
+                    .split(nodeClasses.pathCell).join(' ');
                 }
             })
         })
@@ -79,10 +86,16 @@ const Map = () => {
 
     const animatePath = (path) => {
         path.forEach((ele, i) => {
+            const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
             setTimeout(() => {
-                document.getElementById(`node-${ele.row}-${ele.col}`)
-                .className = (`${nodeClasses.cell} ${nodeClasses.pathCell}`);
-            }, speed * i)
+                // remove visited cell effect
+                domEle.className = domEle.className
+                .split(nodeClasses.visited).join(' ');
+
+                // add new path effect
+                domEle.className += (` ${nodeClasses.pathCell}`);
+
+            }, speed+25 * i)
         });
     }
 

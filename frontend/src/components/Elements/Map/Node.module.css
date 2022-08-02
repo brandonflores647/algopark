@@ -12,11 +12,16 @@
     background-color: #70FF98;
 }
 .endCell {
-    background-color: #FF6C6C;
+    background-color: #FF6C6C !important;
 }
+
 .visited {
     border: 15px solid rgba(80, 83, 255, 0.587);
 }
+.pathCell {
+    background-color: rgb(255, 255, 116);
+}
+
 .wallCell {
     background-color: grey;
 }
