@@ -2,11 +2,12 @@ import classes from './Node.module.css';
 
 const Node = ({ row, col, isStart, isEnd, isWall }) => {
     return (
-        <span className={`
+        <span id={`node-${row}-${col}`} className={`
             ${classes.cell}
-            ${isStart ? classes.startCell
+            ${
+                isStart ? classes.startCell
                 : isEnd ? classes.endCell
-                : isWall ? classes.wallCell : ''}
+                : isWall ? classes.wallCell : '' }
         `}>
         </span>
     );

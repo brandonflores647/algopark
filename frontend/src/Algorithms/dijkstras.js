@@ -1,4 +1,4 @@
-const dijkstras = (grid, start, end) => {
+export const dijkstras = (grid, start, end) => {
     // handle no possible path
     if (!start || !end || start===end) {
         return false;
@@ -19,6 +19,7 @@ const dijkstras = (grid, start, end) => {
 
         closestNode.isVisited = true;
         visitedNodes.push(closestNode);
+
         if (closestNode === end) return visitedNodes;
 
         updateUnvisited(closestNode, grid);
