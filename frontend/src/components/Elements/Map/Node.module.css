@@ -5,3 +5,13 @@
     border: 1px solid #989898;
     border-radius: 3px;
 }
+
+.startCell {
+    background-color: green;
+}
+.endCell {
+    background-color: red;
+}
+.wallCell {
+    background-color: grey;
+}

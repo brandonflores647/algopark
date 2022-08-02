@@ -1,8 +1,13 @@
 import classes from './Node.module.css';
 
-const Node = () => {
+const Node = ({ row, col, isStart, isEnd, isWall }) => {
     return (
-        <span className={classes.cell}>
+        <span className={`
+            ${classes.cell}
+            ${isStart ? classes.startCell
+                : isEnd ? classes.endCell
+                : isWall ? classes.wallCell : ''}
+        `}>
         </span>
     );
 }
