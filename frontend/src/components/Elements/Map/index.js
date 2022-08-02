@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import Node from './Node';
 
-import { dijkstras } from '../../../Algorithms/dijkstras';
+import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
 import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
@@ -14,6 +14,7 @@ const Map = () => {
     const startCol = 2;
     const endRow = 5;
     const endCol = 12;
+    const speed = 10;
 
     const [grid, setGrid] = useState([]);
     const [visitedGrid, setVisitedGrid] = useState([]);
@@ -61,6 +62,13 @@ const Map = () => {
     const animateVisited = (visitedNodesArr) => {
         resetGrid(grid);
         for (let i = 0; i < visitedNodesArr.length; i++) {
+            // animate path
+            if (i === visitedNodesArr.length) { // hit end node
+                setTimeout(() => {
+                    // TODO
+                }, speed * i);
+            }
+            // animate search
             setTimeout(() => {
                 const curNode = visitedNodesArr[i];
                 const newGrid = grid.slice();
@@ -69,7 +77,7 @@ const Map = () => {
                 .className += (' ' + nodeClasses.visited);
                 newGrid[curNode.row][curNode.col] = newNode;
                 setVisitedGrid(newGrid);
-            }, 10 * i);
+            }, speed * i);
         }
     }
 

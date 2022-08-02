@@ -52,3 +52,13 @@ const updateUnvisited = (node, grid) => {
         i.previous = node;
     }
 }
+
+export const getPath = (endNode) => {
+    const pathArr = [];
+    let curNode = endNode;
+    while (curNode) {
+        pathArr.unshift(curNode);
+        curNode = curNode.previous;
+    }
+    return pathArr;
+}
