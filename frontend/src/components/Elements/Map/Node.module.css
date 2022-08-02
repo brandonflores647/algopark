@@ -9,10 +9,10 @@
 }
 
 .startCell {
-    background-color: green;
+    background-color: #70FF98;
 }
 .endCell {
-    background-color: red;
+    background-color: #FF6C6C;
 }
 .visited {
     border: 15px solid rgba(80, 83, 255, 0.587);

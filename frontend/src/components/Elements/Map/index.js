@@ -52,7 +52,7 @@ const Map = () => {
                 if (domEle.className.includes(nodeClasses.visited)) {
                     document.getElementById(`node-${cell.row}-${cell.col}`)
                     .className = document.getElementById(`node-${cell.row}-${cell.col}`)
-                    .className.split(nodeClasses.visited).join('\n');
+                    .className.split(nodeClasses.visited).join(' ');
                 }
             })
         })
@@ -88,6 +88,8 @@ const Map = () => {
                     {row.map((node, i) => (
                         <Node
                             key={`node-${i}`}
+                            grid={grid}
+                            setGrid={setGrid}
                             row={node.row}
                             col={node.col}
                             isStart={node.isStart}
