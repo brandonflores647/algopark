@@ -1,15 +1,9 @@
 export const dijkstras = (grid, start, end) => {
-    // handle no possible path
-    if (!start || !end || start===end) {
-        return false;
-    }
-
     const visitedNodes = [];
     start.distance = 0;
-    const unvisitedNodes = getAllNodes(grid);
-
+    let unvisitedNodes = getAllNodes(grid);
     while (unvisitedNodes.length) {
-        unvisitedNodes.sort((a, b) => a.distance-b.distance);
+        unvisitedNodes = unvisitedNodes.sort((a, b) => a.distance-b.distance);
         const closestNode = unvisitedNodes.shift();
 
         if (closestNode.isWall) continue;
@@ -37,7 +31,7 @@ const getAllNodes = (grid) => {
 }
 
 const updateUnvisited = (node, grid) => {
-    const neighbors = [];
+    let neighbors = [];
     const {col, row} = node;
 
     // grab all neighbors
@@ -45,7 +39,7 @@ const updateUnvisited = (node, grid) => {
     if (row < grid.length-1) neighbors.push(grid[row+1][col]);
     if (col > 0) neighbors.push(grid[row][col-1]);
     if (col < grid[0].length-1) neighbors.push(grid[row][col+1]);
-    neighbors.filter(ele => !ele.isVisited);
+    neighbors = neighbors.filter(ele => !ele.isVisited);
 
     for (let i of neighbors) {
         i.distance = node.distance + 1;
@@ -56,7 +50,7 @@ const updateUnvisited = (node, grid) => {
 export const getPath = (endNode) => {
     const pathArr = [];
     let curNode = endNode;
-    while (curNode) {
+    while (curNode.previous) {
         pathArr.unshift(curNode);
         curNode = curNode.previous;
     }

@@ -58,23 +58,15 @@ const Map = () => {
         })
     }
 
-    // const animatePath = (path) => {
-    //     path.forEach((ele, i) => {
-    //         setTimeout(() => {
-    //             const curNode = path[i];
-
-    //         }, speed * i)
-    //     });
-    // }
-
-    const animateVisited = (visitedNodesArr) => {
+    const animateVisited = (visitedNodesArr, pathArr) => {
         resetGrid(grid);
-        for (let i = 0; i < visitedNodesArr.length; i++) {
+        for (let i = 0; i <= visitedNodesArr.length; i++) {
             // animate path
             if (i === visitedNodesArr.length) { // hit end node
-                // setTimeout(() => {
-                    // TODO
-                // }, speed * i);
+                setTimeout(() => {
+                    animatePath(pathArr)
+                }, speed * i);
+                return;
             }
             // animate search
             setTimeout(() => {
@@ -85,11 +77,21 @@ const Map = () => {
         }
     }
 
+    const animatePath = (path) => {
+        path.forEach((ele, i) => {
+            setTimeout(() => {
+                document.getElementById(`node-${ele.row}-${ele.col}`)
+                .className = (`${nodeClasses.cell} ${nodeClasses.pathCell}`);
+            }, speed * i)
+        });
+    }
+
     const handlePlay = () => {
         const startNode = grid[startRow][startCol];
         const endNode = grid[endRow][endCol];
         const visitedNodes = dijkstras(grid, startNode, endNode);
-        animateVisited(visitedNodes);
+        const pathArr = getPath(endNode);
+        animateVisited(visitedNodes, pathArr);
     }
 
     return (
