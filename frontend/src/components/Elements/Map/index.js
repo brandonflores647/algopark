@@ -17,7 +17,6 @@ const Map = () => {
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
-    const [visitedGrid, setVisitedGrid] = useState([]);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -59,24 +58,29 @@ const Map = () => {
         })
     }
 
+    // const animatePath = (path) => {
+    //     path.forEach((ele, i) => {
+    //         setTimeout(() => {
+    //             const curNode = path[i];
+
+    //         }, speed * i)
+    //     });
+    // }
+
     const animateVisited = (visitedNodesArr) => {
         resetGrid(grid);
         for (let i = 0; i < visitedNodesArr.length; i++) {
             // animate path
             if (i === visitedNodesArr.length) { // hit end node
-                setTimeout(() => {
+                // setTimeout(() => {
                     // TODO
-                }, speed * i);
+                // }, speed * i);
             }
             // animate search
             setTimeout(() => {
                 const curNode = visitedNodesArr[i];
-                const newGrid = grid.slice();
-                const newNode = {...curNode};
-                document.getElementById(`node-${newNode.row}-${newNode.col}`)
+                document.getElementById(`node-${curNode.row}-${curNode.col}`)
                 .className += (' ' + nodeClasses.visited);
-                newGrid[curNode.row][curNode.col] = newNode;
-                setVisitedGrid(newGrid);
             }, speed * i);
         }
     }
