@@ -3,13 +3,18 @@ import { useState } from 'react';
 import classes from './Node.module.css';
 
 const Node = ({ grid, setGrid, row, col, isStart, isEnd, isWall }) => {
-    const [wall, setWall] = useState(isWall);
+    const [wallVisual, setWallVisual] = useState(isWall);
 
     const handleClick = () => {
-        if (!wall) {
-            setWall(true);
+        if (!wallVisual) {
+            setWallVisual(true);
             const updatedGrid = grid.slice();
             updatedGrid[row][col].isWall = true;
+            setGrid(updatedGrid);
+        } else {
+            setWallVisual(false);
+            const updatedGrid = grid.slice();
+            updatedGrid[row][col].isWall = false;
             setGrid(updatedGrid);
         }
     }
@@ -20,7 +25,7 @@ const Node = ({ grid, setGrid, row, col, isStart, isEnd, isWall }) => {
             ${
                 isStart ? classes.startCell
                 : isEnd ? classes.endCell
-                : wall ? classes.wallCell : '' }
+                : wallVisual ? classes.wallCell : '' }
         `}
         onClick={() => handleClick()}>
         </span>
