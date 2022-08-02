@@ -6,7 +6,7 @@ const Node = ({ grid, setGrid, row, col, isStart, isEnd, isWall }) => {
     const [wallVisual, setWallVisual] = useState(isWall);
 
     const handleClick = () => {
-        if (!wallVisual) {
+        if (!wallVisual && !isStart && !isEnd) {
             setWallVisual(true);
             const updatedGrid = grid.slice();
             updatedGrid[row][col].isWall = true;
