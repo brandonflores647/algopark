@@ -1,3 +1,7 @@
+import {
+    CREATE_MANY_OBJECT
+} from './objects';
+
 // ==== Types ==== //
 
 const CREATE_MAP = "map/CREATE_MAP";
@@ -67,6 +71,13 @@ const maps = (state = {}, action) => {
             maps.forEach(map => {
                 newState[map.id] = map;
             });
+            return newState;
+        }
+
+        case CREATE_MANY_OBJECT: {
+            const mapId = action.payload.mapId;
+            const objects = action.payload.objects;
+            newState[mapId].objects = objects;
             return newState;
         }
 

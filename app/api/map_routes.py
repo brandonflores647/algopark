@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Map
+from app.models import db, Map, Object
 
 map_routes = Blueprint('map', __name__)
 
@@ -23,6 +23,7 @@ def create():
         ownerId=data['ownerId']
     )
     db.session.add(new_map)
+
     db.session.commit()
     return new_map.toDict()
 

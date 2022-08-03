@@ -23,6 +23,20 @@ def create():
     db.session.commit()
     return new_object.toDict()
 
+@object_routes.route('/create_many', methods=['POST'])
+def create_many():
+    data = request.json
+    for obj in data['objects'].values():
+        new_obj = Object(
+            typeId = obj['typeId'],
+            mapId = data['mapId'],
+            xPos = obj['x'],
+            yPos = obj['y']
+        )
+        db.session.add(new_obj)
+    db.session.commit()
+    return data
+
 @object_routes.route('/update', methods=['PATCH'])
 def update():
     data = request.json
