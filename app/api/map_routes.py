@@ -8,6 +8,11 @@ map_routes = Blueprint('map', __name__)
 def getAll(userId):
     maps = Map.query.filter_by(ownerId=userId).all()
     data = [i.toDict() for i in maps]
+
+    for i in range(len(maps)):
+        objectDict = {i.id: i.toDict() for i in maps[i].objects}
+        data[i]['objects'] = objectDict
+
     return {'maps': data}
 
 @map_routes.route('/new', methods=['POST'])
