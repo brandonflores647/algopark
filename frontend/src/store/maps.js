@@ -33,6 +33,7 @@ export const thunkCreateMap = (map) => async (dispatch) => {
     if (response.ok) {
         const mapRes = await response.json();
         dispatch(actionCreateMap(mapRes));
+        return mapRes.id;
     }
 }
 

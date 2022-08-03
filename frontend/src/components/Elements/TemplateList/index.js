@@ -6,7 +6,7 @@ const TemplateList = () => {
     const dispatch = useDispatch();
     const maps = useSelector((state) => state.maps);
 
-    const handleNewMap = (mapId) => {
+    const handleMapChange = (mapId) => {
         (async() => {
             await dispatch(setMapThunk(mapId));
         })();
@@ -20,7 +20,7 @@ const TemplateList = () => {
                     return (
                         <li key={`map-${i}`}>
                             <button
-                                onClick={() => handleNewMap(map.id)}
+                                onClick={() => handleMapChange(map.id)}
                             >{`${map.name} - id:${map.id}`}</button>
                         </li>
                     )

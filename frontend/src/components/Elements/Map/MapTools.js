@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
 
 const MapTools = ({
@@ -10,7 +11,7 @@ const MapTools = ({
     handleClear }) => {
 
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.session.user);
+    const session = useSelector((state) => state.session);
 
     const doClear = () => {
         handleClear(grid)
@@ -18,11 +19,16 @@ const MapTools = ({
     }
 
     const handleSave = () => {
+        if (session.currentMap) {
+            console.log('TODO: ADD SAVE')
+            return;
+        }
         (async () => {
-            await dispatch(thunkCreateMap({
+            const newMapId = await dispatch(thunkCreateMap({
                 name: 'New Map',
-                ownerId: user.id
+                ownerId: session.user.id
             }))
+            await dispatch(setMapThunk(newMapId))
         })();
     }
 
