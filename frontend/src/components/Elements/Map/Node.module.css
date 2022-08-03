@@ -6,9 +6,11 @@
     border-radius: 3px;
 
     transition: border .2s ease;
+    user-select: none;
 }
 
 .startCell {
+    border: 1px solid #989898 !important;
     background-color: #70FF98;
 }
 .endCell {
@@ -19,7 +21,8 @@
     border: 15px solid rgba(80, 83, 255, 0.587);
 }
 .pathCell {
-    background-color: rgb(255, 255, 116);
+    border-color: rgba(80, 83, 255, 0.587);
+    background-color: rgb(255, 255, 125);
 }
 
 .wallCell {

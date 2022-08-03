@@ -12,8 +12,8 @@ const Map = () => {
 
     const startRow = 2;
     const startCol = 2;
-    const endRow = 5;
-    const endCol = 12;
+    const endRow = 10;
+    const endCol = 18;
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
