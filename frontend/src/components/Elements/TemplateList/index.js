@@ -1,7 +1,16 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { setMapThunk } from "../../../store/session";
 
 const TemplateList = () => {
+    const dispatch = useDispatch();
     const maps = useSelector((state) => state.maps);
+
+    const handleNewMap = (mapId) => {
+        (async() => {
+            await dispatch(setMapThunk(mapId));
+        })();
+    }
 
     return (
         <div>
@@ -10,7 +19,9 @@ const TemplateList = () => {
                 {Object.values(maps).map((map, i) => {
                     return (
                         <li key={`map-${i}`}>
-                            <button>{`${map.name} - id:${map.id}`}</button>
+                            <button
+                                onClick={() => handleNewMap(map.id)}
+                            >{`${map.name} - id:${map.id}`}</button>
                         </li>
                     )
                 })}
