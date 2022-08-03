@@ -10,16 +10,18 @@ def getAll(mapId):
     data = [i.toDict() for i in objects]
     return {'objects': data}
 
-# @object_routes.route('/new', methods=['POST'])
-# def create():
-#     data = request.json
-#     new_map = Map(
-#         name=data['name'],
-#         ownerId=data['ownerId']
-#     )
-#     db.session.add(new_map)
-#     db.session.commit()
-#     return new_map.toDict()
+@object_routes.route('/new', methods=['POST'])
+def create():
+    data = request.json
+    new_object = Object(
+        typeId=data['typeId'],
+        mapId=data['mapId'],
+        xPos=data['xPos'],
+        yPos=data['typeId'],
+    )
+    db.session.add(new_object)
+    db.session.commit()
+    return new_object.toDict()
 
 # @object_routes.route('/update', methods=['PATCH'])
 # def update():
