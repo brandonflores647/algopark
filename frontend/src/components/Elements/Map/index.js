@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import MapTools from './MapTools';
 import Node from './Node';
 
 import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
@@ -44,7 +45,7 @@ const Map = () => {
         setGrid(oldGrid);
     }, []);
 
-    const resetGrid = (grid) => {
+    const replayCleanup = (grid) => {
         grid.forEach(row => {
             row.forEach(cell => {
                 const domEle = document.getElementById(
@@ -71,7 +72,7 @@ const Map = () => {
     }
 
     const animateVisited = (visitedNodesArr, pathArr) => {
-        resetGrid(grid);
+        replayCleanup(grid);
         for (let i = 0; i <= visitedNodesArr.length; i++) {
             // animate path
             if (i === visitedNodesArr.length) { // hit end node
@@ -116,10 +117,7 @@ const Map = () => {
 
     return (
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
-            <button
-                disabled={playing}
-                onClick={() => handlePlay()}
-            >PLAY</button>
+            <MapTools playing={playing} handlePlay={handlePlay}/>
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (
