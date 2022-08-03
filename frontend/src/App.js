@@ -10,7 +10,8 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Map from './components/Elements/Map';
+
+import MapPage from './components/Pages/MapPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,9 +44,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <Map />
-        </Route>
+        <ProtectedRoute path='/' exact={true} >
+          <MapPage />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
