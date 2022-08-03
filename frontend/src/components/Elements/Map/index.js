@@ -12,8 +12,8 @@ const Map = () => {
 
     const startRow = 2;
     const startCol = 2;
-    const endRow = 10;
-    const endCol = 18;
+    const endRow = 15;
+    const endCol = 28;
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
@@ -63,6 +63,8 @@ const Map = () => {
                 }
 
                 cell.isVisited = false;
+                cell.distance = Infinity;
+                cell.previous = null;
             })
         })
     }
