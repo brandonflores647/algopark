@@ -23,13 +23,15 @@ def create():
     db.session.commit()
     return new_object.toDict()
 
-# @object_routes.route('/update', methods=['PATCH'])
-# def update():
-#     data = request.json
-#     map = Map.query.get(data['id'])
-#     map.name = data['name']
-#     db.session.commit()
-#     return map.toDict()
+@object_routes.route('/update', methods=['PATCH'])
+def update():
+    data = request.json
+    object = Object.query.get(data['id'])
+    object.typeId = data['typeId']
+    object.xPos = data['xPos']
+    object.yPos = data['yPos']
+    db.session.commit()
+    return object.toDict()
 
 # @object_routes.route('/delete', methods=['DELETE'])
 # def delete():
