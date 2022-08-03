@@ -1,0 +1,12 @@
+.gridContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    cursor: pointer;
+}
+
+.rowContainer {
+    display: flex;
+    gap: 3px;
+}

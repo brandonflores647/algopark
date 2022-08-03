@@ -1,0 +1,30 @@
+.cell {
+    min-width: 30px;
+    min-height: 30px;
+
+    border: 1px solid #989898;
+    border-radius: 3px;
+
+    transition: border .2s ease;
+    user-select: none;
+}
+
+.startCell {
+    border: 1px solid #989898 !important;
+    background-color: #70FF98;
+}
+.endCell {
+    background-color: #FF6C6C !important;
+}
+
+.visited {
+    border: 15px solid rgba(80, 83, 255, 0.587);
+}
+.pathCell {
+    border-color: rgba(80, 83, 255, 0.587);
+    background-color: rgb(255, 255, 125);
+}
+
+.wallCell {
+    background-color: grey;
+}
