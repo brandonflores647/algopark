@@ -11,6 +11,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    mapOwnership = db.relationship('Map', back_populates='owner', cascade='all, delete-orphan')
+
     @property
     def password(self):
         return self.hashed_password
@@ -22,7 +24,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
+    def toDict(self):
         return {
             'id': self.id,
             'username': self.username,
