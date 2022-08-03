@@ -9,7 +9,7 @@ class Object(db.Model):
     xPos = db.Column(db.Integer, nullable=False)
     yPos = db.Column(db.Integer, nullable=False)
 
-    type = db.relationship('ObjectType', back_populates='object')
+    type = db.relationship('ObjectType', back_populates='objects')
     map = db.relationship('Map', back_populates='objects')
 
     def toDict(self):
