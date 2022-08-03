@@ -1,6 +1,7 @@
 // ==== Types ==== //
 
 const CREATE_MAP = "map/CREATE_MAP";
+const GET_ALL_MAP = "map/GET_ALL_MAP";
 
 // ==== Actions ==== //
 
@@ -8,6 +9,13 @@ const actionCreateMap = (map) => {
     return {
         type: CREATE_MAP,
         map
+    }
+}
+
+const actionGetAllMaps = (maps) => {
+    return {
+        type: GET_ALL_MAP,
+        maps
     }
 }
 
@@ -28,6 +36,20 @@ export const thunkCreateMap = (map) => async (dispatch) => {
     }
 }
 
+export const thunkGetAllMaps = (userId) => async (dispatch) => {
+    const response = await fetch (`/api/m/all/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    });
+
+    if (response.ok) {
+        const mapData = await response.json();
+        dispatch(actionGetAllMaps(mapData.maps));
+    }
+}
+
 // ======== REDUCER ======== //
 const maps = (state = {}, action) => {
     let newState = JSON.parse(JSON.stringify(state));
@@ -37,6 +59,14 @@ const maps = (state = {}, action) => {
             const map = action.map;
             newState[map.id] = { ...map };
             return newState
+        }
+
+        case GET_ALL_MAP: {
+            const maps = action.maps;
+            maps.forEach(map => {
+                newState[map.id] = map;
+            });
+            return newState;
         }
 
         default:
