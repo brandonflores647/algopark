@@ -17,6 +17,7 @@ const Map = () => {
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
+    const [playing, setPlaying] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -101,6 +102,7 @@ const Map = () => {
 
             }, speed+25 * i)
         });
+        setPlaying(false);
     }
 
     const handlePlay = () => {
@@ -109,12 +111,15 @@ const Map = () => {
         const visitedNodes = dijkstras(grid, startNode, endNode);
         const pathArr = getPath(endNode);
         animateVisited(visitedNodes, pathArr);
-        console.log(grid)
+        setPlaying(true);
     }
 
     return (
-        <div className={classes.gridContainer}>
-            <button onClick={() => handlePlay()}>PLAY</button>
+        <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
+            <button
+                disabled={playing}
+                onClick={() => handlePlay()}
+            >PLAY</button>
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (
@@ -122,6 +127,7 @@ const Map = () => {
                             key={`node-${i}`}
                             grid={grid}
                             setGrid={setGrid}
+                            playing={playing}
                             row={node.row}
                             col={node.col}
                             isStart={node.isStart}
