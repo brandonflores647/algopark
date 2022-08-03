@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-
-    cursor: pointer;
 }
 
 .rowContainer {
