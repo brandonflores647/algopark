@@ -10,7 +10,8 @@ class Map(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
-    owner = db.relationship('User', back_populates='mapOwnership')
+    owner = db.relationship('User', back_populates='maps')
+    objects = db.relationship('Object', back_populates='map', cascade='all, delete-orphan')
 
     def toDict(self):
         return {

@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    mapOwnership = db.relationship('Map', back_populates='owner', cascade='all, delete-orphan')
+    maps = db.relationship('Map', back_populates='owner', cascade='all, delete-orphan')
 
     @property
     def password(self):
