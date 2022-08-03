@@ -20,3 +20,11 @@ def create():
     db.session.add(new_map)
     db.session.commit()
     return new_map.toDict()
+
+@map_routes.route('/update', methods=['PATCH'])
+def update():
+    data = request.json
+    map = Map.query.get(data['id'])
+    map.name = data['name']
+    db.session.commit()
+    return map.toDict()
