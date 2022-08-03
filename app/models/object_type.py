@@ -6,7 +6,7 @@ class ObjectType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     canCross = db.Column(db.Boolean, nullable=False)
-    speedMultiplier = db.Column(db.Numeric, nullable=False)
+    speedMultiplier = db.Column(db.Numeric, nullable=True)
     isStart = db.Column(db.Boolean, nullable=False)
     isEnd = db.Column(db.Boolean, nullable=False)
 
