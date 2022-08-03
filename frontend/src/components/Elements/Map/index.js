@@ -19,6 +19,7 @@ const Map = () => {
 
     const [grid, setGrid] = useState([]);
     const [playing, setPlaying] = useState(false);
+    const [clear, setClear] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -114,10 +115,43 @@ const Map = () => {
         animateVisited(visitedNodes, pathArr);
         setPlaying(true);
     }
+    const handleClear = (grid) => {
+        grid.forEach(row => {
+            row.forEach(cell => {
+                const domEle = document.getElementById(
+                    `node-${cell.row}-${cell.col}`
+                    );
+
+                    // remove visited cell effect
+                    if (domEle.className.includes(nodeClasses.visited)) {
+                        domEle.className = domEle.className
+                        .split(nodeClasses.visited).join(' ');
+                    }
+
+                    // remove path cell effect
+                    if (domEle.className.includes(nodeClasses.pathCell)) {
+                    domEle.className = domEle.className
+                    .split(nodeClasses.pathCell).join(' ');
+                }
+
+                cell.isWall = false;
+                cell.isVisited = false;
+                cell.distance = Infinity;
+                cell.previous = null;
+            });
+        });
+    }
 
     return (
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
-            <MapTools playing={playing} handlePlay={handlePlay}/>
+            <MapTools
+                grid={grid}
+                playing={playing}
+                clear={clear}
+                setClear={setClear}
+                handlePlay={handlePlay}
+                handleClear={handleClear}
+            />
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (
