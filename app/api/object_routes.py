@@ -33,9 +33,9 @@ def update():
     db.session.commit()
     return object.toDict()
 
-# @object_routes.route('/delete', methods=['DELETE'])
-# def delete():
-#     data = request.json
-#     Map.query.filter_by(id=data['id']).delete()
-#     db.session.commit()
-#     return 'Map successfully deleted!'
+@object_routes.route('/delete', methods=['DELETE'])
+def delete():
+    data = request.json
+    Object.query.filter_by(id=data['id']).delete()
+    db.session.commit()
+    return 'Object successfully deleted!'
