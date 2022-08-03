@@ -61,6 +61,8 @@ const Map = () => {
                     domEle.className = domEle.className
                     .split(nodeClasses.pathCell).join(' ');
                 }
+
+                cell.isVisited = false;
             })
         })
     }
@@ -105,6 +107,7 @@ const Map = () => {
         const visitedNodes = dijkstras(grid, startNode, endNode);
         const pathArr = getPath(endNode);
         animateVisited(visitedNodes, pathArr);
+        console.log(grid)
     }
 
     return (
