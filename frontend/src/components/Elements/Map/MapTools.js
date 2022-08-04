@@ -3,6 +3,8 @@ import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
 import { thunkCreateManyObjects } from "../../../store/objects";
 
+import classes from './MapTools.module.css';
+
 const MapTools = ({
     grid,
     playing,
@@ -13,6 +15,7 @@ const MapTools = ({
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
+    const maps = useSelector((state) => state.maps);
 
     const doClear = () => {
         handleClear(grid)
@@ -52,7 +55,7 @@ const MapTools = ({
     const handleSave = () => {
         // update
         if (session.currentMap) {
-            console.log('TODO: UPDATE MAP')
+            console.log(`TODO: UPDATE MAP #${session.currentMap}`)
             return;
         }
         // create
@@ -72,19 +75,24 @@ const MapTools = ({
     }
 
     return (
-        <div>
-            <button
-                disabled={playing}
-                onClick={() => handlePlay()}
-            >PLAY</button>
-            <button
-                disabled={playing}
-                onClick={() => doClear()}
-            >CLEAR</button>
-            <button
-                disabled={playing}
-                onClick={() => handleSave()}
-            >SAVE</button>
+        <div className={classes.navContainer}>
+            <span>{maps[session.currentMap] ?
+                `${maps[session.currentMap].name} - id:${maps[session.currentMap].id}`
+                : 'No map selected'}</span>
+            <div className={classes.navButtons}>
+                <button
+                    disabled={playing}
+                    onClick={() => handlePlay()}
+                >PLAY</button>
+                <button
+                    disabled={playing}
+                    onClick={() => doClear()}
+                >CLEAR</button>
+                <button
+                    disabled={playing}
+                    onClick={() => handleSave()}
+                >SAVE</button>
+            </div>
         </div>
     );
 }
