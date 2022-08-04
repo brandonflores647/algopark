@@ -14,12 +14,14 @@ const MapPage = () => {
 
     useEffect(() => {
         (async() => {
-            if (loaded && user) {
+            if (user) {
                 await dispatch(thunkGetAllMaps(user.id));
+                setLoaded(true);
             }
         })();
-        setLoaded(true);
-    }, [dispatch, loaded]);
+    }, [dispatch]);
+
+    if (!loaded) return null;
 
     return (
         <div className={classes.pageWrapper}>
