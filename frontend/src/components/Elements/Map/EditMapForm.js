@@ -15,6 +15,9 @@ const EditMapForm = ({ map, setEditName }) => {
         if (name.length === 0) {
             errors.push('Name for a template cannot be left blank');
         }
+        if (name.length > 20) {
+            errors.push('Name for a template cannot be more than 20 characters');
+        }
 
         if (errors.length > 0) {
             setValidationErrors(errors);
