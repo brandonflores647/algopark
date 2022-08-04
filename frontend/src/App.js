@@ -23,6 +23,7 @@ function App() {
       if (!user) await dispatch(authenticate());
       setLoaded(true);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   if (!loaded) {

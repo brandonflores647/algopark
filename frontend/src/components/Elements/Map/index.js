@@ -67,8 +67,8 @@ const Map = () => {
                     newGrid[obj.yPos][obj.xPos].isEnd = true;
                 }
             });
-            // setGrid(newGrid);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [curMap])
 
     const replayCleanup = (grid) => {

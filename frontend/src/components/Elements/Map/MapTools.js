@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
 import { thunkCreateManyObjects } from "../../../store/objects";
 
@@ -65,7 +64,6 @@ const MapTools = ({
                 mapId: newMapId
             }
             await dispatch(thunkCreateManyObjects(objects))
-            // await dispatch(setMapThunk(newMapId))
         })();
     }
 

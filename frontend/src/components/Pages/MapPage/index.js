@@ -19,6 +19,7 @@ const MapPage = () => {
                 setLoaded(true);
             }
         })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     if (!loaded) return null;

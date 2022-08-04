@@ -6,6 +6,7 @@ import {
 
 const CREATE_MAP = "map/CREATE_MAP";
 const GET_ALL_MAP = "map/GET_ALL_MAP";
+const DELETE_MAP = "map/DELETE_MAP";
 
 // ==== Actions ==== //
 
@@ -20,6 +21,13 @@ const actionGetAllMaps = (maps) => {
     return {
         type: GET_ALL_MAP,
         maps
+    }
+}
+
+const actionDeleteMap = (mapId) => {
+    return {
+        type: DELETE_MAP,
+        mapId
     }
 }
 
@@ -55,6 +63,20 @@ export const thunkGetAllMaps = (userId) => async (dispatch) => {
     }
 }
 
+export const thunkDeleteMap = (mapId) => async (dispatch) => {
+    const response = await fetch (`/api/m/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mapId })
+    });
+
+    if (response.ok) {
+        dispatch(actionDeleteMap(mapId));
+    }
+}
+
 // ======== REDUCER ======== //
 const maps = (state = {}, action) => {
     let newState = JSON.parse(JSON.stringify(state));
@@ -71,6 +93,12 @@ const maps = (state = {}, action) => {
             maps.forEach(map => {
                 newState[map.id] = map;
             });
+            return newState;
+        }
+
+        case DELETE_MAP: {
+            const mapId = action.mapId;
+            delete newState[mapId];
             return newState;
         }
 

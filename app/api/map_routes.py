@@ -38,6 +38,6 @@ def update():
 @map_routes.route('/delete', methods=['DELETE'])
 def delete():
     data = request.json
-    Map.query.filter_by(id=data['id']).delete()
+    Map.query.filter_by(id=data['mapId']).delete()
     db.session.commit()
     return 'Map successfully deleted!'

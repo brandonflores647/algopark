@@ -38,6 +38,7 @@ const Node = ({
             element.removeEventListener('mouseover', handleClick);
             document.removeEventListener('contextmenu', stopMenu);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [playing]);
 
     return (
