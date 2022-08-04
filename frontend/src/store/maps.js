@@ -1,5 +1,6 @@
 import {
-    CREATE_MANY_OBJECT
+    CREATE_MANY_OBJECT,
+    UPDATE_MANY_OBJECT
 } from './objects';
 
 // ==== Types ==== //
@@ -135,6 +136,13 @@ const maps = (state = {}, action) => {
         case CREATE_MANY_OBJECT: {
             const mapId = action.payload.mapId;
             const objects = action.payload.objects;
+            newState[mapId].objects = objects;
+            return newState;
+        }
+
+        case UPDATE_MANY_OBJECT: {
+            const mapId = action.payload.mapId;
+            const objects = action.payload.newObjects;
             newState[mapId].objects = objects;
             return newState;
         }
