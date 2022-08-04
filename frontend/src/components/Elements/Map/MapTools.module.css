@@ -1,0 +1,13 @@
+.navContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.templateNameContainer {
+    display: flex;
+}
+
+.editName {
+    margin-left: 5px;
+    cursor: pointer;
+}

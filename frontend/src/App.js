@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { authenticate } from './store/session';
-import { thunkGetAllMaps } from './store/maps';
 
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -22,12 +21,10 @@ function App() {
   useEffect(() => {
     (async() => {
       if (!user) await dispatch(authenticate());
-      if (loaded && user) {
-        await dispatch(thunkGetAllMaps(user.id));
-      }
       setLoaded(true);
     })();
-  }, [dispatch, loaded]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   if (!loaded) {
     return null;

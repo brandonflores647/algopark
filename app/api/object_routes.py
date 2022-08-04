@@ -47,6 +47,31 @@ def update():
     db.session.commit()
     return object.toDict()
 
+@object_routes.route('/update_many', methods=['PATCH'])
+def update_many():
+    data = request.json
+    for i in data['newObjects'].keys():
+        if i not in data['oldObjects'].keys():
+            new_obj = Object(
+                typeId = data['newObjects'][i]['typeId'],
+                mapId = data['mapId'],
+                xPos = data['newObjects'][i]['xPos'],
+                yPos = data['newObjects'][i]['yPos']
+            )
+            db.session.add(new_obj)
+    for j in data['oldObjects'].keys():
+        if j not in data['newObjects'].keys():
+            if 'id' in data['oldObjects'][j]:
+                Object.query.filter_by(id=data['oldObjects'][j]['id']).delete()
+            else:
+                Object.query.filter_by(
+                    mapId=data['mapId'],
+                    xPos=data['oldObjects'][j]['xPos'],
+                    yPos=data['oldObjects'][j]['yPos']).delete()
+
+    db.session.commit()
+    return data
+
 @object_routes.route('/delete', methods=['DELETE'])
 def delete():
     data = request.json

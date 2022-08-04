@@ -11,7 +11,7 @@
 
 .startCell {
     border: 1px solid #989898 !important;
-    background-color: #70FF98;
+    background-color: #70FF98 !important;
 }
 .endCell {
     background-color: #FF6C6C !important;

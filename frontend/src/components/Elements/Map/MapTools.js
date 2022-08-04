@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
-import { thunkCreateManyObjects } from "../../../store/objects";
+import {
+    thunkCreateManyObjects,
+    thunkUpdateManyObjects
+} from "../../../store/objects";
+
+import classes from './MapTools.module.css';
+import EditMapForm from './EditMapForm';
 
 const MapTools = ({
     grid,
@@ -13,6 +20,9 @@ const MapTools = ({
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
+    const maps = useSelector((state) => state.maps);
+
+    const [editName, setEditName] = useState(false);
 
     const doClear = () => {
         handleClear(grid)
@@ -50,10 +60,19 @@ const MapTools = ({
     }
 
     const handleSave = () => {
+        // update
         if (session.currentMap) {
-            console.log('TODO: UPDATE MAP')
+            (async () => {
+                const mapId = session.currentMap;
+                const newObjects = getObjects();
+                const oldObjects = maps[mapId].objects;
+                await dispatch(
+                    thunkUpdateManyObjects(mapId, newObjects, oldObjects)
+                );
+            })();
             return;
         }
+        // create
         (async () => {
             const map = {
                 name: 'New Map',
@@ -65,24 +84,42 @@ const MapTools = ({
                 mapId: newMapId
             }
             await dispatch(thunkCreateManyObjects(objects))
-            // await dispatch(setMapThunk(newMapId))
+            await dispatch(setMapThunk(newMapId));
         })();
     }
 
     return (
-        <div>
-            <button
-                disabled={playing}
-                onClick={() => handlePlay()}
-            >PLAY</button>
-            <button
-                disabled={playing}
-                onClick={() => doClear()}
-            >CLEAR</button>
-            <button
-                disabled={playing}
-                onClick={() => handleSave()}
-            >SAVE</button>
+        <div className={classes.navContainer}>
+            <span className={classes.templateNameContainer}>
+                {!editName ?
+                    (maps[session.currentMap] ?
+                    <>
+                    {maps[session.currentMap].name}
+                    <i
+                        className={`fa-solid fa-pen-to-square ${classes.editName}`}
+                        onClick={() => setEditName(true)}
+                    />
+                    </>
+                    : 'No template selected')
+                : <EditMapForm
+                    setEditName={setEditName}
+                    map={maps[session.currentMap]}
+                    />}
+            </span>
+            <div className={classes.navButtons}>
+                <button
+                    disabled={playing}
+                    onClick={() => handlePlay()}
+                >PLAY</button>
+                <button
+                    disabled={playing}
+                    onClick={() => doClear()}
+                >CLEAR</button>
+                <button
+                    disabled={playing}
+                    onClick={() => handleSave()}
+                >{session.currentMap?'SAVE':'NEW TEMPLATE'}</button>
+            </div>
         </div>
     );
 }
