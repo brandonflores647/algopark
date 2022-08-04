@@ -84,7 +84,7 @@ const MapTools = ({
                 {!editName ?
                     (maps[session.currentMap] ?
                     <>
-                    {`${maps[session.currentMap].name} - id:${maps[session.currentMap].id}`}
+                    {maps[session.currentMap].name}
                     <i
                         className={`fa-solid fa-pen-to-square ${classes.editName}`}
                         onClick={() => setEditName(true)}
@@ -93,7 +93,7 @@ const MapTools = ({
                     : 'No template selected')
                 : <EditMapForm
                     setEditName={setEditName}
-                    mapName={maps[session.currentMap].name}
+                    map={maps[session.currentMap]}
                     />}
             </span>
             <div className={classes.navButtons}>

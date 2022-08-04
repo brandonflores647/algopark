@@ -37,7 +37,7 @@ const TemplateList = () => {
                                     ${(curMap===map.id?classes.selected:'')}
                                 `}
                                 onClick={() => handleMapChange(map.id)}
-                            >{`${map.name} - id:${map.id}`}</button>
+                            >{map.name}</button>
                             <i
                                 className={`fa-solid fa-xmark ${classes.x}`}
                                 onClick={() => handleDelete(map.id)}

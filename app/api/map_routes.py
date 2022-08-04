@@ -30,7 +30,7 @@ def create():
 @map_routes.route('/update', methods=['PATCH'])
 def update():
     data = request.json
-    map = Map.query.get(data['id'])
+    map = Map.query.get(data['mapId'])
     map.name = data['name']
     db.session.commit()
     return map.toDict()

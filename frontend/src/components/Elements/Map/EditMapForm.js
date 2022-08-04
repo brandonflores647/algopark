@@ -1,12 +1,25 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-const EditMapForm = ({ mapName, setEditName }) => {
-    const [name, setName] = useState(mapName);
+import { thunkEditMap } from "../../../store/maps";
+
+const EditMapForm = ({ map, setEditName }) => {
+    const dispatch = useDispatch();
+    const [name, setName] = useState(map.name);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('SUBMITTED')
-        setEditName(false)
+        const errors = [];
+
+        if (name.length === 0) {
+            errors.push('Name for a template cannot be left blank');
+        }
+        if (errors.length > 0) {
+            console.log(errors);
+        } else {
+            await dispatch(thunkEditMap(map.id, name));
+            setEditName(false)
+        }
     }
 
     return (
