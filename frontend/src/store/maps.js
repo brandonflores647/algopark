@@ -82,6 +82,7 @@ export const thunkEditMap = (mapId, name) => async (dispatch) => {
 
     if (response.ok) {
         const mapData = await response.json();
+        if (mapData.errors) return;
         dispatch(actionEditMap(mapData));
     }
 }

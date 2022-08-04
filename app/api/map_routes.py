@@ -1,8 +1,19 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Map, Object
+from app.forms import MapForm
 
 map_routes = Blueprint('map', __name__)
+
+def validation_errors_to_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @map_routes.route('/all/<userId>')
 def getAll(userId):
@@ -29,11 +40,15 @@ def create():
 
 @map_routes.route('/update', methods=['PATCH'])
 def update():
-    data = request.json
-    map = Map.query.get(data['mapId'])
-    map.name = data['name']
-    db.session.commit()
-    return map.toDict()
+    form = MapForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = request.json
+        map = Map.query.get(data['mapId'])
+        map.name = form.data['name']
+        db.session.commit()
+        return map.toDict()
+    return {'errors': validation_errors_to_messages(form.errors)}, 400
 
 @map_routes.route('/delete', methods=['DELETE'])
 def delete():

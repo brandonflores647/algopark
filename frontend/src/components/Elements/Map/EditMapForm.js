@@ -21,7 +21,7 @@ const EditMapForm = ({ map, setEditName }) => {
         } else {
             await dispatch(thunkEditMap(map.id, name));
             setValidationErrors([]);
-            setEditName(false)
+            setEditName(false);
         }
     }
 
