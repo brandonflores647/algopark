@@ -30,8 +30,8 @@ def create_many():
         new_obj = Object(
             typeId = obj['typeId'],
             mapId = data['mapId'],
-            xPos = obj['x'],
-            yPos = obj['y']
+            xPos = obj['xPos'],
+            yPos = obj['yPos']
         )
         db.session.add(new_obj)
     db.session.commit()

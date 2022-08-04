@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import MapTools from './MapTools';
 import Node from './Node';
@@ -8,6 +9,9 @@ import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
 const Map = () => {
+    const maps = useSelector((state) => state.maps);
+    const curMap = useSelector((state) => state.session.currentMap);
+
     const width = 32;
     const height = 17;
 
@@ -46,14 +50,35 @@ const Map = () => {
         setGrid(oldGrid);
     }, []);
 
+    useEffect(() => {
+        handleClear(grid);
+        setClear(!clear);
+        if (maps[curMap] && maps[curMap].objects) {
+            const objects = Object.values(maps[curMap].objects)
+            const newGrid = [...grid];
+            objects.forEach(obj => {
+                if (obj.typeId === 1) {
+                    newGrid[obj.yPos][obj.xPos].isWall = true;
+                }
+                if (obj.typeId === 2) {
+                    newGrid[obj.yPos][obj.xPos].isStart = true;
+                }
+                if (obj.typeId === 3) {
+                    newGrid[obj.yPos][obj.xPos].isEnd = true;
+                }
+            });
+            // setGrid(newGrid);
+        }
+    }, [curMap])
+
     const replayCleanup = (grid) => {
         grid.forEach(row => {
             row.forEach(cell => {
                 const domEle = document.getElementById(
                     `node-${cell.row}-${cell.col}`
-                );
+                    );
 
-                // remove visited cell effect
+                    // remove visited cell effect
                 if (domEle.className.includes(nodeClasses.visited)) {
                     domEle.className = domEle.className
                     .split(nodeClasses.visited).join(' ');

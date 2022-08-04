@@ -21,26 +21,26 @@ const MapTools = ({
 
     const getObjects = () => {
         const objects = {};
-        grid.forEach(row => {
-            row.forEach((cell, i) => {
+        grid.forEach((row, y) => {
+            row.forEach((cell, x) => {
                 if (cell.isWall) {
-                    objects[i] = {
-                        x: cell.col,
-                        y: cell.row,
+                    objects[`${x}-${y}`] = {
+                        xPos: cell.col,
+                        yPos: cell.row,
                         typeId: 1
                     }
                 }
                 if (cell.isStart) {
-                    objects[i] = {
-                        x: cell.col,
-                        y: cell.row,
+                    objects[`${x}-${y}`] = {
+                        xPos: cell.col,
+                        yPos: cell.row,
                         typeId: 2
                     }
                 }
                 if (cell.isEnd) {
-                    objects[i] = {
-                        x: cell.col,
-                        y: cell.row,
+                    objects[`${x}-${y}`] = {
+                        xPos: cell.col,
+                        yPos: cell.row,
                         typeId: 3
                     }
                 }
@@ -65,7 +65,7 @@ const MapTools = ({
                 mapId: newMapId
             }
             await dispatch(thunkCreateManyObjects(objects))
-            await dispatch(setMapThunk(newMapId))
+            // await dispatch(setMapThunk(newMapId))
         })();
     }
 
