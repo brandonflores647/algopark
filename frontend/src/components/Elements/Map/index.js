@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
+import MapTools from './MapTools';
 import Node from './Node';
 
 import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
@@ -7,6 +9,9 @@ import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
 const Map = () => {
+    const maps = useSelector((state) => state.maps);
+    const curMap = useSelector((state) => state.session.currentMap);
+
     const width = 32;
     const height = 17;
 
@@ -18,6 +23,7 @@ const Map = () => {
 
     const [grid, setGrid] = useState([]);
     const [playing, setPlaying] = useState(false);
+    const [clear, setClear] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -44,14 +50,35 @@ const Map = () => {
         setGrid(oldGrid);
     }, []);
 
-    const resetGrid = (grid) => {
+    useEffect(() => {
+        handleClear(grid);
+        setClear(!clear);
+        if (maps[curMap] && maps[curMap].objects) {
+            const objects = Object.values(maps[curMap].objects)
+            const newGrid = [...grid];
+            objects.forEach(obj => {
+                if (obj.typeId === 1) {
+                    newGrid[obj.yPos][obj.xPos].isWall = true;
+                }
+                if (obj.typeId === 2) {
+                    newGrid[obj.yPos][obj.xPos].isStart = true;
+                }
+                if (obj.typeId === 3) {
+                    newGrid[obj.yPos][obj.xPos].isEnd = true;
+                }
+            });
+            // setGrid(newGrid);
+        }
+    }, [curMap])
+
+    const replayCleanup = (grid) => {
         grid.forEach(row => {
             row.forEach(cell => {
                 const domEle = document.getElementById(
                     `node-${cell.row}-${cell.col}`
-                );
+                    );
 
-                // remove visited cell effect
+                    // remove visited cell effect
                 if (domEle.className.includes(nodeClasses.visited)) {
                     domEle.className = domEle.className
                     .split(nodeClasses.visited).join(' ');
@@ -71,7 +98,7 @@ const Map = () => {
     }
 
     const animateVisited = (visitedNodesArr, pathArr) => {
-        resetGrid(grid);
+        replayCleanup(grid);
         for (let i = 0; i <= visitedNodesArr.length; i++) {
             // animate path
             if (i === visitedNodesArr.length) { // hit end node
@@ -113,13 +140,43 @@ const Map = () => {
         animateVisited(visitedNodes, pathArr);
         setPlaying(true);
     }
+    const handleClear = (grid) => {
+        grid.forEach(row => {
+            row.forEach(cell => {
+                const domEle = document.getElementById(
+                    `node-${cell.row}-${cell.col}`
+                    );
+
+                    // remove visited cell effect
+                    if (domEle.className.includes(nodeClasses.visited)) {
+                        domEle.className = domEle.className
+                        .split(nodeClasses.visited).join(' ');
+                    }
+
+                    // remove path cell effect
+                    if (domEle.className.includes(nodeClasses.pathCell)) {
+                    domEle.className = domEle.className
+                    .split(nodeClasses.pathCell).join(' ');
+                }
+
+                cell.isWall = false;
+                cell.isVisited = false;
+                cell.distance = Infinity;
+                cell.previous = null;
+            });
+        });
+    }
 
     return (
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
-            <button
-                disabled={playing}
-                onClick={() => handlePlay()}
-            >PLAY</button>
+            <MapTools
+                grid={grid}
+                playing={playing}
+                clear={clear}
+                setClear={setClear}
+                handlePlay={handlePlay}
+                handleClear={handleClear}
+            />
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (
