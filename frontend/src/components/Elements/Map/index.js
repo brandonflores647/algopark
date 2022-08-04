@@ -168,15 +168,16 @@ const Map = () => {
     }
 
     return (
+        <div className={classes.mainContainer}>
+        <MapTools
+            grid={grid}
+            playing={playing}
+            clear={clear}
+            setClear={setClear}
+            handlePlay={handlePlay}
+            handleClear={handleClear}
+        />
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
-            <MapTools
-                grid={grid}
-                playing={playing}
-                clear={clear}
-                setClear={setClear}
-                handlePlay={handlePlay}
-                handleClear={handleClear}
-            />
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (
@@ -194,6 +195,7 @@ const Map = () => {
                     ))}
                 </div>
             ))}
+        </div>
         </div>
     );
 }

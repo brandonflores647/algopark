@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
 import { thunkCreateManyObjects } from "../../../store/objects";
 
 import classes from './MapTools.module.css';
+import EditMapForm from './EditMapForm';
 
 const MapTools = ({
     grid,
@@ -16,6 +18,8 @@ const MapTools = ({
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
     const maps = useSelector((state) => state.maps);
+
+    const [editName, setEditName] = useState(false);
 
     const doClear = () => {
         handleClear(grid)
@@ -76,9 +80,22 @@ const MapTools = ({
 
     return (
         <div className={classes.navContainer}>
-            <span>{maps[session.currentMap] ?
-                `${maps[session.currentMap].name} - id:${maps[session.currentMap].id}`
-                : 'No map selected'}</span>
+            <span className={classes.templateNameContainer}>
+                {!editName ?
+                    (maps[session.currentMap] ?
+                    <>
+                    {`${maps[session.currentMap].name} - id:${maps[session.currentMap].id}`}
+                    <i
+                        className={`fa-solid fa-pen-to-square ${classes.editName}`}
+                        onClick={() => setEditName(true)}
+                    />
+                    </>
+                    : 'No template selected')
+                : <EditMapForm
+                    setEditName={setEditName}
+                    mapName={maps[session.currentMap].name}
+                    />}
+            </span>
             <div className={classes.navButtons}>
                 <button
                     disabled={playing}
@@ -91,7 +108,7 @@ const MapTools = ({
                 <button
                     disabled={playing}
                     onClick={() => handleSave()}
-                >SAVE</button>
+                >{session.currentMap?'SAVE':'NEW TEMPLATE'}</button>
             </div>
         </div>
     );
