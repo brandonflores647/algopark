@@ -6,6 +6,7 @@ import { thunkEditMap } from "../../../store/maps";
 const EditMapForm = ({ map, setEditName }) => {
     const dispatch = useDispatch();
     const [name, setName] = useState(map.name);
+    const [validationErrors, setValidationErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,24 +15,39 @@ const EditMapForm = ({ map, setEditName }) => {
         if (name.length === 0) {
             errors.push('Name for a template cannot be left blank');
         }
+
         if (errors.length > 0) {
-            console.log(errors);
+            setValidationErrors(errors);
         } else {
             await dispatch(thunkEditMap(map.id, name));
+            setValidationErrors([]);
             setEditName(false)
         }
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                name='name'
-                type='text'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            >
-            </input>
-        </form>
+        <div>
+            {validationErrors.length>0?
+                <ul>
+                    {validationErrors.map(err => {
+                        return <li key={err}>{err}</li>
+                    })}
+                </ul>
+            : null}
+            <form onSubmit={handleSubmit}>
+                <input
+                    name='name'
+                    type='text'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{
+                        border:(validationErrors.length>0 ?
+                            '1px solid #e33d3d':'1px solid rgb(221, 221, 221)')
+                        }}
+                >
+                </input>
+            </form>
+        </div>
     );
 }
 
