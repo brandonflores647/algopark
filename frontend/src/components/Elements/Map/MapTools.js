@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
-import { thunkCreateManyObjects } from "../../../store/objects";
+import {
+    thunkCreateManyObjects,
+    thunkUpdateManyObjects
+} from "../../../store/objects";
 
 import classes from './MapTools.module.css';
 import EditMapForm from './EditMapForm';
@@ -59,7 +62,14 @@ const MapTools = ({
     const handleSave = () => {
         // update
         if (session.currentMap) {
-            console.log(`TODO: UPDATE MAP #${session.currentMap}`)
+            (async () => {
+                const mapId = session.currentMap;
+                const newObjects = getObjects();
+                const oldObjects = maps[mapId].objects;
+                await dispatch(
+                    thunkUpdateManyObjects(mapId, newObjects, oldObjects)
+                );
+            })();
             return;
         }
         // create
