@@ -8,6 +8,7 @@ import classes from './TemplateList.module.css';
 const TemplateList = () => {
     const dispatch = useDispatch();
     const maps = useSelector((state) => state.maps);
+    const curMap = useSelector((state) => state.session.currentMap);
 
     const handleMapChange = (mapId) => {
         (async() => {
@@ -18,6 +19,9 @@ const TemplateList = () => {
     const handleDelete = (mapId) => {
         (async() => {
             await dispatch(thunkDeleteMap(mapId));
+            if (curMap === mapId) {
+                await dispatch(setMapThunk(null));
+            }
         })();
     }
 
@@ -29,6 +33,9 @@ const TemplateList = () => {
                     return (
                         <li key={`map-${i}`}>
                             <button
+                                className={`
+                                    ${(curMap===map.id?classes.selected:'')}
+                                `}
                                 onClick={() => handleMapChange(map.id)}
                             >{`${map.name} - id:${map.id}`}</button>
                             <i

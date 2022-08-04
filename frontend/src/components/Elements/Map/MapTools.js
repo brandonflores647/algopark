@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
 import { thunkCreateManyObjects } from "../../../store/objects";
 
@@ -49,10 +50,12 @@ const MapTools = ({
     }
 
     const handleSave = () => {
+        // update
         if (session.currentMap) {
             console.log('TODO: UPDATE MAP')
             return;
         }
+        // create
         (async () => {
             const map = {
                 name: 'New Map',
@@ -64,6 +67,7 @@ const MapTools = ({
                 mapId: newMapId
             }
             await dispatch(thunkCreateManyObjects(objects))
+            await dispatch(setMapThunk(newMapId));
         })();
     }
 
