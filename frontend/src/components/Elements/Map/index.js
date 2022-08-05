@@ -126,7 +126,7 @@ const Map = () => {
 
                 // add new path effect
                 domEle.className += (` ${nodeClasses.pathCell}`);
-
+                console.log(domEle.className)
             }, speed+25 * i)
         });
         setPlaying(false);
