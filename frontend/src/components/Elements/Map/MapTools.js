@@ -146,14 +146,17 @@ const MapTools = ({
                 </section>
                 <section className={classes.controlContainer}>
                     <button
+                        className={classes.controlButton}
                         disabled={playing}
                         onClick={() => handlePlay()}
                     >PLAY</button>
                     <button
+                        className={classes.controlButton}
                         disabled={playing}
                         onClick={() => doClear()}
                     >CLEAR</button>
                     <button
+                        className={classes.controlButton}
                         disabled={playing}
                         onClick={() => (
                             session.currentMap ? handleSave() : handleCreate())}
