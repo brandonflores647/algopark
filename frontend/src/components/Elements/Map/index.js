@@ -67,6 +67,10 @@ const Map = () => {
                     newGrid[obj.yPos][obj.xPos].isEnd = true;
                 }
             });
+            const startNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===2);
+            const endNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===3);
+            setStartCell([startNode.xPos, startNode.yPos]);
+            setEndCell([endNode.xPos, endNode.yPos]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [curMap])
@@ -126,7 +130,7 @@ const Map = () => {
 
                 // add new path effect
                 domEle.className += (` ${nodeClasses.pathCell}`);
-                console.log(domEle.className)
+
             }, speed+25 * i)
         });
         setPlaying(false);
@@ -159,6 +163,7 @@ const Map = () => {
                     .split(nodeClasses.pathCell).join(' ');
                 }
 
+                cell.isEnd = false;
                 cell.isWall = false;
                 cell.isVisited = false;
                 cell.distance = Infinity;

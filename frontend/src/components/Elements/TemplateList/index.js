@@ -36,7 +36,10 @@ const TemplateList = () => {
                 ownerId: session.user.id
             }
             const newMapId = await dispatch(thunkCreateMap(map));
-            await dispatch(thunkCreateManyObjects({objects: {}, mapId: newMapId}));
+            await dispatch(thunkCreateManyObjects({objects: {
+                '2-2': {typeId:2,xPos:2,yPos:2},
+                '28-15': {typeId:3,xPos:28,yPos:15}
+            }, mapId: newMapId}));
             await dispatch(setMapThunk(newMapId));
         })();
     }
