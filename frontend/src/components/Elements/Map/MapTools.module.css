@@ -11,3 +11,13 @@
     margin-left: 5px;
     cursor: pointer;
 }
+
+.wallTool {
+    background-color: pink;
+}
+.startTool {
+    background-color: pink;
+}
+.endTool {
+    background-color: pink;
+}

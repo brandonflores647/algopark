@@ -123,18 +123,27 @@ const MapTools = ({
                 >SAVE</button>
                 <button
                     disabled={playing}
+                    className={`
+                        ${(tool===1?classes.wallTool:'')}
+                    `}
                     onClick={() => (tool!==1?setTool(1):setTool(null))}
                 >
                     WALL TOOL
                 </button>
                 <button
                     disabled={playing}
+                    className={`
+                        ${(tool===2?classes.startTool:'')}
+                    `}
                     onClick={() => (tool!==2?setTool(2):setTool(null))}
                 >
                     START TOOL
                 </button>
                 <button
                     disabled={playing}
+                    className={`
+                        ${(tool===3?classes.endTool:'')}
+                    `}
                     onClick={() => (tool!==3?setTool(3):setTool(null))}
                 >
                     END TOOL
