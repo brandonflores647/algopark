@@ -200,7 +200,7 @@ const Map = ({ playing, setPlaying }) => {
             handlePlay={handlePlay}
             handleClear={handleClear}
         />
-        <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
+        <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':tool?'pointer':'')}}>
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (

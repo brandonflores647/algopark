@@ -12,11 +12,9 @@
 .startCell {
     border: 1px solid #989898 !important;
     background-color: #70FF98 !important;
-    cursor: grab;
 }
 .endCell {
     background-color: #FF6C6C !important;
-    cursor: grab;
 }
 
 .visited {
