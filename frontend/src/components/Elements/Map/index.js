@@ -51,6 +51,7 @@ const Map = () => {
     }, []);
 
     useEffect(() => {
+        handleStartEndWipe(grid);
         handleClear(grid);
         setClear(!clear);
         if (maps[curMap] && maps[curMap].objects) {
@@ -70,7 +71,16 @@ const Map = () => {
             const startNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===2);
             const endNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===3);
             setStartCell([startNode.xPos, startNode.yPos]);
+            newGrid[startNode.yPos][startNode.xPos].isStart = true;
             setEndCell([endNode.xPos, endNode.yPos]);
+            newGrid[endNode.yPos][endNode.xPos].isEnd = true;
+        }
+        if (!curMap && grid.length) {
+            const newGrid = [...grid];
+            setStartCell([2, 2]);
+            newGrid[2][2].isStart = true;
+            setEndCell([28, 15]);
+            newGrid[15][28].isEnd = true;
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [curMap])
@@ -163,11 +173,18 @@ const Map = () => {
                     .split(nodeClasses.pathCell).join(' ');
                 }
 
-                cell.isEnd = false;
                 cell.isWall = false;
                 cell.isVisited = false;
                 cell.distance = Infinity;
                 cell.previous = null;
+            });
+        });
+    }
+    const handleStartEndWipe = (grid) => {
+        grid.forEach(row => {
+            row.forEach(cell => {
+                cell.isStart = false;
+                cell.isEnd = false;
             });
         });
     }
@@ -198,6 +215,7 @@ const Map = () => {
                             setEndCell={setEndCell}
                             isDragging={isDragging}
                             playing={playing}
+                            curMap={curMap}
                             row={node.row}
                             col={node.col}
                             isStart={node.isStart}

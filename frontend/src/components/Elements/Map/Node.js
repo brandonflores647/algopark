@@ -11,6 +11,7 @@ const Node = ({
         setEndCell,
         isDragging,
         playing,
+        curMap,
         row,
         col,
         isStart,
@@ -55,7 +56,7 @@ const Node = ({
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [playing, isDragging, endCell]);
+    }, [playing, isDragging, endCell, curMap]);
 
     return (
         <span id={`node-${row}-${col}`} className={`
