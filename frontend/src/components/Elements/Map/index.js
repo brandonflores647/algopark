@@ -15,10 +15,8 @@ const Map = () => {
     const width = 32;
     const height = 17;
 
-    const startRow = 2;
-    const startCol = 2;
-    const endRow = 15;
-    const endCol = 28;
+    const [startCell, setStartCell] = useState([2, 2]); // x, y
+    const [endCell, setEndCell] = useState([28, 15]); // x, y
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
@@ -29,8 +27,8 @@ const Map = () => {
         return {
             row,
             col,
-            isStart: row===startRow && col===startCol,
-            isEnd: row===endRow && col===endCol,
+            isStart: row===startCell[1] && col===startCell[0],
+            isEnd: row===endCell[1] && col===endCell[0],
             distance: Infinity,
             isVisited: false,
             isWall: false,
@@ -133,8 +131,8 @@ const Map = () => {
     }
 
     const handlePlay = () => {
-        const startNode = grid[startRow][startCol];
-        const endNode = grid[endRow][endCol];
+        const startNode = grid[startCell[1]][startCell[0]];
+        const endNode = grid[endCell[1]][endCell[0]];
         const visitedNodes = dijkstras(grid, startNode, endNode);
         const pathArr = getPath(endNode);
         animateVisited(visitedNodes, pathArr);
