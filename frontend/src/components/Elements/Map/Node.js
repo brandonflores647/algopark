@@ -9,7 +9,7 @@ const Node = ({
         setStartCell,
         endCell,
         setEndCell,
-        endTool,
+        tool,
         playing,
         curMap,
         row,
@@ -23,26 +23,30 @@ const Node = ({
     useEffect(() => {
         const element = ref.current;
         const handleClick = (e) => {
-            // wall create
-            if (e.buttons===1 && !isStart && !isEnd && !playing && !endTool) {
-                const updatedGrid = grid.slice();
-                updatedGrid[row][col].isWall = true;
-                setGrid(updatedGrid);
+            if (tool === 1) {
+                // wall create
+                if (e.buttons===1 && !isStart && !isEnd && !playing) {
+                    const updatedGrid = grid.slice();
+                    updatedGrid[row][col].isWall = true;
+                    setGrid(updatedGrid);
+                }
+                // wall delete
+                if (e.buttons===2 && !isStart && !isEnd && !playing) {
+                    const updatedGrid = grid.slice();
+                    updatedGrid[row][col].isWall = false;
+                    setGrid(updatedGrid);
+                }
             }
-            // wall delete
-            if (e.buttons===2 && !isStart && !isEnd && !playing && !endTool) {
-                const updatedGrid = grid.slice();
-                updatedGrid[row][col].isWall = false;
-                setGrid(updatedGrid);
-            }
-            // end node drag
-            if (e.buttons===1 && !isStart && !isWall && !playing && endTool) {
-                const updatedGrid = grid.slice();
-                const oldEndCell = updatedGrid[endCell[1]][endCell[0]];
-                oldEndCell.isEnd = false;
-                updatedGrid[row][col].isEnd = true;
-                setEndCell([col, row]); // potential removal
-                setGrid(updatedGrid);
+            if (tool === 3) {
+                // end re-position
+                if (e.buttons===1 && !isStart && !isWall && !playing) {
+                    const updatedGrid = grid.slice();
+                    const oldEndCell = updatedGrid[endCell[1]][endCell[0]];
+                    oldEndCell.isEnd = false;
+                    updatedGrid[row][col].isEnd = true;
+                    setEndCell([col, row]); // potential removal
+                    setGrid(updatedGrid);
+                }
             }
         }
 
@@ -56,7 +60,7 @@ const Node = ({
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [playing, endTool, endCell, curMap]);
+    }, [playing, tool, endCell, curMap]);
 
     return (
         <span id={`node-${row}-${col}`} className={`

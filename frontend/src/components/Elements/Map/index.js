@@ -22,7 +22,7 @@ const Map = () => {
     const [grid, setGrid] = useState([]);
     const [playing, setPlaying] = useState(false);
     const [clear, setClear] = useState(false);
-    const [endTool, setEndTool] = useState(false);
+    const [tool, setTool] = useState(null);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -196,8 +196,8 @@ const Map = () => {
             playing={playing}
             clear={clear}
             setClear={setClear}
-            endTool={endTool}
-            setEndTool={setEndTool}
+            tool={tool}
+            setTool={setTool}
             handlePlay={handlePlay}
             handleClear={handleClear}
         />
@@ -213,7 +213,7 @@ const Map = () => {
                             setStartCell={setStartCell}
                             endCell={endCell}
                             setEndCell={setEndCell}
-                            endTool={endTool}
+                            tool={tool}
                             playing={playing}
                             curMap={curMap}
                             row={node.row}

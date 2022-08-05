@@ -15,8 +15,8 @@ const MapTools = ({
     playing,
     clear,
     setClear,
-    endTool,
-    setEndTool,
+    tool,
+    setTool,
     handlePlay,
     handleClear }) => {
 
@@ -123,9 +123,21 @@ const MapTools = ({
                 >SAVE</button>
                 <button
                     disabled={playing}
-                    onClick={() => setEndTool(!endTool)}
+                    onClick={() => (tool!==1?setTool(1):setTool(null))}
                 >
-                    DRAG
+                    WALL TOOL
+                </button>
+                <button
+                    disabled={playing}
+                    onClick={() => (tool!==2?setTool(2):setTool(null))}
+                >
+                    START TOOL
+                </button>
+                <button
+                    disabled={playing}
+                    onClick={() => (tool!==3?setTool(3):setTool(null))}
+                >
+                    END TOOL
                 </button>
             </div>
         </div>
