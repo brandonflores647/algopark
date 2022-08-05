@@ -60,19 +60,17 @@ const MapTools = ({
     }
 
     const handleSave = () => {
-        // update
-        if (session.currentMap) {
-            (async () => {
-                const mapId = session.currentMap;
-                const newObjects = getObjects();
-                const oldObjects = maps[mapId].objects;
-                await dispatch(
-                    thunkUpdateManyObjects(mapId, newObjects, oldObjects)
-                );
-            })();
-            return;
-        }
-        // create
+        (async () => {
+            const mapId = session.currentMap;
+            const newObjects = getObjects();
+            const oldObjects = maps[mapId].objects;
+            await dispatch(
+                thunkUpdateManyObjects(mapId, newObjects, oldObjects)
+            );
+        })();
+    }
+
+    const handleCreate = () => {
         (async () => {
             const map = {
                 name: 'New Map',
@@ -87,6 +85,7 @@ const MapTools = ({
             await dispatch(setMapThunk(newMapId));
         })();
     }
+
 
     return (
         <div className={classes.navContainer}>
@@ -115,10 +114,15 @@ const MapTools = ({
                     disabled={playing}
                     onClick={() => doClear()}
                 >CLEAR</button>
+                {session.currentMap ?
+                    <button
+                        disabled={playing}
+                        onClick={() => handleSave()}
+                    >SAVE</button> : null}
                 <button
                     disabled={playing}
-                    onClick={() => handleSave()}
-                >{session.currentMap?'SAVE':'NEW TEMPLATE'}</button>
+                    onClick={() => handleCreate()}
+                >NEW TEMPLATE</button>
             </div>
         </div>
     );
