@@ -114,15 +114,11 @@ const MapTools = ({
                     disabled={playing}
                     onClick={() => doClear()}
                 >CLEAR</button>
-                {session.currentMap ?
-                    <button
-                        disabled={playing}
-                        onClick={() => handleSave()}
-                    >SAVE</button> : null}
                 <button
                     disabled={playing}
-                    onClick={() => handleCreate()}
-                >NEW TEMPLATE</button>
+                    onClick={() => (
+                        session.currentMap ? handleSave() : handleCreate())}
+                >SAVE</button>
             </div>
         </div>
     );
