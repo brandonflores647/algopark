@@ -38,7 +38,7 @@
 @keyframes visited {
     0% {
         background-color: rgba(80, 83, 255, 0.587);
-        border: 0px solid transparent;
+        border: 1px solid #989898;
     }
     100% {
         background-color: #fff;

@@ -9,7 +9,7 @@ const Node = ({
         setStartCell,
         endCell,
         setEndCell,
-        isDragging,
+        endTool,
         playing,
         curMap,
         row,
@@ -24,24 +24,24 @@ const Node = ({
         const element = ref.current;
         const handleClick = (e) => {
             // wall create
-            if (e.buttons===1 && !isStart && !isEnd && !playing && !isDragging) {
+            if (e.buttons===1 && !isStart && !isEnd && !playing && !endTool) {
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = true;
                 setGrid(updatedGrid);
             }
             // wall delete
-            if (e.buttons===2 && !isStart && !isEnd && !playing && !isDragging) {
+            if (e.buttons===2 && !isStart && !isEnd && !playing && !endTool) {
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = false;
                 setGrid(updatedGrid);
             }
-            // end drag
-            if (e.buttons===1 && !isStart && !isWall && !playing && isDragging) {
+            // end node drag
+            if (e.buttons===1 && !isStart && !isWall && !playing && endTool) {
                 const updatedGrid = grid.slice();
                 const oldEndCell = updatedGrid[endCell[1]][endCell[0]];
                 oldEndCell.isEnd = false;
                 updatedGrid[row][col].isEnd = true;
-                setEndCell([col, row]);
+                setEndCell([col, row]); // potential removal
                 setGrid(updatedGrid);
             }
         }
@@ -56,7 +56,7 @@ const Node = ({
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [playing, isDragging, endCell, curMap]);
+    }, [playing, endTool, endCell, curMap]);
 
     return (
         <span id={`node-${row}-${col}`} className={`

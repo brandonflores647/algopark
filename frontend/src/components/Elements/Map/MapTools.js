@@ -15,8 +15,8 @@ const MapTools = ({
     playing,
     clear,
     setClear,
-    isDragging,
-    setIsDragging,
+    endTool,
+    setEndTool,
     handlePlay,
     handleClear }) => {
 
@@ -123,7 +123,7 @@ const MapTools = ({
                 >SAVE</button>
                 <button
                     disabled={playing}
-                    onClick={() => setIsDragging(!isDragging)}
+                    onClick={() => setEndTool(!endTool)}
                 >
                     DRAG
                 </button>
