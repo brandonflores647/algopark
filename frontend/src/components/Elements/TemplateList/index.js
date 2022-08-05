@@ -8,7 +8,7 @@ import {
 
 import classes from './TemplateList.module.css';
 
-const TemplateList = () => {
+const TemplateList = ({ playing }) => {
     const dispatch = useDispatch();
     const maps = useSelector((state) => state.maps);
     const session = useSelector((state) => state.session);
@@ -52,6 +52,7 @@ const TemplateList = () => {
                     return (
                         <li key={`map-${i}`}>
                             <button
+                                disabled={playing}
                                 className={`
                                     ${(curMap===map.id?classes.selected:'')}
                                 `}
@@ -59,13 +60,14 @@ const TemplateList = () => {
                             >{map.name}</button>
                             <i
                                 className={`fa-solid fa-xmark ${classes.x}`}
-                                onClick={() => handleDelete(map.id)}
+                                onClick={() => (!playing?handleDelete(map.id):null)}
                             ></i>
                         </li>
                     )
                 })}
                 <li>
                     <button
+                        disabled={playing}
                         onClick={() => handleCreateBlank()}
                     >+ Blank Template</button>
                 </li>

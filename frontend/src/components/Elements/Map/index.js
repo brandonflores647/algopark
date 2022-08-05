@@ -8,7 +8,7 @@ import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
 import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
-const Map = () => {
+const Map = ({ playing, setPlaying }) => {
     const maps = useSelector((state) => state.maps);
     const curMap = useSelector((state) => state.session.currentMap);
 
@@ -20,7 +20,6 @@ const Map = () => {
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
-    const [playing, setPlaying] = useState(false);
     const [clear, setClear] = useState(false);
     const [tool, setTool] = useState(null);
 
