@@ -15,6 +15,8 @@ const MapTools = ({
     playing,
     clear,
     setClear,
+    isDragging,
+    setIsDragging,
     handlePlay,
     handleClear }) => {
 
@@ -119,6 +121,12 @@ const MapTools = ({
                     onClick={() => (
                         session.currentMap ? handleSave() : handleCreate())}
                 >SAVE</button>
+                <button
+                    disabled={playing}
+                    onClick={() => setIsDragging(!isDragging)}
+                >
+                    DRAG
+                </button>
             </div>
         </div>
     );

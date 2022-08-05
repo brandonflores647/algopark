@@ -22,6 +22,7 @@ const Map = () => {
     const [grid, setGrid] = useState([]);
     const [playing, setPlaying] = useState(false);
     const [clear, setClear] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -46,6 +47,7 @@ const Map = () => {
             oldGrid.push(newRow);
         }
         setGrid(oldGrid);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -172,6 +174,8 @@ const Map = () => {
             playing={playing}
             clear={clear}
             setClear={setClear}
+            isDragging={isDragging}
+            setIsDragging={setIsDragging}
             handlePlay={handlePlay}
             handleClear={handleClear}
         />
@@ -183,6 +187,11 @@ const Map = () => {
                             key={`node-${i}`}
                             grid={grid}
                             setGrid={setGrid}
+                            startCell={startCell}
+                            setStartCell={setStartCell}
+                            endCell={endCell}
+                            setEndCell={setEndCell}
+                            isDragging={isDragging}
                             playing={playing}
                             row={node.row}
                             col={node.col}
