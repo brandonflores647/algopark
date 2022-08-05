@@ -60,14 +60,32 @@ const Node = ({
                 }
             }
         }
+        const justClick = (e) => {
+            // wall create
+            if (tool === 1 && !isStart && !isEnd && !playing) {
+                console.log('test')
+                const updatedGrid = grid.slice();
+                updatedGrid[row][col].isWall = true;
+                setGrid(updatedGrid);
+            }
+            // wall delete
+            if (tool === 1 && e.buttons==2 && !isStart && !isEnd && !playing) {
+                console.log('test')
+                const updatedGrid = grid.slice();
+                updatedGrid[row][col].isWall = false;
+                setGrid(updatedGrid);
+            }
+        }
 
         const stopMenu = (e) => e.preventDefault();
 
         element.addEventListener('mouseover', handleClick);
+        element.addEventListener('mousedown', justClick);
         document.addEventListener('contextmenu', stopMenu);
 
         return () => {
             element.removeEventListener('mouseover', handleClick);
+            element.removeEventListener('click', handleClick);
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
