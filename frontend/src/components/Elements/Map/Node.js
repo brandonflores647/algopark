@@ -37,6 +37,17 @@ const Node = ({
                     setGrid(updatedGrid);
                 }
             }
+            if (tool === 2) {
+                // start re-position
+                if (e.buttons===1 && !isEnd && !isWall && !playing) {
+                    const updatedGrid = grid.slice();
+                    const oldStartCell = updatedGrid[startCell[1]][startCell[0]];
+                    oldStartCell.isStart = false;
+                    updatedGrid[row][col].isStart = true;
+                    setStartCell([col, row]); // potential removal
+                    setGrid(updatedGrid);
+                }
+            }
             if (tool === 3) {
                 // end re-position
                 if (e.buttons===1 && !isStart && !isWall && !playing) {
@@ -60,7 +71,7 @@ const Node = ({
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [playing, tool, endCell, curMap]);
+    }, [playing, tool, startCell, endCell, curMap]);
 
     return (
         <span id={`node-${row}-${col}`} className={`
