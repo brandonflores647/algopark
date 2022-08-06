@@ -15,12 +15,14 @@ const TemplateList = ({ playing }) => {
     const curMap = useSelector((state) => state.session.currentMap);
 
     const handleMapChange = (mapId) => {
+        if (playing) return;
         (async() => {
             await dispatch(setMapThunk(mapId));
         })();
     }
 
     const handleDelete = (mapId) => {
+        if (playing) return;
         (async() => {
             await dispatch(thunkDeleteMap(mapId));
             if (curMap === mapId) {
@@ -30,6 +32,7 @@ const TemplateList = ({ playing }) => {
     }
 
     const handleCreateBlank = () => {
+        if (playing) return;
         (async () => {
             const map = {
                 name: 'New Map',
@@ -45,19 +48,21 @@ const TemplateList = ({ playing }) => {
     }
 
     return (
-        <div>
-            TEMPLATE LIST:
-            <ul>
+        <div className={classes.templateListContainer}>
+            <span className={classes.templateListTitle}>My Templates:</span>
+            <ul className={classes.listContainer}>
                 {Object.values(maps).map((map, i) => {
                     return (
-                        <li key={`map-${i}`}>
-                            <button
-                                disabled={playing}
+                        <li key={`map-${i}`} className={`
+                                ${classes.listItem}
+                                ${(curMap===map.id?classes.selected:'')}
+                            `}>
+                            <div
                                 className={`
-                                    ${(curMap===map.id?classes.selected:'')}
+                                    ${classes.listButton}
                                 `}
                                 onClick={() => handleMapChange(map.id)}
-                            >{map.name}</button>
+                            >{map.name}</div>
                             <i
                                 className={`fa-solid fa-xmark ${classes.x}`}
                                 onClick={() => (!playing?handleDelete(map.id):null)}
@@ -65,11 +70,11 @@ const TemplateList = ({ playing }) => {
                         </li>
                     )
                 })}
-                <li>
-                    <button
-                        disabled={playing}
+                <li className={classes.listItem}>
+                    <div
+                        className={classes.listButton}
                         onClick={() => handleCreateBlank()}
-                    >+ Blank Template</button>
+                    >+ Blank Template</div>
                 </li>
             </ul>
         </div>
