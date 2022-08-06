@@ -6,8 +6,112 @@
 .templateNameContainer {
     display: flex;
 }
-
 .editName {
     margin-left: 5px;
     cursor: pointer;
+}
+
+.navButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 15px 0 15px 0;
+}
+
+.toolContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px 8px 10px 8px;
+
+    font-size: 21px;
+    font-weight: 500;
+
+    color: white;
+    background-color: #4B4E6D;
+    border-radius: 3px;
+}
+.toolContainer > span {
+    margin-right: 20px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+.toolButton {
+    display: flex;
+    margin-right: 8px;
+    padding: 3px 15px 3px 4px;
+
+    font-size: 21px;
+    font-weight: 400;
+
+    cursor: pointer;
+    color: white;
+    background-color: #7F83AA;
+    border: 0px;
+    border-radius: 3px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    transition: box-shadow .2s ease;
+}
+.toolButton:hover {
+    box-shadow: 0px 0px 1px 3px #7f83aa75;
+}
+.toolButton:active {
+    box-shadow: 0px 0px 1px 0px #7f83aa75;
+}
+.toolBlockLabel {
+    width: 23px;
+    height: 23px;
+    margin: 1px 6px 0 0;
+
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.start {
+    background-color: #70FF98;
+}
+.end {
+    background-color: #FF6C6C;
+}
+.wall {
+    background-color: #989898;
+}
+
+.selected {
+    box-shadow: 0px 0px 1px 3px #7f83aa75;
+    animation: buttonPulse 3s ease;
+    animation-iteration-count: infinite;
+}
+
+.controlButton {
+    width: 100px;
+    margin-left: 8px;
+    padding: 13px 0 13px 0;
+
+    font-size: 23px;
+
+    color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    background-color: #7F83AA;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    transition: box-shadow .2s ease;
+}
+.controlButton:hover {
+    box-shadow: 0px 0px 1px 4px #7f83aa75;
+}
+.controlButton:active {
+    box-shadow: 0px 0px 1px 0px #7f83aa75;
+}
+
+@keyframes buttonPulse {
+    0% {
+        background-color: #7F83AA;
+    }
+    50% {
+        background-color: #7f83aa75;
+    }
+    100% {
+        background-color: #7F83AA;
+    }
 }

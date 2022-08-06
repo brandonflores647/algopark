@@ -1,11 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 
 import classes from './Node.module.css';
 
 const Node = ({
         grid,
         setGrid,
+        startCell,
+        setStartCell,
+        endCell,
+        setEndCell,
+        hidePath,
+        setHidePath,
+        tool,
         playing,
+        curMap,
         row,
         col,
         isStart,
@@ -17,12 +25,54 @@ const Node = ({
     useEffect(() => {
         const element = ref.current;
         const handleClick = (e) => {
-            if (e.buttons===1 && !isStart && !isEnd && !playing) {
+            if (tool === 1) {
+                // wall create
+                if (e.buttons===1 && !isStart && !isEnd && !playing) {
+                    const updatedGrid = grid.slice();
+                    updatedGrid[row][col].isWall = true;
+                    setGrid(updatedGrid);
+                }
+                // wall delete
+                if (e.buttons===2 && !isStart && !isEnd && !playing) {
+                    const updatedGrid = grid.slice();
+                    updatedGrid[row][col].isWall = false;
+                    setGrid(updatedGrid);
+                }
+            }
+            if (tool === 2) {
+                // start re-position
+                if (e.buttons===1 && !isEnd && !isWall && !playing) {
+                    if (!hidePath) setHidePath(true);
+                    const updatedGrid = grid.slice();
+                    const oldStartCell = updatedGrid[startCell[1]][startCell[0]];
+                    oldStartCell.isStart = false;
+                    updatedGrid[row][col].isStart = true;
+                    setStartCell([col, row]);
+                    setGrid(updatedGrid);
+                }
+            }
+            if (tool === 3) {
+                // end re-position
+                if (e.buttons===1 && !isStart && !isWall && !playing) {
+                    if (!hidePath) setHidePath(true);
+                    const updatedGrid = grid.slice();
+                    const oldEndCell = updatedGrid[endCell[1]][endCell[0]];
+                    oldEndCell.isEnd = false;
+                    updatedGrid[row][col].isEnd = true;
+                    setEndCell([col, row]);
+                    setGrid(updatedGrid);
+                }
+            }
+        }
+        const justClick = (e) => {
+            // wall create
+            if (tool === 1 && !isStart && !isEnd && !playing) {
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = true;
                 setGrid(updatedGrid);
             }
-            if (e.buttons===2 && !isStart && !isEnd && !playing) {
+            // wall delete
+            if (tool === 1 && e.buttons===2 && !isStart && !isEnd && !playing) {
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = false;
                 setGrid(updatedGrid);
@@ -32,14 +82,16 @@ const Node = ({
         const stopMenu = (e) => e.preventDefault();
 
         element.addEventListener('mouseover', handleClick);
+        element.addEventListener('mousedown', justClick);
         document.addEventListener('contextmenu', stopMenu);
 
         return () => {
             element.removeEventListener('mouseover', handleClick);
+            element.removeEventListener('mousedown', justClick);
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [playing]);
+    }, [playing, tool, startCell, endCell, curMap]);
 
     return (
         <span id={`node-${row}-${col}`} className={`

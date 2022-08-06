@@ -10,6 +10,7 @@ import { thunkGetAllMaps } from "../../../store/maps";
 const MapPage = () => {
     const user = useSelector((state) => state.session.user);
     const [loaded, setLoaded] = useState(false);
+    const [playing, setPlaying] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -26,8 +27,8 @@ const MapPage = () => {
 
     return (
         <div className={classes.pageWrapper}>
-            <Map />
-            <TemplateList />
+            <Map playing={playing} setPlaying={setPlaying}/>
+            <TemplateList playing={playing} />
         </div>
     );
 }

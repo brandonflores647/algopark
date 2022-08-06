@@ -8,29 +8,28 @@ import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
 import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
-const Map = () => {
+const Map = ({ playing, setPlaying }) => {
     const maps = useSelector((state) => state.maps);
     const curMap = useSelector((state) => state.session.currentMap);
 
     const width = 32;
     const height = 17;
 
-    const startRow = 2;
-    const startCol = 2;
-    const endRow = 15;
-    const endCol = 28;
+    const [startCell, setStartCell] = useState([2, 2]); // x, y
+    const [endCell, setEndCell] = useState([28, 15]); // x, y
     const speed = 10;
 
     const [grid, setGrid] = useState([]);
-    const [playing, setPlaying] = useState(false);
     const [clear, setClear] = useState(false);
+    const [tool, setTool] = useState(null);
+    const [hidePath, setHidePath] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
             row,
             col,
-            isStart: row===startRow && col===startCol,
-            isEnd: row===endRow && col===endCol,
+            isStart: row===startCell[1] && col===startCell[0],
+            isEnd: row===endCell[1] && col===endCell[0],
             distance: Infinity,
             isVisited: false,
             isWall: false,
@@ -48,9 +47,11 @@ const Map = () => {
             oldGrid.push(newRow);
         }
         setGrid(oldGrid);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
+        handleStartEndWipe(grid);
         handleClear(grid);
         setClear(!clear);
         if (maps[curMap] && maps[curMap].objects) {
@@ -67,18 +68,37 @@ const Map = () => {
                     newGrid[obj.yPos][obj.xPos].isEnd = true;
                 }
             });
+            const startNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===2);
+            const endNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===3);
+            setStartCell([startNode.xPos, startNode.yPos]);
+            newGrid[startNode.yPos][startNode.xPos].isStart = true;
+            setEndCell([endNode.xPos, endNode.yPos]);
+            newGrid[endNode.yPos][endNode.xPos].isEnd = true;
+        }
+        if (!curMap && grid.length) {
+            const newGrid = [...grid];
+            setStartCell([2, 2]);
+            newGrid[2][2].isStart = true;
+            setEndCell([28, 15]);
+            newGrid[15][28].isEnd = true;
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [curMap])
+
+    useEffect(() => {
+        if (hidePath) {
+            handleHidePath(grid);
+        }
+    }, [hidePath])
 
     const replayCleanup = (grid) => {
         grid.forEach(row => {
             row.forEach(cell => {
                 const domEle = document.getElementById(
                     `node-${cell.row}-${cell.col}`
-                    );
+                );
 
-                    // remove visited cell effect
+                // remove visited cell effect
                 if (domEle.className.includes(nodeClasses.visited)) {
                     domEle.className = domEle.className
                     .split(nodeClasses.visited).join(' ');
@@ -88,6 +108,12 @@ const Map = () => {
                 if (domEle.className.includes(nodeClasses.pathCell)) {
                     domEle.className = domEle.className
                     .split(nodeClasses.pathCell).join(' ');
+                }
+
+                // remove hidden path effect
+                if (domEle.className.includes(nodeClasses.hiddenPath)) {
+                    domEle.className = domEle.className
+                    .split(nodeClasses.hiddenPath).join(' ');
                 }
 
                 cell.isVisited = false;
@@ -127,18 +153,33 @@ const Map = () => {
                 // add new path effect
                 domEle.className += (` ${nodeClasses.pathCell}`);
 
-            }, speed+25 * i)
+            }, speed+25 * i);
         });
-        setPlaying(false);
+        setTimeout(() => {
+            setPlaying(false);
+        }, 1300);
+    }
+
+    const handleHidePath = (grid) => {
+        grid.forEach(row => {
+            row.forEach((ele, i) => {
+                const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
+                if (domEle.className.includes(`${nodeClasses.pathCell}`)) {
+                    // add hidden path class
+                    domEle.className += (` ${nodeClasses.hiddenPath}`);
+                }
+            })
+        });
     }
 
     const handlePlay = () => {
-        const startNode = grid[startRow][startCol];
-        const endNode = grid[endRow][endCol];
+        const startNode = grid[startCell[1]][startCell[0]];
+        const endNode = grid[endCell[1]][endCell[0]];
         const visitedNodes = dijkstras(grid, startNode, endNode);
         const pathArr = getPath(endNode);
         animateVisited(visitedNodes, pathArr);
         setPlaying(true);
+        setHidePath(false);
     }
     const handleClear = (grid) => {
         grid.forEach(row => {
@@ -166,6 +207,14 @@ const Map = () => {
             });
         });
     }
+    const handleStartEndWipe = (grid) => {
+        grid.forEach(row => {
+            row.forEach(cell => {
+                cell.isStart = false;
+                cell.isEnd = false;
+            });
+        });
+    }
 
     return (
         <div className={classes.mainContainer}>
@@ -174,10 +223,12 @@ const Map = () => {
             playing={playing}
             clear={clear}
             setClear={setClear}
+            tool={tool}
+            setTool={setTool}
             handlePlay={handlePlay}
             handleClear={handleClear}
         />
-        <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':'pointer')}}>
+        <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':tool?'pointer':'')}}>
             {grid.map((row, i) => (
                 <div className={classes.rowContainer} key={`row-${i}`}>
                     {row.map((node, i) => (
@@ -185,7 +236,15 @@ const Map = () => {
                             key={`node-${i}`}
                             grid={grid}
                             setGrid={setGrid}
+                            startCell={startCell}
+                            setStartCell={setStartCell}
+                            endCell={endCell}
+                            setEndCell={setEndCell}
+                            hidePath={hidePath}
+                            setHidePath={setHidePath}
+                            tool={tool}
                             playing={playing}
+                            curMap={curMap}
                             row={node.row}
                             col={node.col}
                             isStart={node.isStart}

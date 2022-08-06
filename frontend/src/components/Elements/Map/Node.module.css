@@ -24,7 +24,12 @@
 }
 .pathCell {
     border-color: rgba(80, 83, 255, 0.587);
-    background-color: rgb(255, 255, 125);
+    animation: path .15s ease, pathPulse 3s ease 3s infinite;
+    animation-fill-mode: forwards;
+}
+.hiddenPath {
+    border-color: #989898;
+    animation: visited .5s ease;
 }
 
 .wallCell {
@@ -33,15 +38,27 @@
 
 @keyframes visited {
     0% {
-        background-color: #fff;
-        border-color: rgba(80, 83, 255, 0.587);
-    }
-    1% {
         background-color: rgba(80, 83, 255, 0.587);
-        border-color: transparent;
+        border: 1px solid #989898;
     }
     100% {
-        background-color: rgba(80, 83, 255, 0.587);
-        border-color: transparent;
+        background-color: #fff;
+        border: 1px solid #989898;
+    }
+}
+@keyframes path {
+    0% {
+        background-color: #fff;
+    }
+    100% {
+        background-color: #3C46A5;
+    }
+}
+@keyframes pathPulse {
+    0% {
+        background-color: #4b57c2;
+    }
+    100% {
+        background-color: #3C46A5;
     }
 }
