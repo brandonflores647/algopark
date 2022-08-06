@@ -7,6 +7,7 @@ import {
 } from "../../../store/objects";
 
 import classes from './TemplateList.module.css';
+import XButton from "./xButton";
 
 const TemplateList = ({ playing }) => {
     const dispatch = useDispatch();
@@ -63,12 +64,13 @@ const TemplateList = ({ playing }) => {
                                 `}
                                 onClick={() => handleMapChange(map.id)}
                             >{map.name}</div>
-                            <i
-                                className={`fa-solid fa-xmark ${classes.x}`}
-                                onClick={() => (!playing?handleDelete(map.id):null)}
-                            ></i>
+                            <XButton
+                                handleDelete={handleDelete}
+                                playing={playing}
+                                map={map}
+                            />
                         </li>
-                    )
+                    );
                 })}
                 <li className={classes.listItem}>
                     <div
