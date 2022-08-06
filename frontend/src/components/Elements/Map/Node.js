@@ -9,6 +9,8 @@ const Node = ({
         setStartCell,
         endCell,
         setEndCell,
+        hidePath,
+        setHidePath,
         tool,
         playing,
         curMap,
@@ -40,22 +42,24 @@ const Node = ({
             if (tool === 2) {
                 // start re-position
                 if (e.buttons===1 && !isEnd && !isWall && !playing) {
+                    if (!hidePath) setHidePath(true);
                     const updatedGrid = grid.slice();
                     const oldStartCell = updatedGrid[startCell[1]][startCell[0]];
                     oldStartCell.isStart = false;
                     updatedGrid[row][col].isStart = true;
-                    setStartCell([col, row]); // potential removal
+                    setStartCell([col, row]);
                     setGrid(updatedGrid);
                 }
             }
             if (tool === 3) {
                 // end re-position
                 if (e.buttons===1 && !isStart && !isWall && !playing) {
+                    if (!hidePath) setHidePath(true);
                     const updatedGrid = grid.slice();
                     const oldEndCell = updatedGrid[endCell[1]][endCell[0]];
                     oldEndCell.isEnd = false;
                     updatedGrid[row][col].isEnd = true;
-                    setEndCell([col, row]); // potential removal
+                    setEndCell([col, row]);
                     setGrid(updatedGrid);
                 }
             }
@@ -63,14 +67,12 @@ const Node = ({
         const justClick = (e) => {
             // wall create
             if (tool === 1 && !isStart && !isEnd && !playing) {
-                console.log('test')
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = true;
                 setGrid(updatedGrid);
             }
             // wall delete
-            if (tool === 1 && e.buttons==2 && !isStart && !isEnd && !playing) {
-                console.log('test')
+            if (tool === 1 && e.buttons===2 && !isStart && !isEnd && !playing) {
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = false;
                 setGrid(updatedGrid);

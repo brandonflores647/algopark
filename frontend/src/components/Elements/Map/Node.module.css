@@ -24,9 +24,12 @@
 }
 .pathCell {
     border-color: rgba(80, 83, 255, 0.587);
-    background-color: #fff;
     animation: path .15s ease, pathPulse 3s ease 3s infinite;
     animation-fill-mode: forwards;
+}
+.hiddenPath {
+    border-color: #989898;
+    animation: visited .5s ease;
 }
 
 .wallCell {

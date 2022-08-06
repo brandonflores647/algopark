@@ -22,6 +22,7 @@ const Map = ({ playing, setPlaying }) => {
     const [grid, setGrid] = useState([]);
     const [clear, setClear] = useState(false);
     const [tool, setTool] = useState(null);
+    const [hidePath, setHidePath] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -84,14 +85,20 @@ const Map = ({ playing, setPlaying }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [curMap])
 
+    useEffect(() => {
+        if (hidePath) {
+            handleHidePath(grid);
+        }
+    }, [hidePath])
+
     const replayCleanup = (grid) => {
         grid.forEach(row => {
             row.forEach(cell => {
                 const domEle = document.getElementById(
                     `node-${cell.row}-${cell.col}`
-                    );
+                );
 
-                    // remove visited cell effect
+                // remove visited cell effect
                 if (domEle.className.includes(nodeClasses.visited)) {
                     domEle.className = domEle.className
                     .split(nodeClasses.visited).join(' ');
@@ -101,6 +108,12 @@ const Map = ({ playing, setPlaying }) => {
                 if (domEle.className.includes(nodeClasses.pathCell)) {
                     domEle.className = domEle.className
                     .split(nodeClasses.pathCell).join(' ');
+                }
+
+                // remove hidden path effect
+                if (domEle.className.includes(nodeClasses.hiddenPath)) {
+                    domEle.className = domEle.className
+                    .split(nodeClasses.hiddenPath).join(' ');
                 }
 
                 cell.isVisited = false;
@@ -140,9 +153,23 @@ const Map = ({ playing, setPlaying }) => {
                 // add new path effect
                 domEle.className += (` ${nodeClasses.pathCell}`);
 
-            }, speed+25 * i)
+            }, speed+25 * i);
         });
-        setPlaying(false);
+        setTimeout(() => {
+            setPlaying(false);
+        }, 1300);
+    }
+
+    const handleHidePath = (grid) => {
+        grid.forEach(row => {
+            row.forEach((ele, i) => {
+                const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
+                if (domEle.className.includes(`${nodeClasses.pathCell}`)) {
+                    // add hidden path class
+                    domEle.className += (` ${nodeClasses.hiddenPath}`);
+                }
+            })
+        });
     }
 
     const handlePlay = () => {
@@ -152,6 +179,7 @@ const Map = ({ playing, setPlaying }) => {
         const pathArr = getPath(endNode);
         animateVisited(visitedNodes, pathArr);
         setPlaying(true);
+        setHidePath(false);
     }
     const handleClear = (grid) => {
         grid.forEach(row => {
@@ -212,6 +240,8 @@ const Map = ({ playing, setPlaying }) => {
                             setStartCell={setStartCell}
                             endCell={endCell}
                             setEndCell={setEndCell}
+                            hidePath={hidePath}
+                            setHidePath={setHidePath}
                             tool={tool}
                             playing={playing}
                             curMap={curMap}
