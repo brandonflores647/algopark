@@ -22,12 +22,16 @@ const TemplateList = ({ playing }) => {
         })();
     }
 
-    const handleDelete = (mapId) => {
+    const handleDelete = (mapId, mapName) => {
         if (playing) return;
         (async() => {
-            await dispatch(thunkDeleteMap(mapId));
-            if (curMap === mapId) {
-                await dispatch(setMapThunk(null));
+            if (window.confirm(`Deleting '${mapName}', are you sure?`)) {
+                await dispatch(thunkDeleteMap(mapId));
+                if (curMap === mapId) {
+                    await dispatch(setMapThunk(null));
+                }
+            } else {
+                return;
             }
         })();
     }
