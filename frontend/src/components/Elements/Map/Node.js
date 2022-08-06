@@ -28,6 +28,9 @@ const Node = ({
             if (tool === 1) {
                 // wall create
                 if (e.buttons===1 && !isStart && !isEnd && !playing) {
+                    if (element.className.includes('pathCell')) {
+                        setHidePath(true)
+                    }
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isWall = true;
                     setGrid(updatedGrid);
@@ -65,8 +68,12 @@ const Node = ({
             }
         }
         const justClick = (e) => {
+            const element = ref.current;
             // wall create
             if (tool === 1 && !isStart && !isEnd && !playing) {
+                if (element.className.includes('pathCell')) {
+                    setHidePath(true)
+                }
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = true;
                 setGrid(updatedGrid);
