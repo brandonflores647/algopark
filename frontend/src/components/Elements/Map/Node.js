@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 
 import classes from './Node.module.css';
 
@@ -87,7 +87,7 @@ const Node = ({
 
         return () => {
             element.removeEventListener('mouseover', handleClick);
-            element.removeEventListener('click', handleClick);
+            element.removeEventListener('mousedown', justClick);
             document.removeEventListener('contextmenu', stopMenu);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
