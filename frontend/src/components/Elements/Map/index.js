@@ -89,6 +89,7 @@ const Map = ({ playing, setPlaying }) => {
         if (hidePath) {
             handleHidePath(grid);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hidePath])
 
     const replayCleanup = (grid) => {
