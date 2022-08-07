@@ -18,7 +18,8 @@ const Node = ({
         col,
         isStart,
         isEnd,
-        isWall }) => {
+        isWall,
+        isSlow }) => {
 
     const ref = useRef(null);
 
@@ -27,7 +28,7 @@ const Node = ({
         const handleClick = (e) => {
             if (tool === 1) {
                 // wall create
-                if (e.buttons===1 && !isStart && !isEnd && !playing) {
+                if (e.buttons===1 && !isStart && !isEnd && !isSlow && !playing) {
                     if (element.className.includes('pathCell')) {
                         setHidePath(true)
                     }
@@ -36,7 +37,7 @@ const Node = ({
                     setGrid(updatedGrid);
                 }
                 // wall delete
-                if (e.buttons===2 && !isStart && !isEnd && !playing) {
+                if (e.buttons===2 && !isStart && !isEnd && !isSlow && !playing) {
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isWall = false;
                     setGrid(updatedGrid);
@@ -63,6 +64,23 @@ const Node = ({
                     oldEndCell.isEnd = false;
                     updatedGrid[row][col].isEnd = true;
                     setEndCell([col, row]);
+                    setGrid(updatedGrid);
+                }
+            }
+            if (tool === 4) {
+                // slow create
+                if (e.buttons===1 && !isStart && !isEnd && !isWall && !playing) {
+                    if (element.className.includes('pathCell')) {
+                        setHidePath(true)
+                    }
+                    const updatedGrid = grid.slice();
+                    updatedGrid[row][col].isSlow = true;
+                    setGrid(updatedGrid);
+                }
+                // slow delete
+                if (e.buttons===2 && !isStart && !isEnd && !isWall && !playing) {
+                    const updatedGrid = grid.slice();
+                    updatedGrid[row][col].isSlow = false;
                     setGrid(updatedGrid);
                 }
             }
@@ -106,7 +124,8 @@ const Node = ({
             ${
                 isStart ? classes.startCell
                 : isEnd ? classes.endCell
-                : isWall ? classes.wallCell : '' }
+                : isWall ? classes.wallCell
+                : isSlow ? classes.slowCell : '' }
         `}
             ref={ref}>
         </span>

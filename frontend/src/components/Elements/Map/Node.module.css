@@ -35,6 +35,9 @@
 .wallCell {
     background-color: grey;
 }
+.slowCell {
+    background-color: pink;
+}
 
 @keyframes visited {
     0% {
