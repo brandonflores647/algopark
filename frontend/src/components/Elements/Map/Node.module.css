@@ -10,21 +10,23 @@
 }
 
 .startCell {
-    border: 1px solid #989898 !important;
+    border: 1px solid #70FF98 !important;
     background-color: #70FF98 !important;
+    box-shadow: none !important;
 }
 .endCell {
+    border: 1px solid #FF6C6C !important;
     background-color: #FF6C6C !important;
+    box-shadow: none !important;
 }
 
 .visited {
     border: 15px solid rgba(80, 83, 255, 0.587);
     animation: visited 1s ease 1s;
     animation-fill-mode: forwards;
-    clear: both;
 }
 .pathCell {
-    border-color: rgba(80, 83, 255, 0.587);
+    border-color: transparent;
     animation: path .15s ease, pathPulse 3s ease 3s infinite;
     animation-fill-mode: forwards;
 }
@@ -52,17 +54,17 @@
 }
 @keyframes path {
     0% {
-        background-color: #fff;
+        box-shadow: inset 0px 0px 0px 15px rgba(80, 83, 255, 0.587);
     }
     100% {
-        background-color: #3C46A5;
+        box-shadow: inset 0px 0px 0px 15px #1b2dcfb9;
     }
 }
 @keyframes pathPulse {
     0% {
-        background-color: #4b57c2;
+        box-shadow: inset 0px 0px 0px 15px #3241ce;
     }
     100% {
-        background-color: #3C46A5;
+        box-shadow: inset 0px 0px 0px 15px #1b2dcfb9;
     }
 }

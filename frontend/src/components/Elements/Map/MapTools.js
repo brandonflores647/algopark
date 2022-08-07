@@ -56,6 +56,13 @@ const MapTools = ({
                         typeId: 3
                     }
                 }
+                if (cell.isSlow) {
+                    objects[`${x}-${y}`] = {
+                        xPos: cell.col,
+                        yPos: cell.row,
+                        typeId: 4
+                    }
+                }
             });
         });
         return objects;
