@@ -143,6 +143,17 @@ const MapTools = ({
                         <div className={`${classes.toolBlockLabel} ${classes.wall}`}></div>
                         Wall Cell
                     </button>
+                    <button
+                        disabled={playing}
+                        className={`
+                            ${classes.toolButton}
+                            ${(tool===4?classes.selected:'')}
+                        `}
+                        onClick={() => (tool!==4?setTool(4):setTool(null))}
+                    >
+                        <div className={`${classes.toolBlockLabel} ${classes.slow}`}></div>
+                        Slow Cell
+                    </button>
                 </section>
                 <section className={classes.controlContainer}>
                     <button
