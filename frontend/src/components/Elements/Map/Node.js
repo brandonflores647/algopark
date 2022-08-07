@@ -76,7 +76,7 @@ const Node = ({
                     }
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isSlow = true;
-                    updatedGrid[row][col].speedMultiplier = 3;
+                    updatedGrid[row][col].speedMultiplier = 4;
                     setGrid(updatedGrid);
                 }
                 // slow delete

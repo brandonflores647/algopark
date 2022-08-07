@@ -71,7 +71,7 @@ const Map = ({ playing, setPlaying }) => {
                 }
                 if (obj.typeId === 4) {
                     newGrid[obj.yPos][obj.xPos].isSlow = true;
-                    newGrid[obj.yPos][obj.xPos].speedMultiplier = 3; // higher === slower
+                    newGrid[obj.yPos][obj.xPos].speedMultiplier = 4; // higher === slower
                 }
             });
             const startNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===2);

@@ -21,6 +21,7 @@
     border: 15px solid rgba(80, 83, 255, 0.587);
     animation: visited 1s ease 1s;
     animation-fill-mode: forwards;
+    clear: both;
 }
 .pathCell {
     border-color: rgba(80, 83, 255, 0.587);
@@ -41,11 +42,11 @@
 
 @keyframes visited {
     0% {
-        background-color: rgba(80, 83, 255, 0.587);
+        box-shadow: inset 0px 0px 0px 15px rgba(80, 83, 255, 0.587);
         border: 1px solid #989898;
     }
     100% {
-        background-color: #fff;
+        box-shadow: inset 0px 0px 0px 15px rgba(80, 83, 255, 0);
         border: 1px solid #989898;
     }
 }
