@@ -19,7 +19,8 @@ const Node = ({
         isStart,
         isEnd,
         isWall,
-        isSlow }) => {
+        isSlow,
+        speedMultiplier }) => {
 
     const ref = useRef(null);
 
@@ -75,12 +76,14 @@ const Node = ({
                     }
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isSlow = true;
+                    updatedGrid[row][col].speedMultiplier = 3;
                     setGrid(updatedGrid);
                 }
                 // slow delete
                 if (e.buttons===2 && !isStart && !isEnd && !isWall && !playing) {
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isSlow = false;
+                    updatedGrid[row][col].speedMultiplier = 1;
                     setGrid(updatedGrid);
                 }
             }
