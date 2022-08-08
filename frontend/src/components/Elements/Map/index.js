@@ -114,7 +114,6 @@ const Map = ({ playing, setPlaying }) => {
 
                 // remove path cell effect
                 if (domEle.className.includes(nodeClasses.pathCell)) {
-                    console.log('tetststs')
                     domEle.className = domEle.className
                     .split(nodeClasses.pathCell).join(' ');
                 }

@@ -31,6 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <div className='contentWrap'>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -42,6 +43,7 @@ function App() {
           <MapPage />
         </ProtectedRoute>
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }
