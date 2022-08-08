@@ -20,7 +20,7 @@ const Node = ({
         isEnd,
         isWall,
         isSlow,
-        speedMultiplier }) => {
+        slowCellSpeed }) => {
 
     const ref = useRef(null);
 
@@ -76,11 +76,14 @@ const Node = ({
                     }
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isSlow = true;
-                    updatedGrid[row][col].speedMultiplier = 4;
+                    updatedGrid[row][col].speedMultiplier = slowCellSpeed;
                     setGrid(updatedGrid);
                 }
                 // slow delete
                 if (e.buttons===2 && !isStart && !isEnd && !isWall && !playing) {
+                    if (element.className.includes('pathCell')) {
+                        setHidePath(true)
+                    }
                     const updatedGrid = grid.slice();
                     updatedGrid[row][col].isSlow = false;
                     updatedGrid[row][col].speedMultiplier = 1;
@@ -91,7 +94,7 @@ const Node = ({
         const justClick = (e) => {
             const element = ref.current;
             // wall create
-            if (tool === 1 && !isStart && !isEnd && !playing) {
+            if (tool === 1 && !isStart && !isEnd && !isSlow && !playing) {
                 if (element.className.includes('pathCell')) {
                     setHidePath(true)
                 }
@@ -100,9 +103,24 @@ const Node = ({
                 setGrid(updatedGrid);
             }
             // wall delete
-            if (tool === 1 && e.buttons===2 && !isStart && !isEnd && !playing) {
+            if (tool === 1 && e.buttons===2 && !isStart && !isEnd && !isSlow && !playing) {
                 const updatedGrid = grid.slice();
                 updatedGrid[row][col].isWall = false;
+                setGrid(updatedGrid);
+            }
+            // slow create
+            if (tool === 4 && !isStart && !isEnd && !isWall && !playing) {
+                if (element.className.includes('pathCell')) {
+                    setHidePath(true)
+                }
+                const updatedGrid = grid.slice();
+                updatedGrid[row][col].isSlow = true;
+                setGrid(updatedGrid);
+            }
+            // slow delete
+            if (tool === 4 && e.buttons===2 && !isStart && !isEnd && !isWall && !playing) {
+                const updatedGrid = grid.slice();
+                updatedGrid[row][col].isSlow = false;
                 setGrid(updatedGrid);
             }
         }

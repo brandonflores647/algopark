@@ -18,6 +18,7 @@ const Map = ({ playing, setPlaying }) => {
     const [startCell, setStartCell] = useState([2, 2]); // x, y
     const [endCell, setEndCell] = useState([28, 15]); // x, y
     const speed = 10;
+    const slowCellSpeed = 4;
 
     const [grid, setGrid] = useState([]);
     const [clear, setClear] = useState(false);
@@ -71,7 +72,7 @@ const Map = ({ playing, setPlaying }) => {
                 }
                 if (obj.typeId === 4) {
                     newGrid[obj.yPos][obj.xPos].isSlow = true;
-                    newGrid[obj.yPos][obj.xPos].speedMultiplier = 4; // higher === slower
+                    newGrid[obj.yPos][obj.xPos].speedMultiplier = slowCellSpeed; // higher === slower
                 }
             });
             const startNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===2);
@@ -113,6 +114,7 @@ const Map = ({ playing, setPlaying }) => {
 
                 // remove path cell effect
                 if (domEle.className.includes(nodeClasses.pathCell)) {
+                    console.log('tetststs')
                     domEle.className = domEle.className
                     .split(nodeClasses.pathCell).join(' ');
                 }
@@ -260,7 +262,7 @@ const Map = ({ playing, setPlaying }) => {
                             isEnd={node.isEnd}
                             isWall={node.isWall}
                             isSlow={node.isSlow}
-                            speedMultiplier={node.speedMultiplier}
+                            slowCellSpeed={slowCellSpeed}
                         />
                     ))}
                 </div>
