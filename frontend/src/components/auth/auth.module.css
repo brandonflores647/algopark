@@ -19,3 +19,45 @@
     border-right: 1px solid #434663;
     box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
+
+.loginFormWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255) 30%) no-repeat;
+}
+.loginFormContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.loginFormContainer > form {
+    z-index: 2;
+    margin-top: 20%;
+
+    width: 25%;
+    height: 40%;
+    min-width: 600px;
+    min-height: 400px;
+
+    border: 1px solid #DADADA;
+    border-radius: 3px;
+    background-color: #fff;
+}
+.gridTop {
+    position: absolute;
+    z-index: 1;
+    transform: rotate(3deg);
+    left: 350px;
+    bottom: 210px;
+    filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
+}
+.gridBottom {
+    position: absolute;
+    z-index: 1;
+    right: 350px;
+    bottom: -100px;
+    transform: rotate(-3deg);
+    filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
+}
