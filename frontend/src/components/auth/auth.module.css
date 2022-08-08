@@ -1,0 +1,21 @@
+.logoutBtn {
+    height: 100%;
+
+    padding: 0 20px 3px 20px;
+
+    cursor: pointer;
+    border: 0;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    color: #fff;
+    background-color: transparent;
+    font-size: 21px;
+    font-weight: 400;
+
+    transition: box-shadow .1s ease;
+}
+.logoutBtn:hover {
+    border-left: 1px solid #434663;
+    border-right: 1px solid #434663;
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.1);
+}

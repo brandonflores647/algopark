@@ -8,3 +8,11 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.contentWrap {
+    margin-top: var(--navheight);
+}
+
+:root {
+    --navheight: 65px;
+}
