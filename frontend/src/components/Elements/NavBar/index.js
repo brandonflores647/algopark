@@ -24,12 +24,12 @@ const NavBar = () => {
       <section className={classes.sessionSection}>
       {!user ?
       <>
-        <button>
+        <button className={classes.navButton}>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
         </button>
-        <button>
+        <button className={classes.navButton}>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
