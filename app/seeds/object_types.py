@@ -7,6 +7,8 @@ def seed_object_types():
         name='Start', canCross=True, isStart=True, isEnd=False)
     end = ObjectType(
         name='End', canCross=True, isStart=False, isEnd=True)
+    slow = ObjectType(
+        name='Slow', canCross=True, speedMultiplier=4, isStart=False, isEnd=False)
 
     db.session.add(wall)
     db.session.add(start)

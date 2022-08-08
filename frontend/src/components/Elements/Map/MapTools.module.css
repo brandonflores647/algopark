@@ -75,6 +75,9 @@
 .wall {
     background-color: #989898;
 }
+.slow {
+    background-color: #fac26e;
+}
 
 .selected {
     box-shadow: 0px 0px 1px 3px #7f83aa75;

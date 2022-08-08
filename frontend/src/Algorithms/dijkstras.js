@@ -42,7 +42,7 @@ const updateUnvisited = (node, grid) => {
     neighbors = neighbors.filter(ele => !ele.isVisited);
 
     for (let i of neighbors) {
-        i.distance = node.distance + 1;
+        i.distance = node.distance + node.speedMultiplier;
         i.previous = node;
     }
 }

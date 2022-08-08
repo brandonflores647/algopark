@@ -18,6 +18,7 @@ const Map = ({ playing, setPlaying }) => {
     const [startCell, setStartCell] = useState([2, 2]); // x, y
     const [endCell, setEndCell] = useState([28, 15]); // x, y
     const speed = 10;
+    const slowCellSpeed = 4;
 
     const [grid, setGrid] = useState([]);
     const [clear, setClear] = useState(false);
@@ -33,6 +34,8 @@ const Map = ({ playing, setPlaying }) => {
             distance: Infinity,
             isVisited: false,
             isWall: false,
+            isSlow: false,
+            speedMultiplier: 1,
             previous: null
         };
     }
@@ -66,6 +69,10 @@ const Map = ({ playing, setPlaying }) => {
                 }
                 if (obj.typeId === 3) {
                     newGrid[obj.yPos][obj.xPos].isEnd = true;
+                }
+                if (obj.typeId === 4) {
+                    newGrid[obj.yPos][obj.xPos].isSlow = true;
+                    newGrid[obj.yPos][obj.xPos].speedMultiplier = slowCellSpeed; // higher === slower
                 }
             });
             const startNode = Object.values(maps[curMap].objects).find(ele => ele.typeId===2);
@@ -107,6 +114,7 @@ const Map = ({ playing, setPlaying }) => {
 
                 // remove path cell effect
                 if (domEle.className.includes(nodeClasses.pathCell)) {
+                    console.log('tetststs')
                     domEle.className = domEle.className
                     .split(nodeClasses.pathCell).join(' ');
                 }
@@ -202,6 +210,8 @@ const Map = ({ playing, setPlaying }) => {
                 }
 
                 cell.isWall = false;
+                cell.isSlow = false;
+                cell.speedMultiplier = 1;
                 cell.isVisited = false;
                 cell.distance = Infinity;
                 cell.previous = null;
@@ -251,6 +261,8 @@ const Map = ({ playing, setPlaying }) => {
                             isStart={node.isStart}
                             isEnd={node.isEnd}
                             isWall={node.isWall}
+                            isSlow={node.isSlow}
+                            slowCellSpeed={slowCellSpeed}
                         />
                     ))}
                 </div>
