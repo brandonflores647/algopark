@@ -10,6 +10,17 @@ const NavBar = () => {
 
   return (
     <nav className={classes.navWrapper}>
+      <section className={classes.logoSection}>
+      <div
+            className={classes.blockContainer}
+        >
+            <div className={`${classes.blockTL} ${classes.block}`}></div>
+            <div className={`${classes.blockTR} ${classes.block}`}></div>
+            <div className={`${classes.blockBL} ${classes.block}`}></div>
+            <div className={`${classes.blockBR} ${classes.block}`}></div>
+        </div>
+        <span className={classes.logoText}>AlgoPark</span>
+      </section>
       {!user ?
       <>
         <button>
