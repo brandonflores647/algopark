@@ -25,6 +25,7 @@
     margin-bottom: 3px;
 
     color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     font-weight: 500;
     font-size: 37px;
 }
@@ -65,4 +66,17 @@
     background-color: rgb(143, 145, 255);
     border-radius: 6px;
     transform: rotate(-135deg);
+}
+
+.sessionSection {
+    margin-right: 20px;
+}
+
+.welcome {
+    margin-right: 25px;
+
+    color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    font-size: 17px;
+    font-weight: 400;
 }

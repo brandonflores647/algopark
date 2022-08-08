@@ -21,6 +21,7 @@ const NavBar = () => {
         </div>
         <span className={classes.logoText}>AlgoPark</span>
       </section>
+      <section className={classes.sessionSection}>
       {!user ?
       <>
         <button>
@@ -34,7 +35,12 @@ const NavBar = () => {
           </NavLink>
         </button>
       </>
-      : <LogoutButton />}
+      :
+      <>
+        <span className={classes.welcome}>Welcome {user.username}!</span>
+        <LogoutButton />
+      </>}
+      </section>
     </nav>
   );
 }
