@@ -94,8 +94,8 @@ const SignUpForm = () => {
             </NavLink>
           </span>
         </form>
-        <img className={classes.gridTop} src='/content/grid.svg' alt='grid' width={'400px'}/>
-        <img className={classes.gridBottom} src='/content/grid.svg' alt='grid' width={'400px'}/>
+        <img className={classes.gridTop} src='/static/grid.svg' alt='grid' width={'400px'}/>
+        <img className={classes.gridBottom} src='/static/grid.svg' alt='grid' width={'400px'}/>
       </div>
     </div>
   );
