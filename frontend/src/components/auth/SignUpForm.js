@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 import classes from './auth.module.css';
@@ -88,6 +88,11 @@ const SignUpForm = () => {
             required={true}
           ></input>
           <button type='submit' className={classes.formButton}>Sign Up</button>
+          <span className={classes.haveAccount}>
+            <NavLink to='/login'>
+              Already have an account? Log in
+            </NavLink>
+          </span>
         </form>
         <img className={classes.gridTop} src='/content/grid.svg' alt='grid' width={'400px'}/>
         <img className={classes.gridBottom} src='/content/grid.svg' alt='grid' width={'400px'}/>
