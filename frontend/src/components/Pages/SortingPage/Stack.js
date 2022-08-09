@@ -1,11 +1,16 @@
-const Stack = ({ height, color }) => {
+import classes from './SortingPage.module.css';
+
+const Stack = ({ height, index }) => {
     const styleObj = {
-        width: `10px`,
+        width: `5px`,
         height: `${height}%`,
-        backgroundColor: `${color}`
     }
     return (
-        <div style={styleObj}></div>
+        <div
+            id={`stack-${index}`}
+            style={styleObj}
+            className={classes.stack}
+        ></div>
     );
 }
 
