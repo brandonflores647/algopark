@@ -4,7 +4,6 @@ const Stack = ({ height, color }) => {
         height: `${height}%`,
         backgroundColor: `${color}`
     }
-    console.log(height)
     return (
         <div style={styleObj}></div>
     );
