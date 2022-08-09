@@ -18,17 +18,24 @@ const NavBar = () => {
 
   return (
     <nav className={classes.navWrapper}>
+      <NavLink to='/' exact={true} activeClassName='active' className={classes.navLink}>
       <section className={classes.logoSection}>
-      <div
-            className={classes.blockContainer}
-        >
-            <div className={`${classes.blockTL} ${classes.block}`}></div>
-            <div className={`${classes.blockTR} ${classes.block}`}></div>
-            <div className={`${classes.blockBL} ${classes.block}`}></div>
-            <div className={`${classes.blockBR} ${classes.block}`}></div>
+        <div
+              className={classes.blockContainer}
+          >
+          <div className={`${classes.blockTL} ${classes.block}`}></div>
+          <div className={`${classes.blockTR} ${classes.block}`}></div>
+          <div className={`${classes.blockBL} ${classes.block}`}></div>
+          <div className={`${classes.blockBR} ${classes.block}`}></div>
         </div>
         <span className={classes.logoText}>AlgoPark</span>
       </section>
+      </NavLink>
+      {user ?
+        <section className={classes.navSection}>
+          test
+        </section>
+      : null}
       <section className={classes.sessionSection}>
       {!user ?
       <>
