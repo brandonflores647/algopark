@@ -33,7 +33,16 @@ const NavBar = () => {
       </NavLink>
       {user ?
         <section className={classes.navSection}>
-          test
+          <NavLink to='/map' exact={true} activeClassName='active' className={classes.navLink}>
+            <button className={`${classes.navButton} ${classes.contentButton}`}>
+              Pathfinding
+            </button>
+          </NavLink>
+          <NavLink to='/sorting' exact={true} activeClassName='active' className={classes.navLink}>
+            <button className={`${classes.navButton} ${classes.contentButton}`}>
+              Sorting
+            </button>
+          </NavLink>
         </section>
       : null}
       <section className={classes.sessionSection}>
@@ -44,12 +53,12 @@ const NavBar = () => {
         </button>
         <NavLink to='/login' exact={true} activeClassName='active' className={classes.navLink}>
           <button className={classes.navButton}>
-              Login
+            Login
           </button>
         </NavLink>
         <NavLink to='/sign-up' exact={true} activeClassName='active' className={classes.navLink}>
           <button className={classes.navButton}>
-              Sign Up
+            Sign Up
           </button>
         </NavLink>
       </>

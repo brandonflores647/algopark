@@ -68,6 +68,16 @@
     transform: rotate(-135deg);
 }
 
+.navSection {
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    height: 100%;
+}
+.contentButton {
+    font-size: 24px !important;
+}
+
 .sessionSection {
     display: flex;
     align-items: center;
