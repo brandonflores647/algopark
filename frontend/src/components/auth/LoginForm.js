@@ -39,7 +39,7 @@ const LoginForm = () => {
           <span className={classes.formTitle}>Login to your account</span>
           <div>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind} className={classes.error}>{error}</div>
               ))}
           </div>
           <input
