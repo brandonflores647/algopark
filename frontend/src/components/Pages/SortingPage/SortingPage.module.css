@@ -1,0 +1,16 @@
+.pageWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.stackContainer {
+    display: flex;
+    justify-content: center;
+    align-items:    flex-end;
+    gap: 5px;
+
+    height: 250px;
+    border: 1px solid red;
+}

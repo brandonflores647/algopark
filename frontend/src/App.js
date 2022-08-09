@@ -10,6 +10,7 @@ import NavBar from './components/Elements/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import MapPage from './components/Pages/MapPage';
+import SortingPage from './components/Pages/SortingPage';
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/map' exact={true} >
           <MapPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/sorting' exact={true} >
+          <SortingPage />
         </ProtectedRoute>
       </Switch>
       </div>
