@@ -35,16 +35,16 @@ const NavBar = () => {
         <button className={classes.navButton} onClick={handleDemoLogin}>
           Demo
         </button>
-        <button className={classes.navButton}>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </button>
-        <button className={classes.navButton}>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </button>
+        <NavLink to='/login' exact={true} activeClassName='active' className={classes.navLink}>
+          <button className={classes.navButton}>
+              Login
+          </button>
+        </NavLink>
+        <NavLink to='/sign-up' exact={true} activeClassName='active' className={classes.navLink}>
+          <button className={classes.navButton}>
+              Sign Up
+          </button>
+        </NavLink>
       </>
       :
       <>
