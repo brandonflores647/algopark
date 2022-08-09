@@ -11,7 +11,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const handleDemoLogin = async () => {
-    await dispatch(login('demo@aa.io', 'password'));
+    await dispatch(login('demo@aa.io', 'P@ssw0rd!'));
   }
 
   return (
