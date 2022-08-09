@@ -33,30 +33,88 @@
     justify-content: center;
 }
 .loginFormContainer > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 2;
-    margin-top: 20%;
+    margin-top: 30%;
 
-    width: 25%;
+    width: 20%;
     height: 40%;
-    min-width: 600px;
+    min-width: 500px;
     min-height: 400px;
 
-    border: 1px solid #DADADA;
     border-radius: 3px;
     background-color: #fff;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
 }
+
+.formTitle {
+    margin-top: 10%;
+    margin-bottom: 15px;
+
+    text-align: center;
+    font-weight: 500;
+    font-size: 21px;
+    color: #4B4E6D;
+}
+.inputField {
+    width: 50%;
+    height: 35px;
+
+    margin-top: 15px;
+    padding: 20px 0px 20px 5px;
+
+    font-size: 14px;
+    font-weight: 400;
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    background-color: #fafbfc;
+}
+.inputField:focus {
+    outline-color: rgb(143, 145, 255);
+}
+
+.formButton {
+    width: 50%;
+    height: 35px;
+
+    margin-top: 40px;
+
+    color: white;
+    font-size: 19px;
+    font-weight: 500;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+    border: 2px solid rgb(111, 116, 184);
+    border-radius: 3px;
+    background-color: rgb(143, 145, 255);
+
+    box-shadow: 0px 3px 0px 0px rgb(111, 116, 184);
+    transition: box-shadow .15s ease, margin-top .15s ease;
+}
+.formButton:hover {
+    margin-top: 38px;
+    box-shadow: 0px 5px 0px 0px rgb(111, 116, 184);
+}
+.formButton:active {
+    margin-top: 43px;
+    box-shadow: 0px 0px 0px 0px rgb(111, 116, 184);
+}
+
 .gridTop {
     position: absolute;
     z-index: 1;
     transform: rotate(3deg);
-    left: 350px;
+    left: 260px;
     bottom: 210px;
     filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
 }
 .gridBottom {
     position: absolute;
     z-index: 1;
-    right: 350px;
+    right: 260px;
     bottom: -100px;
     transform: rotate(-3deg);
     filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
