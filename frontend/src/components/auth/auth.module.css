@@ -160,3 +160,14 @@
     transform: rotate(-3deg);
     filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
 }
+
+.error {
+    margin-bottom: 3px;
+    padding: 5px 8px 5px 8px;
+
+    border: 1px solid red;
+    border-left: 4px solid red;
+    border-radius: 3px;
+    color: black;
+    background-color: pink;
+}
