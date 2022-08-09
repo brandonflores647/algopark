@@ -33,7 +33,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className={classes.loginFormWrapper}>
+    <div className={classes.formWrapper}>
       <div className={classes.loginFormContainer}>
         <form onSubmit={onLogin}>
           <span className={classes.formTitle}>Login to your account</span>
@@ -58,7 +58,7 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type='submit' className={classes.formButton} >Login</button>
+          <button type='submit' className={classes.formButton}>Login</button>
         </form>
         <img className={classes.gridTop} src='/content/grid.svg' alt='grid' width={'400px'}/>
         <img className={classes.gridBottom} src='/content/grid.svg' alt='grid' width={'400px'}/>
