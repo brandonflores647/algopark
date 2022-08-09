@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../../auth/LogoutButton';
 import { login } from '../../../store/session';
 
@@ -9,9 +9,11 @@ import classes from './NavBar.module.css';
 const NavBar = () => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleDemoLogin = async () => {
     await dispatch(login('demo@aa.io', 'P@ssw0rd!'));
+    history.push('/map');
   }
 
   return (

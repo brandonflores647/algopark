@@ -33,13 +33,16 @@ function App() {
       <NavBar />
       <div className='contentWrap'>
       <Switch>
+        <Route path='/' exact={true} >
+          <h1>splash page</h1>
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path='/map' exact={true} >
           <MapPage />
         </ProtectedRoute>
       </Switch>
