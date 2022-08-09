@@ -9,8 +9,13 @@ body {
     padding: 0;
 }
 
+#root {
+    height: calc(100vh - var(--navheight));
+}
+
 .contentWrap {
     margin-top: var(--navheight);
+    height: 100%;
 }
 
 :root {
