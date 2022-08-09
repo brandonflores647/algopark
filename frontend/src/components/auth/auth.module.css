@@ -20,7 +20,7 @@
     box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-.loginFormWrapper {
+.formWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,12 +37,35 @@
     flex-direction: column;
     align-items: center;
     z-index: 2;
+
     margin-top: 30%;
 
     width: 20%;
-    height: 40%;
+    height: fit-content;
     min-width: 500px;
     min-height: 400px;
+
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+.signupFormContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.signupFormContainer > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+
+    margin-top: 30%;
+
+    width: 20%;
+    height: fit-content;
+    min-width: 500px;
+    min-height: 450px;
 
     border-radius: 3px;
     background-color: #fff;
@@ -101,6 +124,24 @@
 .formButton:active {
     margin-top: 43px;
     box-shadow: 0px 0px 0px 0px rgb(111, 116, 184);
+}
+
+.haveAccount {
+    margin-top: 15px;
+    transition: margin-top .15s ease;
+}
+.haveAccount > a {
+    text-decoration: none;
+    color: rgb(118, 99, 187);
+}
+.haveAccount > a:hover {
+    text-decoration: underline;
+}
+.formButton:hover + .haveAccount {
+    margin-top: 17px;
+}
+.formButton:active + .haveAccount {
+    margin-top: 12px;
 }
 
 .gridTop {

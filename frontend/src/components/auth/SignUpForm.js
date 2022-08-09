@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+
+import classes from './auth.module.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,51 +45,59 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className={classes.formWrapper}>
+      <div className={classes.signupFormContainer}>
+        <form onSubmit={onSignUp}>
+          <span className={classes.formTitle}>Sign up for your account</span>
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <input
+            className={classes.inputField}
+            type='text'
+            name='username'
+            placeholder='Username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+          <input
+            className={classes.inputField}
+            type='text'
+            name='email'
+            placeholder='Email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+          <input
+            className={classes.inputField}
+            type='password'
+            name='password'
+            placeholder='Password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+          <input
+            className={classes.inputField}
+            type='password'
+            name='repeat_password'
+            placeholder='Confirm Password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+          <button type='submit' className={classes.formButton}>Sign Up</button>
+          <span className={classes.haveAccount}>
+            <NavLink to='/login'>
+              Already have an account? Log in
+            </NavLink>
+          </span>
+        </form>
+        <img className={classes.gridTop} src='/content/grid.svg' alt='grid' width={'400px'}/>
+        <img className={classes.gridBottom} src='/content/grid.svg' alt='grid' width={'400px'}/>
       </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div>
   );
 };
 
