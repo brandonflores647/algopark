@@ -1,4 +1,5 @@
 import bubbleSort from '../../../Algorithms/bubbleSort';
+import selectionSort from '../../../Algorithms/selectionSort';
 
 const SortTools = ({ stacks, speed, setSpeed, stackAmount, setStackAmount }) => {
   const sortStacks = async (algo) => {
@@ -28,7 +29,7 @@ const SortTools = ({ stacks, speed, setSpeed, stackAmount, setStackAmount }) => 
           <option value='5'>Very Fast</option>
         </select>
       </label>
-      <button onClick={() => sortStacks(bubbleSort)}>SORT</button>
+      <button onClick={() => sortStacks(selectionSort)}>SORT</button>
     </div>
   );
 }
