@@ -1,0 +1,31 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.stackContainer {
+    display: flex;
+    justify-content: center;
+    align-items:    flex-end;
+    gap: 2px;
+
+    height: 250px;
+    border: 1px solid red;
+}
+
+.stack {
+    background-color: rgb(104, 104, 255);
+    /* transition: height .02s ease; */
+}
+.selected {
+    background-color: #fac26e;
+    /* transition: height .02s ease; */
+}
+.selectedNext {
+    background-color: #dc9e41;
+    /* transition: height .02s ease; */
+}
