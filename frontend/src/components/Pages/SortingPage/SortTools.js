@@ -3,11 +3,12 @@ import { useState } from 'react';
 import bubbleSort from '../../../Algorithms/bubbleSort';
 import selectionSort from '../../../Algorithms/selectionSort';
 
+import classes from './SortingPage.module.css';
+
 const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount, resetTrigger, setResetTrigger }) => {
   const [algorithm, setAlgorithm] = useState('bubbleSort');
 
   const sortStacks = async (algo) => {
-    console.log(stacks)
     switch (algo) {
       case 'bubbleSort': {
         bubbleSort(stacks, speed, setStacks)
@@ -21,9 +22,11 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
   }
 
   return (
-    <div>
+    <div className={classes.toolsContainer}>
+      <button onClick={() => sortStacks(algorithm)}>SORT</button>
+      <button onClick={() => setResetTrigger(!resetTrigger)}>SCRAMBLE</button>
       <label>
-      Stack Amount:
+      <span>Stack Amount:</span>
         <input
           type="range"
           min="6"
@@ -31,10 +34,11 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
           step="2"
           value={stackAmount}
           onChange={(e) => setStackAmount(e.target.value)}
+          className={classes.slider}
         />
       </label>
       <label>
-      Speed:
+      <span>Speed:</span>
         <select defaultValue={speed} onChange={(e) => setSpeed(e.target.value)}>
           <option value='350'>Very Slow</option>
           <option value='150'>Slow</option>
@@ -44,14 +48,12 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
         </select>
       </label>
       <label>
-      Algorithm:
+      <span>Algorithm:</span>
         <select defaultValue={algorithm} onChange={(e) => setAlgorithm(e.target.value)}>
           <option value={'bubbleSort'}>Bubble Sort</option>
           <option value={'selectionSort'}>Selection Sort</option>
         </select>
       </label>
-      <button onClick={() => sortStacks(algorithm)}>SORT</button>
-      <button onClick={() => setResetTrigger(!resetTrigger)}>SCRAMBLE</button>
     </div>
   );
 }

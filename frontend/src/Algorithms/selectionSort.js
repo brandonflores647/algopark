@@ -10,6 +10,7 @@ const selectionSort = async (arr, speed, setStacks) => {
         const curEle = document.getElementById(
             `stack-${i}`
         );
+        if (!curEle) return;
         curEle.className = classes.selected;
 
         let nextEle;
@@ -18,6 +19,7 @@ const selectionSort = async (arr, speed, setStacks) => {
             nextEle = document.getElementById(
                 `stack-${j}`
             );
+            if (!nextEle) return;
             nextEle.className = classes.selectedNext;
             await timer(speed);
             if (newOrder[j].height <= newOrder[min].height) {

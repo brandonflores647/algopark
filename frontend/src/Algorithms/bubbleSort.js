@@ -1,11 +1,14 @@
+import { useLocation } from 'react-router-dom';
+
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
 const bubbleSort = async (arr, speed, setStacks) => {
-    const newOrder = arr.slice();
-    const timer = ms => new Promise(res => setTimeout(res, ms));
+  // const location = useLocation();
+  const newOrder = arr.slice();
+  const timer = ms => new Promise(res => setTimeout(res, ms));
 
-    let swapped = false;
-    for (let i = 0; i < newOrder.length-1; i++) {
+  let swapped = false;
+  for (let i = 0; i < newOrder.length-1; i++) {
       swapped = false;
 
       for (let j = 0; j < newOrder.length-1; j++) {
@@ -16,6 +19,7 @@ const bubbleSort = async (arr, speed, setStacks) => {
         const nextEle = document.getElementById(
           `stack-${j+1}`
         );
+        if (!curEle || !nextEle) return;
 
         if (newOrder[j].height > newOrder[j+1].height) {
             const prev = newOrder[j];

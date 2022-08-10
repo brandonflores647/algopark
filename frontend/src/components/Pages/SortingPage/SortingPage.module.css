@@ -13,6 +13,7 @@
     align-items: flex-end;
 
     width: 50%;
+    min-width: 490px;
     height: 45%;
     border: 1px solid red;
 }
@@ -28,4 +29,30 @@
 .selectedNext {
     background-color: #dc9e41;
     /* transition: height .02s ease; */
+}
+
+.toolsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+    width: 100%;
+
+    margin-top: 45px;
+    margin-bottom: 15px;
+}
+
+.toolsContainer > label {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+
+    border-radius: 3px;
+    background-color: #4B4E6D;
+}
+.toolsContainer > label > span {
+    margin-right: 5px;
+    margin-bottom: 3px;
+
+    font-size: 21px;
+    color: white;
 }
