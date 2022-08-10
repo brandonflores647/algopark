@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from './Stack';
+import SortTools from './SortTools';
 import classes from './SortingPage.module.css';
 
 import { setMapThunk } from '../../../store/session';
-import bubbleSort from '../../../Algorithms/bubbleSort';
 
 const SortingPage = () => {
   const dispatch = useDispatch();
@@ -35,13 +35,9 @@ const SortingPage = () => {
     };
   }
 
-  const sortStacks = async (algo) => {
-    algo(stacks, speed);
-  }
-
   return (
     <div className={classes.pageWrapper}>
-      <button onClick={() => sortStacks(bubbleSort)}>SORT</button>
+      <SortTools stacks={stacks} speed={speed} />
       <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
         {stacks.map((stack, i) => {
           return (
