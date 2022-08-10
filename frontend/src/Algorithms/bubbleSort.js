@@ -9,6 +9,7 @@ const bubbleSort = async (arr, speed) => {
       swapped = false;
 
       for (let j = 0; j < newOrder.length-1; j++) {
+        // grab current and next stacks dom node
         const curEle = document.getElementById(
           `stack-${j}`
         );
@@ -19,18 +20,24 @@ const bubbleSort = async (arr, speed) => {
         if (newOrder[j].height > newOrder[j+1].height) {
             const prev = newOrder[j];
 
+            // assign current/next colors
             curEle.className = classes.selected;
             nextEle.className = classes.selectedNext;
             await timer(speed);
+
+            // flip current/next colors and heights
             curEle.className = classes.selectedNext;
             nextEle.className = classes.selected;
             curEle.style.height = `${newOrder[j+1].height}%`;
             nextEle.style.height = `${newOrder[j].height}%`;
             await timer(speed);
 
+            // update stack order
             newOrder[j] = newOrder[j+1];
             newOrder[j+1] = prev;
             swapped = true;
+
+            // remove colors
             curEle.className = classes.stack;
             nextEle.className = classes.stack;
         }
