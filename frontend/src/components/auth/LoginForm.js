@@ -42,22 +42,28 @@ const LoginForm = () => {
               <div key={ind} className={classes.error}>{error}</div>
               ))}
           </div>
-          <input
-            className={classes.inputField}
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-          <input
-            className={classes.inputField}
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
+          <div className={classes.inputRow}>
+            <input
+              className={classes.inputField}
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+            <span>*</span>
+          </div>
+          <div className={classes.inputRow}>
+            <input
+              className={classes.inputField}
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+            <span>*</span>
+          </div>
           <button type='submit' className={classes.formButton}>Login</button>
           <span className={classes.haveAccount}>
             <NavLink to='/sign-up'>
