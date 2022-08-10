@@ -26,8 +26,18 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
 
   return (
     <div className={classes.toolsContainer}>
-      <button onClick={() => sortStacks(algorithm)} disabled={playing}>SORT</button>
-      <button onClick={() => setResetTrigger(!resetTrigger)} disabled={playing}>SCRAMBLE</button>
+      <button
+        className={classes.toolButton}
+        onClick={() => sortStacks(algorithm)}
+        disabled={playing}
+        style={{cursor:(playing?'not-allowed':'pointer')}}
+      >SORT</button>
+      <button
+        className={classes.toolButton}
+        onClick={() => setResetTrigger(!resetTrigger)}
+        disabled={playing}
+        style={{cursor:(playing?'not-allowed':'pointer')}}
+      >SCRAMBLE</button>
       <label>
       <span>Stack Amount:</span>
         <input
@@ -39,11 +49,18 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
           value={stackAmount}
           onChange={(e) => setStackAmount(e.target.value)}
           className={classes.slider}
+          style={{cursor:(playing?'not-allowed':'pointer')}}
         />
       </label>
       <label>
       <span>Speed:</span>
-        <select defaultValue={speed} onChange={(e) => setSpeed(e.target.value)} disabled={playing}>
+        <select
+          className={classes.select}
+          defaultValue={speed}
+          onChange={(e) => setSpeed(e.target.value)}
+          disabled={playing}
+          style={{cursor:(playing?'not-allowed':'pointer')}}
+        >
           <option value='350'>Very Slow</option>
           <option value='150'>Slow</option>
           <option value='80'>Normal</option>
@@ -53,7 +70,13 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
       </label>
       <label>
       <span>Algorithm:</span>
-        <select defaultValue={algorithm} onChange={(e) => setAlgorithm(e.target.value)} disabled={playing}>
+        <select
+          className={classes.select}
+          defaultValue={algorithm}
+          onChange={(e) => setAlgorithm(e.target.value)}
+          disabled={playing}
+          style={{cursor:(playing?'not-allowed':'pointer')}}
+        >
           <option value={'bubbleSort'}>Bubble Sort</option>
           <option value={'selectionSort'}>Selection Sort</option>
         </select>

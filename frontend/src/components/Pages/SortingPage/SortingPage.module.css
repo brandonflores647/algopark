@@ -44,6 +44,8 @@
 .toolsContainer > label {
     display: flex;
     align-items: center;
+    gap: 5px;
+
     padding: 10px 15px 10px 15px;
 
     border-radius: 3px;
@@ -51,8 +53,39 @@
 }
 .toolsContainer > label > span {
     margin-right: 5px;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 
     font-size: 21px;
     color: white;
+}
+
+.toolButton {
+    display: flex;
+
+    padding: 10px 15px 10px 15px;
+
+    font-size: 21px;
+    font-weight: 400;
+
+    cursor: pointer;
+    color: white;
+    background-color: #7F83AA;
+    border: 0px;
+    border-radius: 3px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    transition: box-shadow .2s ease;
+}
+.toolButton:hover {
+    box-shadow: 0px 0px 1px 3px #7f83aa75;
+}
+.toolButton:active {
+    box-shadow: 0px 0px 1px 0px #7f83aa75;
+}
+
+.select {
+    padding: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
 }
