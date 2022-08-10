@@ -1,6 +1,6 @@
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
-const selectionSort = async (arr, speed) => {
+const selectionSort = async (arr, speed, setStacks) => {
     const newOrder = arr.slice();
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -43,6 +43,7 @@ const selectionSort = async (arr, speed) => {
             minEle.className = classes.stack;
         }
         curEle.className = classes.stack;
+        setStacks(newOrder);
     }
     return newOrder;
 }

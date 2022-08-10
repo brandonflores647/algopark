@@ -39,6 +39,7 @@ const SortingPage = () => {
     <div className={classes.pageWrapper}>
       <SortTools
         stacks={stacks}
+        setStacks={setStacks}
         speed={speed}
         setSpeed={setSpeed}
         stackAmount={stackAmount}

@@ -1,9 +1,22 @@
+import { useState } from 'react';
+
 import bubbleSort from '../../../Algorithms/bubbleSort';
 import selectionSort from '../../../Algorithms/selectionSort';
 
-const SortTools = ({ stacks, speed, setSpeed, stackAmount, setStackAmount }) => {
+const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount }) => {
+  const [algorithm, setAlgorithm] = useState('bubbleSort');
+
   const sortStacks = async (algo) => {
-    algo(stacks, speed);
+    switch (algo) {
+      case 'bubbleSort': {
+        bubbleSort(stacks, speed)
+        break;
+      }
+      case 'selectionSort': {
+        selectionSort(stacks, speed, setStacks)
+        break;
+      }
+    }
   }
 
   return (
@@ -29,7 +42,14 @@ const SortTools = ({ stacks, speed, setSpeed, stackAmount, setStackAmount }) => 
           <option value='2'>Very Fast</option>
         </select>
       </label>
-      <button onClick={() => sortStacks(selectionSort)}>SORT</button>
+      <label>
+      Algorithm:
+        <select defaultValue={algorithm} onChange={(e) => setAlgorithm(e.target.value)}>
+          <option value={'bubbleSort'}>Bubble Sort</option>
+          <option value={'selectionSort'}>Selection Sort</option>
+        </select>
+      </label>
+      <button onClick={() => sortStacks(algorithm)}>SORT</button>
     </div>
   );
 }
