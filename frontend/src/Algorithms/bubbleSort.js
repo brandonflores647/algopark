@@ -1,9 +1,6 @@
-import { useLocation } from 'react-router-dom';
-
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
-const bubbleSort = async (arr, speed, setStacks) => {
-  // const location = useLocation();
+const bubbleSort = async (arr, speed, setStacks, setPlaying) => {
   const newOrder = arr.slice();
   const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -52,6 +49,8 @@ const bubbleSort = async (arr, speed, setStacks) => {
 
       if (!swapped) break;
     }
+  setPlaying(false);
+  return newOrder;
 }
 
 export default bubbleSort;

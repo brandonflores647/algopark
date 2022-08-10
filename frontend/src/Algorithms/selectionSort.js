@@ -1,6 +1,6 @@
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
-const selectionSort = async (arr, speed, setStacks) => {
+const selectionSort = async (arr, speed, setStacks, setPlaying) => {
     const newOrder = arr.slice();
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -49,6 +49,7 @@ const selectionSort = async (arr, speed, setStacks) => {
             await setStacks(newOrder);
         })();
     }
+    setPlaying(false);
     return newOrder;
 }
 

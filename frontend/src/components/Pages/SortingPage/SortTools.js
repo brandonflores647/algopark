@@ -7,15 +7,18 @@ import classes from './SortingPage.module.css';
 
 const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount, resetTrigger, setResetTrigger }) => {
   const [algorithm, setAlgorithm] = useState('bubbleSort');
+  const [playing, setPlaying] = useState(false);
 
   const sortStacks = async (algo) => {
     switch (algo) {
       case 'bubbleSort': {
-        bubbleSort(stacks, speed, setStacks)
+        bubbleSort(stacks, speed, setStacks, setPlaying)
+        setPlaying(true);
         break;
       }
       case 'selectionSort': {
-        selectionSort(stacks, speed, setStacks)
+        selectionSort(stacks, speed, setStacks, setPlaying)
+        setPlaying(true);
         break;
       }
     }
@@ -23,11 +26,12 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
 
   return (
     <div className={classes.toolsContainer}>
-      <button onClick={() => sortStacks(algorithm)}>SORT</button>
-      <button onClick={() => setResetTrigger(!resetTrigger)}>SCRAMBLE</button>
+      <button onClick={() => sortStacks(algorithm)} disabled={playing}>SORT</button>
+      <button onClick={() => setResetTrigger(!resetTrigger)} disabled={playing}>SCRAMBLE</button>
       <label>
       <span>Stack Amount:</span>
         <input
+          disabled={playing}
           type="range"
           min="6"
           max="256"
@@ -39,7 +43,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
       </label>
       <label>
       <span>Speed:</span>
-        <select defaultValue={speed} onChange={(e) => setSpeed(e.target.value)}>
+        <select defaultValue={speed} onChange={(e) => setSpeed(e.target.value)} disabled={playing}>
           <option value='350'>Very Slow</option>
           <option value='150'>Slow</option>
           <option value='80'>Normal</option>
@@ -49,7 +53,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
       </label>
       <label>
       <span>Algorithm:</span>
-        <select defaultValue={algorithm} onChange={(e) => setAlgorithm(e.target.value)}>
+        <select defaultValue={algorithm} onChange={(e) => setAlgorithm(e.target.value)} disabled={playing}>
           <option value={'bubbleSort'}>Bubble Sort</option>
           <option value={'selectionSort'}>Selection Sort</option>
         </select>
