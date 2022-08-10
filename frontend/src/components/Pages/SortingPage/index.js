@@ -12,7 +12,7 @@ const SortingPage = () => {
 
   const [stackAmount, setStackAmount] = useState(126);
   const [stacks, setStacks] = useState([]);
-  const [speed, setSpeed] = useState(40); // time in ms
+  const [speed, setSpeed] = useState(80); // time in ms ('Normal' default)
 
   useEffect(() => {
     (async () => {

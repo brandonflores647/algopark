@@ -23,10 +23,10 @@ const SortTools = ({ stacks, speed, setSpeed, stackAmount, setStackAmount }) => 
       Speed:
         <select defaultValue={speed} onChange={(e) => setSpeed(e.target.value)}>
           <option value='350'>Very Slow</option>
-          <option value='100'>Slow</option>
-          <option value='40'>Average</option>
+          <option value='150'>Slow</option>
+          <option value='80'>Normal</option>
           <option value='20'>Fast</option>
-          <option value='5'>Very Fast</option>
+          <option value='2'>Very Fast</option>
         </select>
       </label>
       <button onClick={() => sortStacks(selectionSort)}>SORT</button>
