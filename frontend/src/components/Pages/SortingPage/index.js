@@ -10,9 +10,9 @@ import bubbleSort from '../../../Algorithms/bubbleSort';
 const SortingPage = () => {
   const dispatch = useDispatch();
 
-  const [stackAmount, setStackAmount] = useState(90);
+  const [stackAmount, setStackAmount] = useState(6);
   const [stacks, setStacks] = useState([]);
-  const [speed, setSpeed] = useState(10); // time in ms
+  const [speed, setSpeed] = useState(300); // time in ms
 
   useEffect(() => {
     (async () => {
@@ -42,12 +42,13 @@ const SortingPage = () => {
   return (
     <div className={classes.pageWrapper}>
       <button onClick={() => sortStacks(bubbleSort)}>SORT</button>
-      <div className={classes.stackContainer}>
+      <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
         {stacks.map((stack, i) => {
           return (
             <Stack
               key={`stack-${i}`}
               height={stack.height}
+              stackAmount={stackAmount}
               index={i}
             />
           )

@@ -1,8 +1,8 @@
 import classes from './SortingPage.module.css';
 
-const Stack = ({ height, index }) => {
+const Stack = ({ height, stackAmount, index }) => {
     const styleObj = {
-        width: `5px`,
+        width: `${100/stackAmount}%`,
         height: `${height}%`,
     }
     return (

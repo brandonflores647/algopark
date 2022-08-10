@@ -10,10 +10,10 @@
 .stackContainer {
     display: flex;
     justify-content: center;
-    align-items:    flex-end;
-    gap: 2px;
+    align-items: flex-end;
 
-    height: 250px;
+    width: 40%;
+    height: 30%;
     border: 1px solid red;
 }
 
