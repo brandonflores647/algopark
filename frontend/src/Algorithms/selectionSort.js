@@ -43,7 +43,9 @@ const selectionSort = async (arr, speed, setStacks) => {
             minEle.className = classes.stack;
         }
         curEle.className = classes.stack;
-        setStacks(newOrder);
+        (async () => {
+            await setStacks(newOrder);
+        })();
     }
     return newOrder;
 }

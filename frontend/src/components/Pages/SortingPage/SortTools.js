@@ -3,13 +3,14 @@ import { useState } from 'react';
 import bubbleSort from '../../../Algorithms/bubbleSort';
 import selectionSort from '../../../Algorithms/selectionSort';
 
-const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount }) => {
+const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount, resetTrigger, setResetTrigger }) => {
   const [algorithm, setAlgorithm] = useState('bubbleSort');
 
   const sortStacks = async (algo) => {
+    console.log(stacks)
     switch (algo) {
       case 'bubbleSort': {
-        bubbleSort(stacks, speed)
+        bubbleSort(stacks, speed, setStacks)
         break;
       }
       case 'selectionSort': {
@@ -50,6 +51,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
         </select>
       </label>
       <button onClick={() => sortStacks(algorithm)}>SORT</button>
+      <button onClick={() => setResetTrigger(!resetTrigger)}>SCRAMBLE</button>
     </div>
   );
 }

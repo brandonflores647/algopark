@@ -1,6 +1,6 @@
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
-const bubbleSort = async (arr, speed) => {
+const bubbleSort = async (arr, speed, setStacks) => {
     const newOrder = arr.slice();
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -36,6 +36,9 @@ const bubbleSort = async (arr, speed) => {
             newOrder[j] = newOrder[j+1];
             newOrder[j+1] = prev;
             swapped = true;
+            (async () => {
+              await setStacks(newOrder);
+            })();
 
             // remove colors
             curEle.className = classes.stack;
