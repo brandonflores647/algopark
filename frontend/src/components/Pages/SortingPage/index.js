@@ -12,7 +12,7 @@ const SortingPage = () => {
 
   const [stackAmount, setStackAmount] = useState(126);
   const [stacks, setStacks] = useState([]);
-  const [speed, setSpeed] = useState(10); // time in ms
+  const [speed, setSpeed] = useState(40); // time in ms
 
   useEffect(() => {
     (async () => {
@@ -40,6 +40,7 @@ const SortingPage = () => {
       <SortTools
         stacks={stacks}
         speed={speed}
+        setSpeed={setSpeed}
         stackAmount={stackAmount}
         setStackAmount={setStackAmount} />
       <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
