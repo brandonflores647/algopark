@@ -10,6 +10,7 @@ import NavBar from './components/Elements/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import MapPage from './components/Pages/MapPage';
+import SortingPage from './components/Pages/SortingPage';
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -33,14 +34,20 @@ function App() {
       <NavBar />
       <div className='contentWrap'>
       <Switch>
+        <Route path='/' exact={true} >
+          <h1>splash page</h1>
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path='/map' exact={true} >
           <MapPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/sorting' exact={true} >
+          <SortingPage />
         </ProtectedRoute>
       </Switch>
       </div>

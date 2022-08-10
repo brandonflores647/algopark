@@ -68,6 +68,16 @@
     transform: rotate(-135deg);
 }
 
+.navSection {
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    height: 100%;
+}
+.contentButton {
+    font-size: 24px !important;
+}
+
 .sessionSection {
     display: flex;
     align-items: center;
@@ -106,7 +116,10 @@
     border-right: 1px solid #434663;
     box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
-.navButton > a {
+.navLink {
+    display: flex;
+    align-items: center;
+    height: 100%;
     text-decoration: none;
     color: #fff;
 }
