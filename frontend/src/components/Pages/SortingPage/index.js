@@ -10,9 +10,9 @@ import { setMapThunk } from '../../../store/session';
 const SortingPage = () => {
   const dispatch = useDispatch();
 
-  const [stackAmount, setStackAmount] = useState(6);
+  const [stackAmount, setStackAmount] = useState(126);
   const [stacks, setStacks] = useState([]);
-  const [speed, setSpeed] = useState(300); // time in ms
+  const [speed, setSpeed] = useState(10); // time in ms
 
   useEffect(() => {
     (async () => {
@@ -37,7 +37,11 @@ const SortingPage = () => {
 
   return (
     <div className={classes.pageWrapper}>
-      <SortTools stacks={stacks} speed={speed} />
+      <SortTools
+        stacks={stacks}
+        speed={speed}
+        stackAmount={stackAmount}
+        setStackAmount={setStackAmount} />
       <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
         {stacks.map((stack, i) => {
           return (
