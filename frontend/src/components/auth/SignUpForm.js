@@ -21,6 +21,12 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      const oldErr = [...errors];
+      if (!oldErr.includes("Password's do not match")) {
+        oldErr.push("Password's do not match");
+        setErrors(oldErr);
+      }
     }
   };
 
@@ -54,39 +60,51 @@ const SignUpForm = () => {
               <div key={ind} className={classes.error}>{error}</div>
             ))}
           </div>
-          <input
-            className={classes.inputField}
-            type='text'
-            name='username'
-            placeholder='Username'
-            onChange={updateUsername}
-            value={username}
-          ></input>
-          <input
-            className={classes.inputField}
-            type='text'
-            name='email'
-            placeholder='Email'
-            onChange={updateEmail}
-            value={email}
-          ></input>
-          <input
-            className={classes.inputField}
-            type='password'
-            name='password'
-            placeholder='Password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-          <input
-            className={classes.inputField}
-            type='password'
-            name='repeat_password'
-            placeholder='Confirm Password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
+          <div className={classes.inputRow}>
+            <input
+              className={classes.inputField}
+              type='text'
+              name='username'
+              placeholder='Username'
+              onChange={updateUsername}
+              value={username}
+            ></input>
+            <span>*</span>
+          </div>
+          <div className={classes.inputRow}>
+            <input
+              className={classes.inputField}
+              type='text'
+              name='email'
+              placeholder='Email'
+              onChange={updateEmail}
+              value={email}
+            ></input>
+            <span>*</span>
+          </div>
+          <div className={classes.inputRow}>
+            <input
+              className={classes.inputField}
+              type='password'
+              name='password'
+              placeholder='Password'
+              onChange={updatePassword}
+              value={password}
+            ></input>
+            <span>*</span>
+          </div>
+          <div className={classes.inputRow}>
+            <input
+              className={classes.inputField}
+              type='password'
+              name='repeat_password'
+              placeholder='Confirm Password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+            <span>*</span>
+          </div>
           <button type='submit' className={classes.formButton}>Sign Up</button>
           <span className={classes.haveAccount}>
             <NavLink to='/login'>
