@@ -13,7 +13,23 @@ const SplashPage = () => {
 
             <div className={classes.line}></div>
 
+            <div className={classes.pathInfoContainer}>
+                <div className={classes.pathInfo}>
+                    <h2>Dijkstra's algorithm.</h2>
+                    <span>Pick your start and end positions, draw some walls, create some traffic, and watch the algorithm find its way! Experiment with Dijkstra's pathfinding algorithm, visualize the shortest path and save different templates to your profile.</span>
+                </div>
+                <img src='/static/pathVisual1.gif' alt='path visual' width={'300px'}/>
+            </div>
 
+            <div className={classes.line}></div>
+
+            <div className={classes.sortInfoContainer}>
+                <div className={classes.sortInfo}>
+                    <h2>Sorting algorithms.</h2>
+                    <span>Choose a column amount, pick your algorithm, set your speed, and watch it sort! Visualize a sorting algorithm at the speed you desire. Watch what really happens frame by frame.</span>
+                </div>
+                <img src='/static/sortVisual2.gif' alt='path visual' width={'300px'}/>
+            </div>
         </div>
     );
 }
