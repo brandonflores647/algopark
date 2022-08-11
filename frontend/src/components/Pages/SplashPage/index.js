@@ -8,27 +8,27 @@ const SplashPage = () => {
                     <h1>AlgoPark helps users visualize and interact with algorithms.</h1>
                     <span>Choose from pathfinding or sorting algorithms. Draw a path and watch dijkstras algorithm navigate through the obstacles you created. Hop into our sorting page to randomize a set of stacks and choose your speed. Watch the algorithm of your choosing sort those stacks in real time!</span>
                 </div>
-                <img className={classes.gridTop} src='/static/sortVisual1.png' alt='sort visual' width={'400px'}/>
+                <img src='/static/sortVisual1.png' alt='sort visual' width={'400px'}/>
             </div>
+
             <div className={classes.line}></div>
-            <div className={classes.footer}>
-                <section className={classes.footerLeft}>
-                    <span className={classes.flTitle}>Algo Park</span>
-                    <span className={classes.flName}>Created by: Brandon Flores</span>
-                </section>
-                <section className={classes.footerRight}>
-                    <span className={classes.frTitle}>Contact Me</span>
-                    <span className={classes.frName}>
-                        <a href='https://www.linkedin.com/in/brandon-flores-798b98239/' target='_blank' rel="noreferrer">
-                            LinkedIn <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                        <span>
-                            <a href='https://github.com/brandonflores647' target='_blank' rel="noreferrer">
-                                Github <i class="fa-brands fa-github-alt"></i>
-                            </a>
-                        </span>
-                    </span>
-                </section>
+
+            <div className={classes.pathInfoContainer}>
+                <div className={classes.pathInfo}>
+                    <h2>Dijkstra's algorithm.</h2>
+                    <span>Pick your start and end positions, draw some walls, create some traffic, and watch the algorithm find its way! Experiment with Dijkstra's pathfinding algorithm, visualize the shortest path and save different templates to your profile.</span>
+                </div>
+                <img src='/static/pathVisual1.gif' alt='path visual' width={'300px'}/>
+            </div>
+
+            <div className={classes.line}></div>
+
+            <div className={classes.sortInfoContainer}>
+                <div className={classes.sortInfo}>
+                    <h2>Sorting algorithms.</h2>
+                    <span>Choose a column amount, pick your algorithm, set your speed, and watch it sort! Visualize a sorting algorithm at the speed you desire. Watch what really happens frame by frame.</span>
+                </div>
+                <img src='/static/sortVisual2.gif' alt='path visual' width={'300px'}/>
             </div>
         </div>
     );

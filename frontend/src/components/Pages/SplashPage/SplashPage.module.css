@@ -8,7 +8,7 @@
 
 .line {
     width: 60%;
-    height: 1px;
+    border: 1px solid #c1c1c1;
     background-color: #c1c1c1;
 }
 
@@ -19,18 +19,70 @@
 }
 .title {
     margin-bottom: 30px;
+    margin-right: 50px;
 }
 
 .title > h1 {
-    margin-right: 50px;
     margin-bottom: 10px;
     color: rgb(9, 30, 66);
     font-size: 44px;
     font-weight: 500;
 }
 .title > span {
-    margin-right: 50px;
+    color: rgb(9, 30, 66);
+    line-height: 30px;
+    font-size: 21px;
+    font-weight: 400;
+}
 
+.pathInfoContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    margin-top: 40px;
+    margin-bottom: 30px;
+    width: 60%;
+}
+
+.pathInfo {
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+.pathInfo > h2 {
+    margin-bottom: 10px;
+    color: rgb(9, 30, 66);
+    font-size: 34px;
+    font-weight: 500;
+}
+.pathInfo > span {
+    color: rgb(9, 30, 66);
+    line-height: 30px;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.sortInfoContainer {
+    display: flex;
+    align-items: center;
+
+    margin-top: 40px;
+    width: 60%;
+}
+.sortInfoContainer > img {
+    margin-bottom: 130px;
+}
+.sortInfo {
+    margin-bottom: 130px;
+    margin-left: 50px;
+}
+.sortInfo > h2 {
+    margin-bottom: 10px;
+    color: rgb(9, 30, 66);
+    font-size: 34px;
+    font-weight: 500;
+}
+.sortInfo > span {
     color: rgb(9, 30, 66);
     line-height: 30px;
     font-size: 21px;
@@ -38,14 +90,14 @@
 }
 
 .footer {
+    position: fixed;
+    bottom: 0;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: fixed;
-    bottom: 0;
 
     width: 100%;
-    height: 90px;
+    height: 80px;
 
     border-top: 2px solid #4B4E6D;
     background-color: #2d2e41;
