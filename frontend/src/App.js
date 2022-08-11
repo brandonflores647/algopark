@@ -12,6 +12,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import MapPage from './components/Pages/MapPage';
 import SortingPage from './components/Pages/SortingPage';
+import Footer from './components/Pages/SplashPage/Footer';
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -37,6 +38,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true} >
           <SplashPage />
+          <Footer />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
