@@ -1,3 +1,5 @@
+import Footer from './Footer';
+
 import classes from './SplashPage.module.css';
 
 const SplashPage = () => {
@@ -30,6 +32,8 @@ const SplashPage = () => {
                 </div>
                 <img src='/static/sortVisual2.gif' alt='path visual' width={'300px'}/>
             </div>
+
+            <Footer />
         </div>
     );
 }
