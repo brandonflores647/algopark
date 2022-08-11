@@ -12,9 +12,10 @@
     justify-content: center;
     align-items: flex-end;
 
-    width: 50%;
-    min-width: 490px;
+    width: 55%;
+    max-width: 1000px;
     height: 45%;
+    max-height: 400px;
     border: 1px solid red;
 }
 
@@ -34,8 +35,9 @@
 .toolsContainer {
     display: flex;
     justify-content: center;
-    gap: 1%;
-    width: 100%;
+    width: 55%;
+
+    gap: 5px;
 
     margin-top: 45px;
     margin-bottom: 15px;
@@ -63,6 +65,8 @@
     display: flex;
 
     padding: 10px 15px 10px 15px;
+
+    max-height: 47px;
 
     font-size: 21px;
     font-weight: 400;
