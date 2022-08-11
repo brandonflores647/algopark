@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import bubbleSort from '../../../Algorithms/bubbleSort';
 import selectionSort from '../../../Algorithms/selectionSort';
+import insertionSort from '../../../Algorithms/insertionSort';
 
 import classes from './SortingPage.module.css';
 
@@ -18,6 +19,11 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
       }
       case 'selectionSort': {
         selectionSort(stacks, speed, setStacks, setPlaying)
+        setPlaying(true);
+        break;
+      }
+      case 'insertionSort': {
+        insertionSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
         break;
       }
@@ -79,6 +85,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
         >
           <option value={'bubbleSort'}>Bubble Sort</option>
           <option value={'selectionSort'}>Selection Sort</option>
+          <option value={'insertionSort'}>Insertion Sort</option>
         </select>
       </label>
     </div>

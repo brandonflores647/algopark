@@ -35,6 +35,7 @@
 .toolsContainer {
     display: flex;
     justify-content: center;
+    /* align-items: center; */
     width: 55%;
 
     gap: 5px;
