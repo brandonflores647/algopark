@@ -14,7 +14,14 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            if error == 'Invalid email address.':
+                errorMessages.append(f'{error}')
+            elif error == 'Username is already in use.':
+                errorMessages.append(f'{error}')
+            # elif error == 'Username is already in use.':
+            #     errorMessages.append(f'{error}')
+            else:
+                errorMessages.append(f'{(field).capitalize()} field is required.')
     return errorMessages
 
 

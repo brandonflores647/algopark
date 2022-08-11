@@ -13,6 +13,7 @@ def seed_object_types():
     db.session.add(wall)
     db.session.add(start)
     db.session.add(end)
+    db.session.add(slow)
 
     db.session.commit()
 

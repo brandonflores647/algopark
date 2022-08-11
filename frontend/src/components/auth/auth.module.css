@@ -1,0 +1,188 @@
+.logoutBtn {
+    height: 100%;
+
+    padding: 0 20px 3px 20px;
+
+    cursor: pointer;
+    border: 0;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    color: #fff;
+    background-color: transparent;
+    font-size: 21px;
+    font-weight: 400;
+
+    transition: box-shadow .1s ease;
+}
+.logoutBtn:hover {
+    border-left: 1px solid #434663;
+    border-right: 1px solid #434663;
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255) 30%) no-repeat;
+}
+.loginFormContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.loginFormContainer > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+
+    margin-top: 30%;
+
+    width: 20%;
+    height: fit-content;
+    min-width: 500px;
+    min-height: 400px;
+
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+.signupFormContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.signupFormContainer > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+
+    margin-top: 30%;
+    padding-bottom: 15px;
+
+    width: 20%;
+    height: fit-content;
+    min-width: 500px;
+    min-height: 450px;
+
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+
+.formTitle {
+    margin-top: 10%;
+    margin-bottom: 15px;
+
+    text-align: center;
+    font-weight: 500;
+    font-size: 21px;
+    color: #4B4E6D;
+}
+.inputRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.inputRow > span {
+    color: #ff6c6c;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    margin-top: 18px;
+    margin-left: 5px;
+}
+
+.inputField {
+    width: 50%;
+    height: 35px;
+
+    margin-top: 15px;
+    margin-left: 12px;
+    padding: 20px 0px 20px 5px;
+
+    font-size: 14px;
+    font-weight: 400;
+    border: 2px solid #dfe1e6;
+    border-radius: 3px;
+    background-color: #fafbfc;
+}
+.inputField:focus {
+    outline-color: rgb(143, 145, 255);
+}
+
+.formButton {
+    width: 50%;
+    height: 35px;
+
+    margin-top: 40px;
+
+    color: white;
+    font-size: 19px;
+    font-weight: 500;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+    border: 2px solid rgb(111, 116, 184);
+    border-radius: 3px;
+    background-color: rgb(143, 145, 255);
+
+    box-shadow: 0px 3px 0px 0px rgb(111, 116, 184);
+    transition: box-shadow .15s ease, margin-top .15s ease;
+}
+.formButton:hover {
+    margin-top: 38px;
+    box-shadow: 0px 5px 0px 0px rgb(111, 116, 184);
+}
+.formButton:active {
+    margin-top: 43px;
+    box-shadow: 0px 0px 0px 0px rgb(111, 116, 184);
+}
+
+.haveAccount {
+    margin-top: 15px;
+    transition: margin-top .15s ease;
+}
+.haveAccount > a {
+    text-decoration: none;
+    color: rgb(118, 99, 187);
+}
+.haveAccount > a:hover {
+    text-decoration: underline;
+}
+.formButton:hover + .haveAccount {
+    margin-top: 17px;
+}
+.formButton:active + .haveAccount {
+    margin-top: 12px;
+}
+
+.gridTop {
+    position: absolute;
+    z-index: 1;
+    transform: rotate(3deg);
+    left: 260px;
+    bottom: 210px;
+    filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
+}
+.gridBottom {
+    position: absolute;
+    z-index: 1;
+    right: 260px;
+    bottom: -100px;
+    transform: rotate(-3deg);
+    filter: invert(29%) sepia(5%) saturate(3105%) hue-rotate(197deg) brightness(92%) contrast(83%);
+}
+
+.error {
+    margin-bottom: 3px;
+    padding: 5px 8px 5px 8px;
+
+    border: 1px solid red;
+    border-left: 4px solid red;
+    border-radius: 3px;
+    color: black;
+    background-color: pink;
+}

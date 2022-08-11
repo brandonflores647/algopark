@@ -6,12 +6,12 @@ import { authenticate } from './store/session';
 
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-// import NavBar from './components/NavBar';
+import NavBar from './components/Elements/NavBar';
+import SplashPage from './components/Pages/SplashPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 
 import MapPage from './components/Pages/MapPage';
+import SortingPage from './components/Pages/SortingPage';
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -32,24 +32,26 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
+      <NavBar />
+      <div className='contentWrap'>
       <Switch>
+        <Route path='/' exact={true} >
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path='/map' exact={true} >
           <MapPage />
         </ProtectedRoute>
+        <ProtectedRoute path='/sorting' exact={true} >
+          <SortingPage />
+        </ProtectedRoute>
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }
