@@ -144,8 +144,10 @@ const Map = ({ playing, setPlaying }) => {
             // animate search
             setTimeout(() => {
                 const curNode = visitedNodesArr[i];
-                document.getElementById(`node-${curNode.row}-${curNode.col}`)
-                .className += (' ' + nodeClasses.visited);
+                const domEle = document.getElementById(`node-${curNode.row}-${curNode.col}`);
+                if (domEle) {
+                    domEle.className += (' ' + nodeClasses.visited);
+                }
             }, speed * i);
         }
     }
@@ -154,13 +156,14 @@ const Map = ({ playing, setPlaying }) => {
         path.forEach((ele, i) => {
             const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
             setTimeout(() => {
-                // remove visited cell effect
-                domEle.className = domEle.className
-                .split(nodeClasses.visited).join(' ');
+                if (domEle) {
+                    // remove visited cell effect
+                    domEle.className = domEle.className
+                    .split(nodeClasses.visited).join(' ');
 
-                // add new path effect
-                domEle.className += (` ${nodeClasses.pathCell}`);
-
+                    // add new path effect
+                    domEle.className += (` ${nodeClasses.pathCell}`);
+                }
             }, speed+25 * i);
         });
         setTimeout(() => {
