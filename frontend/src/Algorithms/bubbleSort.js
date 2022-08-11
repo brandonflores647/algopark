@@ -1,11 +1,11 @@
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
-const bubbleSort = async (arr, speed) => {
-    const newOrder = arr.slice();
-    const timer = ms => new Promise(res => setTimeout(res, ms));
+const bubbleSort = async (arr, speed, setStacks, setPlaying) => {
+  const newOrder = arr.slice();
+  const timer = ms => new Promise(res => setTimeout(res, ms));
 
-    let swapped = false;
-    for (let i = 0; i < newOrder.length-1; i++) {
+  let swapped = false;
+  for (let i = 0; i < newOrder.length-1; i++) {
       swapped = false;
 
       for (let j = 0; j < newOrder.length-1; j++) {
@@ -16,6 +16,7 @@ const bubbleSort = async (arr, speed) => {
         const nextEle = document.getElementById(
           `stack-${j+1}`
         );
+        if (!curEle || !nextEle) return;
 
         if (newOrder[j].height > newOrder[j+1].height) {
             const prev = newOrder[j];
@@ -36,6 +37,9 @@ const bubbleSort = async (arr, speed) => {
             newOrder[j] = newOrder[j+1];
             newOrder[j+1] = prev;
             swapped = true;
+            (async () => {
+              await setStacks(newOrder);
+            })();
 
             // remove colors
             curEle.className = classes.stack;
@@ -45,6 +49,8 @@ const bubbleSort = async (arr, speed) => {
 
       if (!swapped) break;
     }
+  setPlaying(false);
+  return newOrder;
 }
 
 export default bubbleSort;
