@@ -1,8 +1,19 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setMapThunk } from '../../../store/session';
 import Footer from './Footer';
 
 import classes from './SplashPage.module.css';
 
 const SplashPage = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        (async() => {
+            await dispatch(setMapThunk(null));
+        })();
+    }, [])
+
     return (
         <div className={classes.splashWrapper}>
             <div className={classes.titleContainer}>

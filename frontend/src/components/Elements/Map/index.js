@@ -62,6 +62,7 @@ const Map = ({ playing, setPlaying, editName, setEditName }) => {
             const newGrid = [...grid];
             objects.forEach(obj => {
                 if (obj.typeId === 1) {
+                    console.log(obj)
                     newGrid[obj.yPos][obj.xPos].isWall = true;
                 }
                 if (obj.typeId === 2) {
