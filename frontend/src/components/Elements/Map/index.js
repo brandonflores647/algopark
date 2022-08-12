@@ -24,6 +24,7 @@ const Map = ({ playing, setPlaying, editName, setEditName }) => {
     const [clear, setClear] = useState(false);
     const [tool, setTool] = useState(null);
     const [hidePath, setHidePath] = useState(false);
+    const [pathErr, setPathErr] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -153,6 +154,9 @@ const Map = ({ playing, setPlaying, editName, setEditName }) => {
     }
 
     const animatePath = (path) => {
+        if (!path.length) {
+            setPathErr(true);
+        }
         path.forEach((ele, i) => {
             const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
             setTimeout(() => {
@@ -188,6 +192,7 @@ const Map = ({ playing, setPlaying, editName, setEditName }) => {
         const endNode = grid[endCell[1]][endCell[0]];
         const visitedNodes = dijkstras(grid, startNode, endNode);
         const pathArr = getPath(endNode);
+        setPathErr(false);
         animateVisited(visitedNodes, pathArr);
         setPlaying(true);
         setHidePath(false);
@@ -242,6 +247,8 @@ const Map = ({ playing, setPlaying, editName, setEditName }) => {
             handleClear={handleClear}
             editName={editName}
             setEditName={setEditName}
+            pathErr={pathErr}
+            setPathErr={setPathErr}
         />
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':tool?'pointer':'')}}>
             {grid.map((row, i) => (
