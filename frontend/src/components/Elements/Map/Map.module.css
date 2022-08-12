@@ -8,3 +8,45 @@
     display: flex;
     gap: 3px;
 }
+
+.infoContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.infoCard {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    font-size: 16px;
+}
+
+.infoCardColorBack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 31px;
+    height: 31px;
+    background-color: #7F83AA;
+    border-radius: 3px;
+}
+.infoCardColor {
+    width: 23px;
+    height: 23px;
+    border-radius: 3px;
+}
+
+.infoTitle {
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+.info {
+    font-weight: 500;
+    margin-left: 10px;
+    font-size: 14px;
+}
