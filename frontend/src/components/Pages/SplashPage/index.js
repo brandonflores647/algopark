@@ -16,6 +16,7 @@ const SplashPage = () => {
 
     return (
         <div className={classes.splashWrapper}>
+            <section>
             <div className={classes.titleContainer}>
                 <div className={classes.title}>
                     <h1>AlgoPark helps users visualize and interact with algorithms.</h1>
@@ -43,7 +44,7 @@ const SplashPage = () => {
                 </div>
                 <img src='/static/sortVisual2.gif' alt='path visual' width={'300px'}/>
             </div>
-
+            </section>
             <Footer />
         </div>
     );
