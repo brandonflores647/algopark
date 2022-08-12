@@ -22,7 +22,8 @@ const TemplateList = ({ playing, setEditName }) => {
         })();
     }
 
-    const handleDelete = (mapId, mapName) => {
+    const handleDelete = (mapId, mapName, e) => {
+        e.stopPropagation();
         if (playing) return;
         (async() => {
             await setEditName(false);
@@ -62,12 +63,12 @@ const TemplateList = ({ playing, setEditName }) => {
                         <li key={`map-${i}`} className={`
                                 ${classes.listItem}
                                 ${(curMap===map.id?classes.selected:'')}
-                            `}>
+                            `}
+                            onClick={() => handleMapChange(map.id)}>
                             <div
                                 className={`
                                     ${classes.listButton}
                                 `}
-                                onClick={() => handleMapChange(map.id)}
                             >{map.name}</div>
                             <XButton
                                 handleDelete={handleDelete}
@@ -77,10 +78,11 @@ const TemplateList = ({ playing, setEditName }) => {
                         </li>
                     );
                 })}
-                <li className={classes.listItem}>
-                    <div
-                        className={classes.listButton}
-                        onClick={() => handleCreateBlank()}
+                <li
+                    className={classes.listItem}
+                    onClick={() => handleCreateBlank()}
+                >
+                    <div className={classes.listButton}
                     >+ Blank Template</div>
                 </li>
             </ul>

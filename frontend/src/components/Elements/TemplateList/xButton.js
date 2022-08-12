@@ -4,7 +4,7 @@ const XButton = ({ handleDelete, playing, map }) => {
     return (
         <div
             className={classes.xContainer}
-            onClick={() => (!playing?handleDelete(map.id, map.name):null)}
+            onClick={(e) => (!playing?handleDelete(map.id, map.name, e):null)}
         >
             <div className={`${classes.blockTL} ${classes.block}`}></div>
             <div className={`${classes.blockTR} ${classes.block}`}></div>

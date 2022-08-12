@@ -5,6 +5,7 @@
 
 .templateNameContainer {
     display: flex;
+    justify-content: space-between;
     margin-top: 30px;
     font-size: 21px;
 }
@@ -16,6 +17,28 @@
 }
 .editName:hover {
     background-color: rgb(234, 234, 234);
+}
+
+.pathErr {
+    transition: opacity .2s ease;
+    padding: 2px 8px 2px 8px;
+
+    border: 1px solid red;
+    border-left: 4px solid red;
+    border-radius: 3px;
+    color: black;
+    background-color: pink;
+}
+.noPathErr {
+    transition: opacity .2s ease;
+    opacity: 0%;
+    padding: 2px 8px 2px 8px;
+
+    border: 1px solid red;
+    border-left: 4px solid red;
+    border-radius: 3px;
+    color: black;
+    background-color: pink;
 }
 
 .navButtons {
@@ -88,7 +111,7 @@
 
 .selected {
     box-shadow: 0px 0px 1px 3px #7f83aa75;
-    animation: buttonPulse 3s ease;
+    animation: buttonPulse 1.25s linear;
     animation-iteration-count: infinite;
 }
 
@@ -155,12 +178,12 @@
 
 @keyframes buttonPulse {
     0% {
-        background-color: #7F83AA;
+        background-color: #b3b9ee;
     }
     50% {
         background-color: #7f83aa75;
     }
     100% {
-        background-color: #7F83AA;
+        background-color: #b3b9ee;
     }
 }
