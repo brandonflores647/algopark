@@ -11,11 +11,11 @@ const Footer = () => {
                 <span className={classes.frTitle}>Contact Me</span>
                 <span className={classes.frName}>
                     <a href='https://www.linkedin.com/in/brandon-flores-798b98239/' target='_blank' rel="noreferrer">
-                        LinkedIn <i class="fa-brands fa-linkedin"></i>
+                        LinkedIn <i className="fa-brands fa-linkedin"></i>
                     </a>
                     <span>
                         <a href='https://github.com/brandonflores647' target='_blank' rel="noreferrer">
-                            Github <i class="fa-brands fa-github-alt"></i>
+                            Github <i className="fa-brands fa-github-alt"></i>
                         </a>
                     </span>
                 </span>
