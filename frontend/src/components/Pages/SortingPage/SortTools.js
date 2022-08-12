@@ -13,18 +13,18 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
   const sortStacks = async (algo) => {
     switch (algo) {
       case 'bubbleSort': {
-        bubbleSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
+        bubbleSort(stacks, speed, setStacks, setPlaying)
         break;
       }
       case 'selectionSort': {
-        selectionSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
+        selectionSort(stacks, speed, setStacks, setPlaying)
         break;
       }
       case 'insertionSort': {
-        insertionSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
+        insertionSort(stacks, speed, setStacks, setPlaying)
         break;
       }
     }
