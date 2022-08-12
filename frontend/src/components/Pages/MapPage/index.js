@@ -11,6 +11,7 @@ const MapPage = () => {
     const user = useSelector((state) => state.session.user);
     const [loaded, setLoaded] = useState(false);
     const [playing, setPlaying] = useState(false);
+    const [editName, setEditName] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -27,8 +28,8 @@ const MapPage = () => {
 
     return (
         <div className={classes.pageWrapper}>
-            <Map playing={playing} setPlaying={setPlaying}/>
-            <TemplateList playing={playing} />
+            <Map playing={playing} setPlaying={setPlaying} editName={editName} setEditName={setEditName}/>
+            <TemplateList playing={playing} setEditName={setEditName} />
         </div>
     );
 }

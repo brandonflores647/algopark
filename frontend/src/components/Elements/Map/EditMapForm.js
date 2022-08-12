@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { thunkEditMap } from "../../../store/maps";
 
+import classes from './MapTools.module.css';
+
 const EditMapForm = ({ map, setEditName }) => {
     const dispatch = useDispatch();
     const [name, setName] = useState(map.name);
@@ -29,11 +31,11 @@ const EditMapForm = ({ map, setEditName }) => {
     }
 
     return (
-        <div>
+        <div className={classes.editNameContainer}>
             {validationErrors.length>0?
-                <ul>
+                <ul style={{listStyle:'none',padding:'0'}}>
                     {validationErrors.map(err => {
-                        return <li key={err}>{err}</li>
+                        return <li key={err} className={classes.error}>{err}</li>
                     })}
                 </ul>
             : null}
@@ -47,8 +49,10 @@ const EditMapForm = ({ map, setEditName }) => {
                         border:(validationErrors.length>0 ?
                             '1px solid #e33d3d':'1px solid rgb(221, 221, 221)')
                         }}
+                    className={classes.editNameInput}
                 >
                 </input>
+                <button className={classes.submitEditNameButton}>Submit</button>
             </form>
         </div>
     );

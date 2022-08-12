@@ -18,13 +18,13 @@ const MapTools = ({
     tool,
     setTool,
     handlePlay,
-    handleClear }) => {
+    handleClear,
+    editName,
+    setEditName }) => {
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
     const maps = useSelector((state) => state.maps);
-
-    const [editName, setEditName] = useState(false);
 
     const doClear = () => {
         handleClear(grid)
