@@ -8,7 +8,7 @@ import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
 import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
-const Map = ({ playing, setPlaying }) => {
+const Map = ({ playing, setPlaying, editName, setEditName }) => {
     const maps = useSelector((state) => state.maps);
     const curMap = useSelector((state) => state.session.currentMap);
 
@@ -144,8 +144,10 @@ const Map = ({ playing, setPlaying }) => {
             // animate search
             setTimeout(() => {
                 const curNode = visitedNodesArr[i];
-                document.getElementById(`node-${curNode.row}-${curNode.col}`)
-                .className += (' ' + nodeClasses.visited);
+                const domEle = document.getElementById(`node-${curNode.row}-${curNode.col}`);
+                if (domEle) {
+                    domEle.className += (' ' + nodeClasses.visited);
+                }
             }, speed * i);
         }
     }
@@ -154,13 +156,14 @@ const Map = ({ playing, setPlaying }) => {
         path.forEach((ele, i) => {
             const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
             setTimeout(() => {
-                // remove visited cell effect
-                domEle.className = domEle.className
-                .split(nodeClasses.visited).join(' ');
+                if (domEle) {
+                    // remove visited cell effect
+                    domEle.className = domEle.className
+                    .split(nodeClasses.visited).join(' ');
 
-                // add new path effect
-                domEle.className += (` ${nodeClasses.pathCell}`);
-
+                    // add new path effect
+                    domEle.className += (` ${nodeClasses.pathCell}`);
+                }
             }, speed+25 * i);
         });
         setTimeout(() => {
@@ -237,6 +240,8 @@ const Map = ({ playing, setPlaying }) => {
             setTool={setTool}
             handlePlay={handlePlay}
             handleClear={handleClear}
+            editName={editName}
+            setEditName={setEditName}
         />
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':tool?'pointer':'')}}>
             {grid.map((row, i) => (

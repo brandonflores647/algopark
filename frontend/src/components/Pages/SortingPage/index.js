@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from './Stack';
+import SortTools from './SortTools';
 import classes from './SortingPage.module.css';
 
 import { setMapThunk } from '../../../store/session';
-import bubbleSort from '../../../Algorithms/bubbleSort';
 
 const SortingPage = () => {
   const dispatch = useDispatch();
 
-  const [stackAmount, setStackAmount] = useState(90);
+  const [stackAmount, setStackAmount] = useState(126);
+  const [resetTrigger, setResetTrigger] = useState(false);
   const [stacks, setStacks] = useState([]);
-  const [speed, setSpeed] = useState(10); // time in ms
+  const [speed, setSpeed] = useState(80); // time in ms ('Normal' default)
 
   useEffect(() => {
     (async () => {
       await dispatch(setMapThunk(null));
-  })();
+    })();
   }, []);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const SortingPage = () => {
       oldStacks.push(stackTemplate(height));
     }
     setStacks(oldStacks);
-  }, [stackAmount]);
+  }, [stackAmount, resetTrigger]);
 
   const stackTemplate = (height) => {
     return {
@@ -35,19 +36,24 @@ const SortingPage = () => {
     };
   }
 
-  const sortStacks = async (algo) => {
-    algo(stacks, speed);
-  }
-
   return (
     <div className={classes.pageWrapper}>
-      <button onClick={() => sortStacks(bubbleSort)}>SORT</button>
-      <div className={classes.stackContainer}>
+      <SortTools
+        stacks={stacks}
+        setStacks={setStacks}
+        speed={speed}
+        setSpeed={setSpeed}
+        stackAmount={stackAmount}
+        setStackAmount={setStackAmount}
+        resetTrigger={resetTrigger}
+        setResetTrigger={setResetTrigger} />
+      <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
         {stacks.map((stack, i) => {
           return (
             <Stack
               key={`stack-${i}`}
               height={stack.height}
+              stackAmount={stackAmount}
               index={i}
             />
           )

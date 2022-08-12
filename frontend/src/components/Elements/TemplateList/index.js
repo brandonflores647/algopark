@@ -9,7 +9,7 @@ import {
 import classes from './TemplateList.module.css';
 import XButton from "./xButton";
 
-const TemplateList = ({ playing }) => {
+const TemplateList = ({ playing, setEditName }) => {
     const dispatch = useDispatch();
     const maps = useSelector((state) => state.maps);
     const session = useSelector((state) => state.session);
@@ -25,6 +25,7 @@ const TemplateList = ({ playing }) => {
     const handleDelete = (mapId, mapName) => {
         if (playing) return;
         (async() => {
+            await setEditName(false);
             if (window.confirm(`Deleting '${mapName}', are you sure?`)) {
                 await dispatch(thunkDeleteMap(mapId));
                 if (curMap === mapId) {

@@ -1,0 +1,144 @@
+.splashWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255) 30%) no-repeat;
+}
+
+.line {
+    width: 60%;
+    border: 1px solid #c1c1c1;
+    background-color: #c1c1c1;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+.title {
+    margin-bottom: 30px;
+    margin-right: 50px;
+}
+
+.title > h1 {
+    margin-bottom: 10px;
+    color: rgb(9, 30, 66);
+    font-size: 44px;
+    font-weight: 500;
+}
+.title > span {
+    color: rgb(9, 30, 66);
+    line-height: 30px;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.pathInfoContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    margin-top: 40px;
+    margin-bottom: 30px;
+    width: 60%;
+}
+
+.pathInfo {
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+.pathInfo > h2 {
+    margin-bottom: 10px;
+    color: rgb(9, 30, 66);
+    font-size: 34px;
+    font-weight: 500;
+}
+.pathInfo > span {
+    color: rgb(9, 30, 66);
+    line-height: 30px;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.sortInfoContainer {
+    display: flex;
+    align-items: center;
+
+    margin-top: 40px;
+    width: 60%;
+}
+.sortInfoContainer > img {
+    margin-bottom: 130px;
+}
+.sortInfo {
+    margin-bottom: 130px;
+    margin-left: 50px;
+}
+.sortInfo > h2 {
+    margin-bottom: 10px;
+    color: rgb(9, 30, 66);
+    font-size: 34px;
+    font-weight: 500;
+}
+.sortInfo > span {
+    color: rgb(9, 30, 66);
+    line-height: 30px;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100%;
+    padding: 12px 0 12px 0;
+
+    border-top: 2px solid #4B4E6D;
+    background-color: #2d2e41;
+}
+.footerLeft {
+    display: flex;
+    flex-direction: column;
+    color: rgb(236, 236, 236);
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.flTitle {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.412);
+    padding-bottom: 6px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.flName {
+    padding-top: 4px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.footerRight {
+    display: flex;
+    flex-direction: column;
+    color: rgb(236, 236, 236);
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.frTitle {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.412);
+    padding-bottom: 6px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.frName {
+    padding-top: 4px;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.frName > span {
+    margin-left: 10px;
+}
+.frName a {
+    text-decoration: none;
+    color: white;
+}
+.frName a:hover {
+    text-decoration: underline;
+}
