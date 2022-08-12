@@ -8,7 +8,7 @@ import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
 import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
-const Map = ({ playing, setPlaying }) => {
+const Map = ({ playing, setPlaying, editName, setEditName }) => {
     const maps = useSelector((state) => state.maps);
     const curMap = useSelector((state) => state.session.currentMap);
 
@@ -24,6 +24,7 @@ const Map = ({ playing, setPlaying }) => {
     const [clear, setClear] = useState(false);
     const [tool, setTool] = useState(null);
     const [hidePath, setHidePath] = useState(false);
+    const [pathErr, setPathErr] = useState(false);
 
     const nodeTemplate = (row, col) => {
         return {
@@ -144,23 +145,29 @@ const Map = ({ playing, setPlaying }) => {
             // animate search
             setTimeout(() => {
                 const curNode = visitedNodesArr[i];
-                document.getElementById(`node-${curNode.row}-${curNode.col}`)
-                .className += (' ' + nodeClasses.visited);
+                const domEle = document.getElementById(`node-${curNode.row}-${curNode.col}`);
+                if (domEle) {
+                    domEle.className += (' ' + nodeClasses.visited);
+                }
             }, speed * i);
         }
     }
 
     const animatePath = (path) => {
+        if (!path.length) {
+            setPathErr(true);
+        }
         path.forEach((ele, i) => {
             const domEle = document.getElementById(`node-${ele.row}-${ele.col}`);
             setTimeout(() => {
-                // remove visited cell effect
-                domEle.className = domEle.className
-                .split(nodeClasses.visited).join(' ');
+                if (domEle) {
+                    // remove visited cell effect
+                    domEle.className = domEle.className
+                    .split(nodeClasses.visited).join(' ');
 
-                // add new path effect
-                domEle.className += (` ${nodeClasses.pathCell}`);
-
+                    // add new path effect
+                    domEle.className += (` ${nodeClasses.pathCell}`);
+                }
             }, speed+25 * i);
         });
         setTimeout(() => {
@@ -185,6 +192,7 @@ const Map = ({ playing, setPlaying }) => {
         const endNode = grid[endCell[1]][endCell[0]];
         const visitedNodes = dijkstras(grid, startNode, endNode);
         const pathArr = getPath(endNode);
+        setPathErr(false);
         animateVisited(visitedNodes, pathArr);
         setPlaying(true);
         setHidePath(false);
@@ -237,6 +245,10 @@ const Map = ({ playing, setPlaying }) => {
             setTool={setTool}
             handlePlay={handlePlay}
             handleClear={handleClear}
+            editName={editName}
+            setEditName={setEditName}
+            pathErr={pathErr}
+            setPathErr={setPathErr}
         />
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':tool?'pointer':'')}}>
             {grid.map((row, i) => (
@@ -267,6 +279,47 @@ const Map = ({ playing, setPlaying }) => {
                 </div>
             ))}
         </div>
+        <section className={classes.infoContainer}>
+            <div className={classes.infoLeftContainer}>
+                <div className={classes.infoCard}>
+                    <div className={classes.infoCardColorBack}>
+                        <div className={classes.infoCardColor} style={{backgroundColor:'#70FF98'}}></div>
+                    </div>
+                    <span className={classes.infoTitle}>Starting cell - (Required)</span>
+                    <span className={classes.info}>Serves as the starting point for your path.</span>
+                </div>
+                <div className={classes.infoCard}>
+                    <div className={classes.infoCardColorBack}>
+                        <div className={classes.infoCardColor} style={{backgroundColor:'#FF6C6C'}}></div>
+                    </div>
+                    <span className={classes.infoTitle}>Ending cell - (Required)</span>
+                    <span className={classes.info}>Serves as the ending point for your path.</span>
+                </div>
+                <div className={classes.infoCard}>
+                    <div className={classes.infoCardColorBack}>
+                        <div className={classes.infoCardColor} style={{backgroundColor:'#989898'}}></div>
+                    </div>
+                    <span className={classes.infoTitle}>Wall cell - (Optional)</span>
+                    <span className={classes.info}>Acts as an obstacle for your path to avoid.</span>
+                </div>
+            </div>
+            <div className={classes.infoRightContainer}>
+                <div className={classes.infoCard}>
+                    <div className={classes.infoCardColorBack}>
+                        <div className={classes.infoCardColor} style={{backgroundColor:'#fac26e'}}></div>
+                    </div>
+                    <span className={classes.infoTitle}>Slow cell - (Optional)</span>
+                    <span className={classes.info}>A weighted cell that slows down your path.</span>
+                </div>
+                <div className={classes.infoCard}>
+                    <div className={classes.infoCardColorBack}>
+                        <img className={classes.rightclick} src='/static/right-click.svg' alt='right-click' width={'20px'}/>
+                    </div>
+                    <span className={classes.infoTitle}>Right Click - Eraser</span>
+                    <span className={classes.info}>Remove a wall or slow cell.</span>
+                </div>
+            </div>
+        </section>
         </div>
     );
 }

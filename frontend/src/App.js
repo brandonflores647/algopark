@@ -7,6 +7,7 @@ import { authenticate } from './store/session';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Elements/NavBar';
+import SplashPage from './components/Pages/SplashPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import MapPage from './components/Pages/MapPage';
@@ -35,7 +36,7 @@ function App() {
       <div className='contentWrap'>
       <Switch>
         <Route path='/' exact={true} >
-          <h1>splash page</h1>
+          <SplashPage />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />

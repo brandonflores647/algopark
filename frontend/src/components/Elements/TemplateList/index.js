@@ -9,7 +9,7 @@ import {
 import classes from './TemplateList.module.css';
 import XButton from "./xButton";
 
-const TemplateList = ({ playing }) => {
+const TemplateList = ({ playing, setEditName }) => {
     const dispatch = useDispatch();
     const maps = useSelector((state) => state.maps);
     const session = useSelector((state) => state.session);
@@ -22,9 +22,11 @@ const TemplateList = ({ playing }) => {
         })();
     }
 
-    const handleDelete = (mapId, mapName) => {
+    const handleDelete = (mapId, mapName, e) => {
+        e.stopPropagation();
         if (playing) return;
         (async() => {
+            await setEditName(false);
             if (window.confirm(`Deleting '${mapName}', are you sure?`)) {
                 await dispatch(thunkDeleteMap(mapId));
                 if (curMap === mapId) {
@@ -61,12 +63,12 @@ const TemplateList = ({ playing }) => {
                         <li key={`map-${i}`} className={`
                                 ${classes.listItem}
                                 ${(curMap===map.id?classes.selected:'')}
-                            `}>
+                            `}
+                            onClick={() => handleMapChange(map.id)}>
                             <div
                                 className={`
                                     ${classes.listButton}
                                 `}
-                                onClick={() => handleMapChange(map.id)}
                             >{map.name}</div>
                             <XButton
                                 handleDelete={handleDelete}
@@ -76,10 +78,11 @@ const TemplateList = ({ playing }) => {
                         </li>
                     );
                 })}
-                <li className={classes.listItem}>
-                    <div
-                        className={classes.listButton}
-                        onClick={() => handleCreateBlank()}
+                <li
+                    className={classes.listItem}
+                    onClick={() => handleCreateBlank()}
+                >
+                    <div className={classes.listButton}
                     >+ Blank Template</div>
                 </li>
             </ul>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
@@ -18,13 +18,15 @@ const MapTools = ({
     tool,
     setTool,
     handlePlay,
-    handleClear }) => {
+    handleClear,
+    editName,
+    setEditName,
+    pathErr,
+    setPathErr }) => {
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
     const maps = useSelector((state) => state.maps);
-
-    const [editName, setEditName] = useState(false);
 
     const doClear = () => {
         handleClear(grid)
@@ -95,24 +97,32 @@ const MapTools = ({
         })();
     }
 
+    useEffect(() => {
+        if (pathErr) {
+            setTimeout(() => {
+                setPathErr(false);
+            }, 6000);
+        }
+    }, [pathErr])
 
     return (
         <div className={classes.navContainer}>
             <span className={classes.templateNameContainer}>
                 {!editName ?
                     (maps[session.currentMap] ?
-                    <>
+                    <span>
                     {maps[session.currentMap].name}
                     <i
                         className={`fa-solid fa-pen-to-square ${classes.editName}`}
                         onClick={() => setEditName(true)}
                     />
-                    </>
+                    </span>
                     : 'No template selected')
                 : <EditMapForm
                     setEditName={setEditName}
                     map={maps[session.currentMap]}
                     />}
+                <span className={!pathErr?classes.noPathErr:classes.pathErr}>No path found</span>
             </span>
             <div className={classes.navButtons}>
                 <section className={classes.toolContainer}>
