@@ -3,6 +3,7 @@ import { useState } from 'react';
 import bubbleSort from '../../../Algorithms/bubbleSort';
 import selectionSort from '../../../Algorithms/selectionSort';
 import insertionSort from '../../../Algorithms/insertionSort';
+import mergeSort from '../../../Algorithms/mergeSort';
 
 import classes from './SortingPage.module.css';
 
@@ -25,6 +26,11 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
       case 'insertionSort': {
         setPlaying(true);
         insertionSort(stacks, speed, setStacks, setPlaying)
+        break;
+      }
+      case 'mergeSort': {
+        setPlaying(true);
+        mergeSort(stacks, speed, setStacks, setPlaying);
         break;
       }
     }
@@ -86,6 +92,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
           <option value={'bubbleSort'}>Bubble Sort</option>
           <option value={'selectionSort'}>Selection Sort</option>
           <option value={'insertionSort'}>Insertion Sort</option>
+          <option value={'mergeSort'}>Merge Sort</option>
         </select>
       </label>
     </div>
