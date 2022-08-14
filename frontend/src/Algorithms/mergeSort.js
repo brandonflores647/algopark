@@ -1,20 +1,36 @@
 import classes from '../components/Pages/SortingPage/SortingPage.module.css';
 
-const merge = (left, right) => {
+const merge = async (left, right, middle) => {
+    const timer = ms => new Promise(res => setTimeout(res, ms));
     let res = [];
+    let leftIdx = 0;
+    let rightIdx = 0;
 
-    while (left.length && right.length) {
-        if (left[0].height < right[0].height) {
-            res.push(left.shift());
+    left.forEach(async (ele, i) => {
+        const curEle = document.getElementById(`stack-${i}`);
+        await timer(100*i)
+        curEle.style.height = `${ele.height}%`;
+    })
+    right.forEach(async (ele, i) => {
+        const curEle = document.getElementById(`stack-${i+middle}`);
+        await timer(100*i)
+        curEle.style.height = `${ele.height}%`;
+    })
+
+    while (leftIdx < left.length && rightIdx < right.length) {
+        if (left[leftIdx].height < right[rightIdx].height) {
+            res.push(left[leftIdx]);
+            leftIdx++;
         } else {
-            res.push(right.shift());
+            res.push(right[rightIdx]);
+            rightIdx++;
         }
     }
 
-    return res.concat(left.slice().concat(right.slice()));
+    return res.concat(left.slice(leftIdx)).concat(right.slice(rightIdx));
 }
 
-const mergeSort = async (arr, speed, setStacks, setPlaying) => {
+const mergeSort = async (ogArr, arr, speed, setStacks, setPlaying) => {
     const timer = ms => new Promise(res => setTimeout(res, ms));
 
     if (arr.length <= 1) {
@@ -23,10 +39,12 @@ const mergeSort = async (arr, speed, setStacks, setPlaying) => {
     }
 
     const middle = Math.floor(arr.length / 2);
-    const left = await mergeSort(arr.slice(0, middle), speed, setStacks, setPlaying);
-    const right = await mergeSort(arr.slice(middle), speed, setStacks, setPlaying);
+    const left = await mergeSort(ogArr, arr.slice(0, middle), speed, setStacks, setPlaying);
+    const right = await mergeSort(ogArr, arr.slice(middle), speed, setStacks, setPlaying);
 
-    return merge(left, right);
+    const mergeRes = await merge(left, right, middle);
+
+    return mergeRes;
 }
 
 export default mergeSort;
