@@ -30,8 +30,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
       }
       case 'mergeSort': {
         setPlaying(true);
-        const mergeSortRes = mergeSort(stacks, stacks, speed, setStacks, setPlaying);
-        console.log(mergeSortRes)
+        mergeSort(stacks, speed, setPlaying);
         break;
       }
     }
