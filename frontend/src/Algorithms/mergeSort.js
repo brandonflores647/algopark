@@ -13,26 +13,31 @@ const mergeSort = async (arr, speed, setPlaying) => {
         const colorCheck = i%3 !== 2; // false every third element (height change on false)
         if (colorCheck) {
             const [stackOnePos, stackTwoPos] = animations[i];
-            const stackOneStyle = stackArr[stackOnePos].style;
-            const stackTwoStyle = stackArr[stackTwoPos].style;
-            if (i%3===0) {
-                setTimeout(() => {
+            if (stackArr.length) {
+                const stackOneStyle = stackArr[stackOnePos].style;
+                const stackTwoStyle = stackArr[stackTwoPos].style;
+                if (i%3===0) {
+                    await timer(speed);
                     stackOneStyle.backgroundColor = '#fac26e';
                     stackTwoStyle.backgroundColor = '#fac26e';
-                }, i*speed);
+                } else {
+                    await timer((parseInt(speed))+15);
+                    stackOneStyle.removeProperty('background-color');
+                    stackTwoStyle.removeProperty('background-color');
+                }
             } else {
-                setTimeout(() => {
-                    stackOneStyle.backgroundColor = 'rgb(104, 104, 255)';
-                    stackTwoStyle.backgroundColor = 'rgb(104, 104, 255)';
-                }, (i*speed)+15);
+                return;
             }
         } else {
-            setTimeout(() => {
+            await timer(speed);
+            if (stackArr.length) {
                 const [stackOnePos, newHeight] = animations[i];
                 const stackOneStyle = stackArr[stackOnePos].style;
                 stackOneStyle.height = `${newHeight}%`;
-                if (i === animations.length-1) setPlaying(false);
-            }, i*speed);
+            } else {
+                return;
+            }
+            if (i === animations.length-1) setPlaying(false);
         }
     }
 }
