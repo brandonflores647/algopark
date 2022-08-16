@@ -96,3 +96,12 @@
     outline: none;
     cursor: pointer;
 }
+
+.descContainer {
+    width: 55%;
+    max-width: 1000px;
+    height: 25%;
+    max-height: 400px;
+
+    /* background-color: pink; */
+}
