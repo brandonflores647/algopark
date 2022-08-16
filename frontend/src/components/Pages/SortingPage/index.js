@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from './Stack';
 import SortTools from './SortTools';
+import Description from './Description';
 import classes from './SortingPage.module.css';
 
 import { setMapThunk } from '../../../store/session';
@@ -14,6 +15,7 @@ const SortingPage = () => {
   const [resetTrigger, setResetTrigger] = useState(false);
   const [stacks, setStacks] = useState([]);
   const [speed, setSpeed] = useState(80); // time in ms ('Normal' default)
+  const [algorithm, setAlgorithm] = useState('bubbleSort');
 
   useEffect(() => {
     (async () => {
@@ -54,11 +56,14 @@ const SortingPage = () => {
         stacks={stacks}
         setStacks={setStacks}
         speed={speed}
+        algorithm={algorithm}
+        setAlgorithm={setAlgorithm}
         setSpeed={setSpeed}
         stackAmount={stackAmount}
         setStackAmount={setStackAmount}
         resetTrigger={resetTrigger}
         setResetTrigger={setResetTrigger} />
+      <Description algo={algorithm} />
     </div>
   );
 }

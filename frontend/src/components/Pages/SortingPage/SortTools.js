@@ -7,8 +7,17 @@ import mergeSort from '../../../Algorithms/mergeSort';
 
 import classes from './SortingPage.module.css';
 
-const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount, resetTrigger, setResetTrigger }) => {
-  const [algorithm, setAlgorithm] = useState('bubbleSort');
+const SortTools = ({
+  stacks,
+  setStacks,
+  algorithm,
+  setAlgorithm,
+  speed,
+  setSpeed,
+  stackAmount,
+  setStackAmount,
+  resetTrigger,
+  setResetTrigger }) => {
   const [playing, setPlaying] = useState(false);
 
   const sortStacks = async (algo) => {
