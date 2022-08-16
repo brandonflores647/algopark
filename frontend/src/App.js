@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { authenticate } from './store/session';
@@ -50,6 +50,9 @@ function App() {
         <ProtectedRoute path='/sorting' exact={true} >
           <SortingPage />
         </ProtectedRoute>
+        <Route>
+          <Redirect to="/" />
+        </Route>
       </Switch>
       </div>
     </BrowserRouter>
