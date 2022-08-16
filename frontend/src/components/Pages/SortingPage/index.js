@@ -38,6 +38,18 @@ const SortingPage = () => {
 
   return (
     <div className={classes.pageWrapper}>
+      <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
+        {stacks.map((stack, i) => {
+          return (
+            <Stack
+            key={`stack-${i}`}
+            height={stack.height}
+            stackAmount={stackAmount}
+            index={i}
+            />
+            )
+          })}
+      </div>
       <SortTools
         stacks={stacks}
         setStacks={setStacks}
@@ -47,18 +59,6 @@ const SortingPage = () => {
         setStackAmount={setStackAmount}
         resetTrigger={resetTrigger}
         setResetTrigger={setResetTrigger} />
-      <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
-        {stacks.map((stack, i) => {
-          return (
-            <Stack
-              key={`stack-${i}`}
-              height={stack.height}
-              stackAmount={stackAmount}
-              index={i}
-            />
-          )
-        })}
-      </div>
     </div>
   );
 }
