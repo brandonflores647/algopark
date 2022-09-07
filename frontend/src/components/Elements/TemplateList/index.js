@@ -2,9 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap, thunkDeleteMap } from "../../../store/maps";
-import {
-    thunkCreateManyObjects
-} from "../../../store/objects";
+import { thunkCreateManyObjects } from "../../../store/objects";
 
 import classes from './TemplateList.module.css';
 import XButton from "./xButton";
@@ -78,6 +76,7 @@ const TemplateList = ({ playing, setEditName }) => {
                         </li>
                     );
                 })}
+                {Object.keys(maps).length < 20 ?
                 <li
                     className={classes.listItem}
                     onClick={() => handleCreateBlank()}
@@ -85,6 +84,10 @@ const TemplateList = ({ playing, setEditName }) => {
                     <div className={classes.listButton}
                     >+ Blank Template</div>
                 </li>
+                :
+                <li style={{textAlign: 'center'}}>
+                    User's are limited to 20 templates.
+                </li>}
             </ul>
         </div>
     );

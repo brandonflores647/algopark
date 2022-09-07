@@ -42,6 +42,7 @@ const SortTools = ({
         mergeSort(stacks, speed, setPlaying);
         break;
       }
+      default: setPlaying(false);
     }
   }
 

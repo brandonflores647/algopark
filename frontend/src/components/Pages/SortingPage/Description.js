@@ -23,6 +23,7 @@ const Description = ({algo}) => {
             setDesc('Merge Sort');
             break;
           }
+          default: setDesc('Bubble Sort');
         }
     }, [algo]);
 

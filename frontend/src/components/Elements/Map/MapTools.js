@@ -103,7 +103,7 @@ const MapTools = ({
                 setPathErr(false);
             }, 6000);
         }
-    }, [pathErr])
+    }, [pathErr, setPathErr])
 
     return (
         <div className={classes.navContainer}>
