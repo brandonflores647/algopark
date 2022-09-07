@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Stack from './Stack';
 import SortTools from './SortTools';
@@ -21,7 +21,7 @@ const SortingPage = () => {
     (async () => {
       await dispatch(setMapThunk(null));
     })();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const oldStacks = [];

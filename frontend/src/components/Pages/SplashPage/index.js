@@ -12,7 +12,7 @@ const SplashPage = () => {
         (async() => {
             await dispatch(setMapThunk(null));
         })();
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={classes.splashWrapper}>
