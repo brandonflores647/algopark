@@ -54,3 +54,12 @@ To fix a bug or add a feature, follow these steps:
   - You can now run the command `flask run` and your backend will start up, connecting you to an already seeded database.
 - Now that your backend is up and running you can open a second terminal and `cd frontend/` followed by running `npm start`
   - This will automatically start the application on 'localhost:3000'.
+  
+## AlgoPark in action:
+![2022-08-18-15-24-58](https://user-images.githubusercontent.com/100805072/185500985-4777d7ba-d001-46c1-9632-c08d9ef8f471.gif)
+![2022-08-18-15-25-52](https://user-images.githubusercontent.com/100805072/185500993-b687991f-c1db-4592-8b0b-e3acfc34d02e.gif)
+![2022-08-18-15-26-45](https://user-images.githubusercontent.com/100805072/185501013-f5747f10-9126-4d97-b373-f8432924bc38.gif)
+![2022-08-18-15-27-51](https://user-images.githubusercontent.com/100805072/185501025-22515ad0-b9d4-4428-ae14-8d2460625336.gif)
+
+
+### Created by: Brandon Flores

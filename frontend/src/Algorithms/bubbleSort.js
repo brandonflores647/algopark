@@ -49,7 +49,9 @@ const bubbleSort = async (arr, speed, setStacks, setPlaying) => {
 
       if (!swapped) break;
     }
-  setPlaying(false);
+  (async () => {
+    await setPlaying(false);
+  })();
   return newOrder;
 }
 

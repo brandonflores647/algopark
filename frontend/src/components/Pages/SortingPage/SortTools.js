@@ -3,28 +3,43 @@ import { useState } from 'react';
 import bubbleSort from '../../../Algorithms/bubbleSort';
 import selectionSort from '../../../Algorithms/selectionSort';
 import insertionSort from '../../../Algorithms/insertionSort';
+import mergeSort from '../../../Algorithms/mergeSort';
 
 import classes from './SortingPage.module.css';
 
-const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAmount, resetTrigger, setResetTrigger }) => {
-  const [algorithm, setAlgorithm] = useState('bubbleSort');
+const SortTools = ({
+  stacks,
+  setStacks,
+  algorithm,
+  setAlgorithm,
+  speed,
+  setSpeed,
+  stackAmount,
+  setStackAmount,
+  resetTrigger,
+  setResetTrigger }) => {
   const [playing, setPlaying] = useState(false);
 
   const sortStacks = async (algo) => {
     switch (algo) {
       case 'bubbleSort': {
-        bubbleSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
+        bubbleSort(stacks, speed, setStacks, setPlaying)
         break;
       }
       case 'selectionSort': {
-        selectionSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
+        selectionSort(stacks, speed, setStacks, setPlaying)
         break;
       }
       case 'insertionSort': {
-        insertionSort(stacks, speed, setStacks, setPlaying)
         setPlaying(true);
+        insertionSort(stacks, speed, setStacks, setPlaying)
+        break;
+      }
+      case 'mergeSort': {
+        setPlaying(true);
+        mergeSort(stacks, speed, setPlaying);
         break;
       }
     }
@@ -86,6 +101,7 @@ const SortTools = ({ stacks, setStacks, speed, setSpeed, stackAmount, setStackAm
           <option value={'bubbleSort'}>Bubble Sort</option>
           <option value={'selectionSort'}>Selection Sort</option>
           <option value={'insertionSort'}>Insertion Sort</option>
+          <option value={'mergeSort'}>Merge Sort</option>
         </select>
       </label>
     </div>

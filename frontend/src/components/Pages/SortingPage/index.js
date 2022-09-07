@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from './Stack';
 import SortTools from './SortTools';
+import Description from './Description';
 import classes from './SortingPage.module.css';
 
 import { setMapThunk } from '../../../store/session';
@@ -14,6 +15,7 @@ const SortingPage = () => {
   const [resetTrigger, setResetTrigger] = useState(false);
   const [stacks, setStacks] = useState([]);
   const [speed, setSpeed] = useState(80); // time in ms ('Normal' default)
+  const [algorithm, setAlgorithm] = useState('bubbleSort');
 
   useEffect(() => {
     (async () => {
@@ -38,27 +40,30 @@ const SortingPage = () => {
 
   return (
     <div className={classes.pageWrapper}>
+      <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
+        {stacks.map((stack, i) => {
+          return (
+            <Stack
+            key={`stack-${i}`}
+            height={stack.height}
+            stackAmount={stackAmount}
+            index={i}
+            />
+            )
+          })}
+      </div>
       <SortTools
         stacks={stacks}
         setStacks={setStacks}
         speed={speed}
+        algorithm={algorithm}
+        setAlgorithm={setAlgorithm}
         setSpeed={setSpeed}
         stackAmount={stackAmount}
         setStackAmount={setStackAmount}
         resetTrigger={resetTrigger}
         setResetTrigger={setResetTrigger} />
-      <div className={classes.stackContainer} style={{gap:(stackAmount<125?'0.25%':'')}}>
-        {stacks.map((stack, i) => {
-          return (
-            <Stack
-              key={`stack-${i}`}
-              height={stack.height}
-              stackAmount={stackAmount}
-              index={i}
-            />
-          )
-        })}
-      </div>
+      <Description algo={algorithm} />
     </div>
   );
 }
