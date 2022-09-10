@@ -221,6 +221,8 @@
     z-index: 10;
 
     background-color: rgba(0, 0, 0, .25);
+
+    animation: fadeIn .1s ease;
 }
 
 .tutorialContainer {
@@ -234,8 +236,29 @@
     max-width: 1150px;
     max-height: 655px;
 
-    margin-bottom: 5%;
-
     background-color: white;
     border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+
+    animation: fadeIn .15s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    .tutorialContainer {
+      margin-bottom: 4%;
+    }
+}
+@media only screen and (min-width: 2560px) {
+    .tutorialContainer {
+      margin-bottom: 10%;
+    }
 }
