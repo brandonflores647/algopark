@@ -172,6 +172,9 @@ const MapTools = ({
                         Slow Cell
                     </button>
                 </section>
+                <span className={classes.tutButton}>
+                    <i className="fa-solid fa-question"></i>
+                </span>
                 <section className={classes.controlContainer}>
                     <button
                         className={classes.controlButton}
