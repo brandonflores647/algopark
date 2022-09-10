@@ -206,3 +206,36 @@
     background-color: #fbfbfb;
     border-color: #b1b1b1;
 }
+
+.tutorialWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.tutorialContainer {
+    position: relative;
+
+    width: 60%;
+    height: 70%;
+
+    min-width: 960px;
+    min-height: 630px;
+    max-width: 1150px;
+    max-height: 655px;
+
+    margin-bottom: 5%;
+
+    background-color: white;
+    border-radius: 8px;
+}

@@ -28,7 +28,12 @@ const MapPage = () => {
 
     return (
         <div className={classes.pageWrapper}>
-            <Map playing={playing} setPlaying={setPlaying} editName={editName} setEditName={setEditName}/>
+            <Map
+                playing={playing}
+                setPlaying={setPlaying}
+                editName={editName}
+                setEditName={setEditName}
+            />
             <TemplateList playing={playing} setEditName={setEditName} />
         </div>
     );

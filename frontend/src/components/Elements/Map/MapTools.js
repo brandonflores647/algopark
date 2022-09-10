@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
@@ -22,11 +22,14 @@ const MapTools = ({
     editName,
     setEditName,
     pathErr,
-    setPathErr }) => {
+    setPathErr,
+    }) => {
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
     const maps = useSelector((state) => state.maps);
+
+    const [tutorial, setTutorial] = useState(false);
 
     const doClear = () => {
         handleClear(grid)
@@ -172,7 +175,10 @@ const MapTools = ({
                         Slow Cell
                     </button>
                 </section>
-                <span className={classes.tutButton}>
+                <span
+                    className={classes.tutButton}
+                    onClick={() => setTutorial(true)}
+                >
                     <i className="fa-solid fa-question"></i>
                 </span>
                 <section className={classes.controlContainer}>
@@ -194,6 +200,19 @@ const MapTools = ({
                     >SAVE</button>
                 </section>
             </div>
+            {tutorial ?
+                <div
+                    className={classes.tutorialWrap}
+                    onClick={() => setTutorial(false)}
+                >
+                    <div
+                        className={classes.tutorialContainer}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+
+                    </div>
+                </div>
+            : null}
         </div>
     );
 }
