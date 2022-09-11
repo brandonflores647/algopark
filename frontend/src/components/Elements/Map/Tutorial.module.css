@@ -99,6 +99,34 @@
     box-shadow: 0px 0px 1px 0px #7f83aa75;
 }
 
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navContent {
+    font-size: 18px;
+    user-select: none;
+}
+
+.skip {
+    padding: 0px 0px 10px 10px;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+.skip:hover {
+    color: #4B4E6D;
+}
+.next {
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+.next:hover {
+    color: #4B4E6D;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
