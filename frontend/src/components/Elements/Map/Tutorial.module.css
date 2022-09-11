@@ -17,6 +17,10 @@
 }
 
 .tutorialContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
 
     width: 60%;
@@ -32,6 +36,67 @@
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
 
     animation: fadeIn .15s ease;
+}
+
+.title {
+    font-size: 29px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.lineFadeLarge {
+    width: 180%;
+    height: 2px;
+    background-image: linear-gradient(90deg, rgba(75,78,109,0) 0%, rgba(75,78,109,1) 20%, rgba(75,78,109,1) 80%, rgba(75,78,109,0) 100%);
+}
+.lineFade {
+    width: 90%;
+    height: 2px;
+    background-image: linear-gradient(90deg, rgba(75,78,109,0) 0%, rgba(75,78,109,1) 20%, rgba(75,78,109,1) 80%, rgba(75,78,109,0) 100%);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    margin: 0 15px 0 15px;
+}
+
+.contentImg {
+    width: 100%;
+}
+
+.description {
+    margin-left: 8px;
+    font-size: 19px;
+    list-style: square;
+}
+.description > li {
+    margin-top: 15px;
+}
+
+.controlButton {
+    width: fit-content;
+    margin-left: 8px;
+    padding: 13px 20px 13px 20px;
+
+    font-size: 23px;
+    user-select: none;
+
+    color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    background-color: #7F83AA;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+
+    transition: box-shadow .2s ease;
+}
+.controlButton:hover {
+    box-shadow: 0px 0px 1px 4px #7f83aa75;
+}
+.controlButton:active {
+    box-shadow: 0px 0px 1px 0px #7f83aa75;
 }
 
 @keyframes fadeIn {
