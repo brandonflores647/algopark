@@ -9,6 +9,7 @@ import {
 
 import classes from './MapTools.module.css';
 import EditMapForm from './EditMapForm';
+import TutorialModal from './Tutorial';
 
 const MapTools = ({
     grid,
@@ -201,17 +202,7 @@ const MapTools = ({
                 </section>
             </div>
             {tutorial ?
-                <div
-                    className={classes.tutorialWrap}
-                    onClick={() => setTutorial(false)}
-                >
-                    <div
-                        className={classes.tutorialContainer}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-
-                    </div>
-                </div>
+                <TutorialModal setTutorial={setTutorial}/>
             : null}
         </div>
     );
