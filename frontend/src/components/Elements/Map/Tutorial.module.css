@@ -1,0 +1,148 @@
+.tutorialWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+
+    background-color: rgba(0, 0, 0, .25);
+
+    animation: fadeIn .1s ease;
+}
+
+.tutorialContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    width: 60%;
+    height: 70%;
+
+    min-width: 960px;
+    min-height: 630px;
+    max-width: 1150px;
+    max-height: 655px;
+
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+
+    animation: fadeIn .15s ease;
+}
+
+.title {
+    font-size: 29px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.lineFadeLarge {
+    width: 180%;
+    height: 2px;
+    background-image: linear-gradient(90deg, rgba(75,78,109,0) 0%, rgba(75,78,109,1) 20%, rgba(75,78,109,1) 80%, rgba(75,78,109,0) 100%);
+}
+.lineFade {
+    width: 90%;
+    height: 2px;
+    background-image: linear-gradient(90deg, rgba(75,78,109,0) 0%, rgba(75,78,109,1) 20%, rgba(75,78,109,1) 80%, rgba(75,78,109,0) 100%);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    margin: 0 15px 0 15px;
+}
+
+.contentImg {
+    width: 100%;
+}
+
+.description {
+    margin-left: 8px;
+    font-size: 19px;
+    list-style: square;
+}
+.description > li {
+    margin-top: 15px;
+}
+
+.controlButton {
+    width: fit-content;
+    margin-left: 8px;
+    padding: 13px 20px 13px 20px;
+
+    font-size: 23px;
+    user-select: none;
+
+    color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    background-color: #7F83AA;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+
+    transition: box-shadow .2s ease;
+}
+.controlButton:hover {
+    box-shadow: 0px 0px 1px 4px #7f83aa75;
+}
+.controlButton:active {
+    box-shadow: 0px 0px 1px 0px #7f83aa75;
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navContent {
+    font-size: 18px;
+    user-select: none;
+}
+
+.skip {
+    padding: 0px 0px 10px 10px;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+.skip:hover {
+    color: #4B4E6D;
+}
+.next {
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+.next:hover {
+    color: #4B4E6D;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    .tutorialContainer {
+      margin-bottom: 4%;
+    }
+}
+@media only screen and (min-width: 2560px) {
+    .tutorialContainer {
+      margin-bottom: 10%;
+    }
+}

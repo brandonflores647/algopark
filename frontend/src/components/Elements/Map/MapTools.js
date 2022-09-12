@@ -9,6 +9,7 @@ import {
 
 import classes from './MapTools.module.css';
 import EditMapForm from './EditMapForm';
+import TutorialModal from './Tutorial';
 
 const MapTools = ({
     grid,
@@ -22,7 +23,10 @@ const MapTools = ({
     editName,
     setEditName,
     pathErr,
-    setPathErr }) => {
+    setPathErr,
+    tutorial,
+    setTutorial
+    }) => {
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
@@ -172,6 +176,12 @@ const MapTools = ({
                         Slow Cell
                     </button>
                 </section>
+                <span
+                    className={classes.tutButton}
+                    onClick={() => setTutorial(true)}
+                >
+                    <i className="fa-solid fa-question"></i>
+                </span>
                 <section className={classes.controlContainer}>
                     <button
                         className={classes.controlButton}
@@ -191,6 +201,9 @@ const MapTools = ({
                     >SAVE</button>
                 </section>
             </div>
+            {tutorial ?
+                <TutorialModal setTutorial={setTutorial}/>
+            : null}
         </div>
     );
 }

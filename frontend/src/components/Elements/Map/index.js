@@ -8,7 +8,7 @@ import { dijkstras, getPath } from '../../../Algorithms/dijkstras';
 import classes from './Map.module.css';
 import nodeClasses from './Node.module.css';
 
-const Map = ({ playing, setPlaying, editName, setEditName }) => {
+const Map = ({ playing, setPlaying, editName, setEditName, tutorial, setTutorial }) => {
     const maps = useSelector((state) => state.maps);
     const curMap = useSelector((state) => state.session.currentMap);
 
@@ -249,6 +249,8 @@ const Map = ({ playing, setPlaying, editName, setEditName }) => {
             setEditName={setEditName}
             pathErr={pathErr}
             setPathErr={setPathErr}
+            tutorial={tutorial}
+            setTutorial={setTutorial}
         />
         <div className={classes.gridContainer} style={{cursor:(playing?'not-allowed':tool?'pointer':'')}}>
             {grid.map((row, i) => (
