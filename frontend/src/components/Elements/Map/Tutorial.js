@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import classes from './Tutorial.module.css';
 
 const TutorialModal = ({ setTutorial }) => {
@@ -20,11 +18,11 @@ const TutorialModal = ({ setTutorial }) => {
 
         <div className={classes.content}>
           <span style={{width:'50%'}}>
-            <img className={classes.contentImg} src='/static/tool-select.gif'></img>
+            <img className={classes.contentImg} src='/static/tool-select.gif' alt='tool select'></img>
             <p style={{display:'flex',alignItems:'center'}}>
               <span>
                 <div style={{backgroundColor:'#7F83AA',width:'fit-content',display:'inline-block',padding:'5px 9px 3px 9px',borderRadius:'5px'}}>
-                  <img src='/static/left-click.svg' width='22px'></img>
+                  <img src='/static/left-click.svg' alt='left click' width='22px'></img>
                 </div>
               </span>
               <span className={classes.description}>
@@ -50,11 +48,11 @@ const TutorialModal = ({ setTutorial }) => {
             </ul>
           </span>
           <span style={{width:'50%'}}>
-            <img className={classes.contentImg} src='/static/drawing.gif'></img>
+            <img className={classes.contentImg} src='/static/drawing.gif' alt='drawing on canvas gif'></img>
             <p style={{display:'flex',alignItems:'center'}}>
               <span>
                 <div style={{backgroundColor:'#7F83AA',width:'fit-content',display:'inline-block',padding:'5px 9px 3px 9px',borderRadius:'5px'}}>
-                  <img src='/static/left-click.svg' width='22px'></img>
+                  <img src='/static/left-click.svg' alt='left click' width='22px'></img>
                 </div>
               </span>
               <span className={classes.description}>

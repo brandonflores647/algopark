@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMapThunk } from "../../../store/session";
 import { thunkCreateMap } from "../../../store/maps";
@@ -24,13 +24,13 @@ const MapTools = ({
     setEditName,
     pathErr,
     setPathErr,
+    tutorial,
+    setTutorial
     }) => {
 
     const dispatch = useDispatch();
     const session = useSelector((state) => state.session);
     const maps = useSelector((state) => state.maps);
-
-    const [tutorial, setTutorial] = useState(false);
 
     const doClear = () => {
         handleClear(grid)

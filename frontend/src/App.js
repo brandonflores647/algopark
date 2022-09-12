@@ -16,6 +16,7 @@ import SortingPage from './components/Pages/SortingPage';
 function App() {
   const user = useSelector((state) => state.session.user);
   const [loaded, setLoaded] = useState(false);
+  const [tutorial, setTutorial] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +46,7 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/map' exact={true} >
-          <MapPage />
+          <MapPage tutorial={tutorial} setTutorial={setTutorial}/>
         </ProtectedRoute>
         <ProtectedRoute path='/sorting' exact={true} >
           <SortingPage />

@@ -7,7 +7,7 @@ import TemplateList from "../../Elements/TemplateList";
 import classes from './MapPage.module.css';
 import { thunkGetAllMaps } from "../../../store/maps";
 
-const MapPage = () => {
+const MapPage = ({ tutorial, setTutorial }) => {
     const user = useSelector((state) => state.session.user);
     const [loaded, setLoaded] = useState(false);
     const [playing, setPlaying] = useState(false);
@@ -33,6 +33,8 @@ const MapPage = () => {
                 setPlaying={setPlaying}
                 editName={editName}
                 setEditName={setEditName}
+                tutorial={tutorial}
+                setTutorial={setTutorial}
             />
             <TemplateList playing={playing} setEditName={setEditName} />
         </div>
